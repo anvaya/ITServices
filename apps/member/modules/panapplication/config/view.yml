@@ -1,0 +1,4 @@
+## YAML Template.
+indexSuccess:
+  stylesheets: [ member/form.css ]
+  

@@ -1,0 +1,30 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           member
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          member
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        title: Members
+        display: [ member_type, first_name, last_name, email_address, country ]
+        actions: []
+      filter:  
+        display: [ member_type_id, first_name, last_name, email_address, country, groups_list ]
+      form:    
+        fields:
+          email_address: 
+            attributes:
+              size: 80
+      edit:    
+        title: Edit Member "%%first_name%% %%last_name%%"
+      new:     ~

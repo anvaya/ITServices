@@ -1,0 +1,39 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           member
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          member
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:    ~
+      edit:    
+        title: My Profile
+        fields:
+          dob:
+            label: Date of Birth
+          year_as_nri:
+            label: NRI Since
+            help: Select the year since you became a NRI.
+        display: 
+          Personal Details: [ first_name, middle_name, last_name, dob, email_address, country, year_as_nri, married, marriage_anniversary ]          
+          Current Address: [ nri_address ]
+          Address In India: [ in_address ]
+          Contact Information : [ nri_mobile, nri_landline, nri_office, nri_fax ]
+          Contact Information (India): [ in_mobile, in_landline ]
+          Occupation: [occupation_type, job_title, industry, other_income_source]
+          Identification: [ passport_no, pan_no ]
+          Family Members: [ family0, family1, family2, family3, family4 ]
+        actions:
+          _save: ~            
+      new:     ~

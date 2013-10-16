@@ -1,0 +1,33 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           form_question
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          form_question
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    ~
+      filter:  ~
+      form:
+        fields:
+          question_text: 
+            attributes:
+              rows: 4
+              cols: 80            
+          help_message: 
+            attributes:
+              rows: 4
+              cols: 80            
+        display: 
+           Question: [ form_id, group_code, page_num, question_text, answer_type, help_message, disabled  ]
+           Options:  [ _options ]        
+      edit:    ~
+      new:     ~

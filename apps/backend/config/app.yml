@@ -1,0 +1,32 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+    sf_guard_plugin:
+      success_signout_url: default/index
+      success_signin_url: default/index
+
+    datagrid:
+      date_format: "d/mmm/Y"
+      datetime_format: "d/mmm/Y à H:i:s"
+      images_dir: /sfDatagridPlugin/img/
+      images_dir_orm: /sfDoctrinePlugin/images/
+      class_for_foreign: sfWidgetFormDoctrineChoice
+      jsframwork: jquery # prototype or jquery    
+      text_novalueinrows: No Records Found.
+      text_search: Search
+      text_reset: Reset
+      text_validate: Validate
+      text_page: Page
+      text_defaultview: ""
+      label_null: Date Null
+      text_numberofrecords: Number of Records
+      text_loading: Searching..
+      text_from: From
+      text_to: To
+      text_yes: Yes
+      text_no: No
+      insert_pager_bottom: true
+      freezepanes: false
+

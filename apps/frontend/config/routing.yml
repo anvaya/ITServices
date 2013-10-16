@@ -1,0 +1,37 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+resources:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                resource
+    module:               resource
+    prefix_path:          /resource
+    column:               id
+    with_wildcard_routes: true 
+
+content:
+  url:      /c/:slug
+  class:    sfDoctrineRoute
+  param:    { module: content, action: show }
+  options:  { model: site_page, type: object }
+  
+contentfull:
+  url:      /content/:slug
+  class:    sfDoctrineRoute
+  param:    { module: content, action: index }
+  options:  { model: site_page, type: object }
+  
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

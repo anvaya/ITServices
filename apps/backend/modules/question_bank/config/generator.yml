@@ -1,0 +1,46 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           question_bank
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          question_bank
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+        sort: [ question_text, asc ]
+        fields:
+          answer_type_name:
+            label: Answer Type            
+        title: Question Bank
+        display: [ question_text, question_category, answer_type_name, disabled ]
+          
+      filter:  ~
+      form:    
+        fields:
+          parent_question_id:
+            label: Question Group
+          question_text: 
+            attributes:
+              rows: 4
+              cols: 80            
+          help_message: 
+            attributes:
+              rows: 4
+              cols: 80            
+        display: 
+           Question: [ question_text, category_id, parent_question_id, answer_type, help_message, disabled  ]
+           Options:  [ _options ]
+        
+          
+      edit:    
+        title: Edit Question
+      new:     
+        title: Add New Question

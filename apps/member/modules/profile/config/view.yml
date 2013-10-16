@@ -1,0 +1,6 @@
+## YAML Template.
+editSuccess:
+  stylesheets: 
+    - member/form.css 
+    - member/profile.css
+    

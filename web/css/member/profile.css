@@ -1,0 +1,38 @@
+/* 
+    Document   : profile
+    Created on : Oct 9, 2013, 2:54:03 PM
+    Author     : DREAMS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body
+{
+    background-color: white;
+}
+
+#sf_admin_container
+{
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sf_admin_container fieldset h2
+{
+    background-color: #008200;
+    color: white;   
+    font-size: 16px;
+}
+
+
+#sf_admin_container .help 
+{
+    font-family: arial, tahoma, 'times new roman';
+    padding-left: 1em;
+}
+
+.sf_admin_actions
+{
+    text-align:  center;
+}

@@ -1,0 +1,67 @@
+/*
+    Document   : blog
+    Created on : Jun 9, 2013, 11:50:28 AM
+    Author     : keval
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.blog h2{ 
+  background: none repeat scroll 0 0 #EEEEEE;
+  color: #E7551C;
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin-bottom: 10px;
+  padding: 10px;
+  clear: both;
+}
+
+.blog_list h2{ 
+  color: #E7551C;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin-bottom: 10px;
+  padding: 10px;
+  clear: both;
+  border-bottom: 1px solid #ccc;
+}
+
+.blog .posted_by, .blog_list .posted_by  { padding: 10px 0; font-weight: bold; font-style: italic; color: #2E444F; font-size: 14px;}
+
+.blog .description{
+  text-align:justify;
+  text-justify:inter-word;
+}
+
+.blog .description img, .blog_list .description img {
+    border: 1px solid #CCCCCC;
+    float: left;
+    margin: 0 10px 10px 0;
+    padding: 5px;  
+}
+
+#main_content .comment h3
+{
+   color: #E7551C;
+   background: none repeat scroll 0 0 #EEEEEE;
+   font-size: 20px;
+   margin-bottom: 20px;
+   padding: 10px;
+}
+.comment .list .comment_row  {padding: 10px;}
+.comment .list .comment_row .title {padding-bottom: 5px;}
+.comment .list .comment_row .title .author { color: #777777; font-weight: bold; }
+.comment .list .comment_row .title .created { color: #ccc; font-weight: bold; }
+#main_content .comment .list .comment_row  .content{
+  text-align:justify;
+  text-justify:inter-word;
+}
+
+.cb { clear: both; }
+.fl { float: left; }
+.fr { float: right; }
+
+.fl strong {color: #E7551C;}
+a.cr:link, a.cr:visited {color: #E7551C !important; }

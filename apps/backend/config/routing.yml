@@ -1,0 +1,194 @@
+blog:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                blog
+    module:               blog
+    prefix_path:          /blog
+    column:               id
+    with_wildcard_routes: true
+
+menu_folder:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                menu_folder
+    module:               menufolder
+    prefix_path:          /menufolder
+    column:               id
+    with_wildcard_routes: true
+
+reminder:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                reminder
+    module:               reminder
+    prefix_path:          /reminder
+    column:               id
+    with_wildcard_routes: true
+
+slideshow:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                slideshow
+    module:               slideshow
+    prefix_path:          /slideshow
+    column:               id
+    with_wildcard_routes: true
+
+survey_submission:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                survey_submission
+    module:               survey_submission
+    prefix_path:          /survey_submission
+    column:               id
+    with_wildcard_routes: true
+
+
+form_question:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                form_question
+    module:               form_question
+    prefix_path:          /form_question
+    column:               id
+    with_wildcard_routes: true
+
+member_type:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                member_type
+    module:               member_type
+    prefix_path:          /member_type
+    column:               id
+    with_wildcard_routes: true
+
+resource:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                resource
+    module:               resource
+    prefix_path:          /resource
+    column:               id
+    with_wildcard_routes: true
+
+site_page:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                site_page
+    module:               site_page
+    prefix_path:          /site_page
+    column:               id
+    with_wildcard_routes: true
+
+calendar_event:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                calendar_event
+    module:               calendar_event
+    prefix_path:          /calendar_event
+    column:               id
+    with_wildcard_routes: true
+
+member:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                member
+    module:               member
+    prefix_path:          /member
+    column:               id
+    with_wildcard_routes: true
+
+submission:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                submission
+    module:               submission
+    prefix_path:          /submission
+    column:               id
+    with_wildcard_routes: true
+
+application:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                application
+    module:               application
+    prefix_path:          /application
+    column:               id
+    with_wildcard_routes: true
+
+qb_pick_list:
+  url: /question_bank/pickList/*
+  param:
+    module: question_bank
+    action: pickList
+    
+question_bank_option_row:
+  url: qb/:id/addOptionsRow/:num
+  param:  
+    module: question_bank
+    action: addOptionsRow
+    id: ~    
+  requirements:
+    sf_method: [get]
+    id: \d+
+    num: \d+  
+
+form_question_option_row:
+  url: fq/:id/addOptionsRow/:num
+  param:  
+    module: form_question
+    action: addOptionsRow
+    id: ~    
+  requirements:
+    sf_method: [get]
+    id: \d+
+    num: \d+  
+
+question_bank:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                question_bank
+    module:               question_bank
+    prefix_path:          /question_bank
+    column:               id
+    with_wildcard_routes: true
+
+survey_question_row:
+  url: survey/:id/addQuestionRow/:question_id/:num
+  param:  
+    module: survey
+    action: addQuestionRow
+    id: ~    
+  requirements:
+    sf_method: [get]
+    id: \d+
+    num: \d+  
+    question_id: \d+
+
+
+survey:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                survey
+    module:               survey
+    prefix_path:          /survey
+    column:               id
+    with_wildcard_routes: true
+
+
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+homepage:
+  url:   /
+  param: { module: default, action: index }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

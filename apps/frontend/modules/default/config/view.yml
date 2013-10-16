@@ -1,0 +1,8 @@
+## YAML Template.
+indexSuccess:
+  layout: layout_home
+  stylesheets:  
+    
+  javascripts:   
+    - jquery.jmslideshow.js
+    - modernizr.custom.48780.js

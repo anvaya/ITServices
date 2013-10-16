@@ -1,0 +1,178 @@
+/* 
+    Document   : form
+    Created on : Sep 30, 2013, 10:56:22 AM
+    Author     : DREAMS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* register form::start */
+
+.sf_admin_form_row
+{
+  clear: both;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+.sf_admin_form_row div { min-height: 24px;}
+
+.sf_admin_form_row label
+{
+  display: inline-block;
+  padding: 0 1em 3px 0;
+  float: none;
+  text-align: right;
+  width: 15em;
+  color: #666;
+  font-weight: normal;
+  vertical-align: top;
+}
+
+.sf_admin_form_row label .mandatory { color: #FF3333; }
+
+.sf_admin_form_row .content
+{
+    display: inline-block;
+  padding-left: 1em;
+}
+
+.big_label
+{
+  clear: both;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  height: auto;
+}
+
+.big_label label
+{
+  display: inline-block;
+  padding: 0 1em 3px 0;
+  /*float: left;*/
+  text-align: left;
+  width: 100%;
+  color: #666;
+  font-weight: normal !important;
+}
+
+.big_label label .mandatory { color: #FF3333; }
+
+.big_label .content
+{
+  padding-left: 1em;
+  height: auto;
+}
+
+ul.error_list
+{
+  margin: 0;
+  margin-bottom: 7px;  
+  color: #d33;
+  border: none;
+  background-color: #0C2447;
+  float: right;
+}
+
+ul.error_list li
+{
+  padding: 4px;
+  padding-left: 25px;
+  list-style: none;
+  color: #fff;
+  background: url(../../images/error.png) no-repeat 4px 6px;
+}
+
+.sf_admin_form_row .content ul.radio_list, .big_label .content ul.radio_list, .sf_admin_form_row .content ul.checkbox_list, .big_label .content ul.checkbox_list
+{
+  padding: 0px;
+  margin: 0px;
+  float: none;
+}
+
+.sf_admin_form_row .content ul.radio_list li, .big_label .content ul.radio_list li, .sf_admin_form_row .content ul.checkbox_list li, .big_label .content ul.checkbox_list li
+{
+  float: none;
+  list-style: none;
+}
+
+.sf_admin_form_row .content ul.radio_list li label, .big_label .content ul.radio_list li label, .sf_admin_form_row .content ul.checkbox_list li label, .big_label .content ul.checkbox_list li label
+{
+  width: auto;
+  padding-right: 5px;
+}
+
+.tab_head {padding: 5px; background: #E3E4DF;font-weight: bold;color:#330066}
+
+.open-tab { padding: 2px 10px;  background: #EAEAEA;border: 1px solid #A9a9a9;}
+
+.open-tab:hover { text-decoration: none; background: #DDEDFC;border: 1px solid #7EB4EA;}
+
+.help { margin-left: 260px; }
+
+.sf_admin_form_row label 
+{
+    display: block;
+    text-align: left;
+    float: left;
+    font-family: 'Open Sans Condensed','Arial Narrow',serif !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    color: #707070 !important;
+}
+
+#main_content
+{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 960px;
+}
+
+.help_icon
+{
+   float: right; 
+}
+
+#detailed_help
+{
+    background-color: white;
+}
+
+#detailed_help pre
+{
+    width: 350px;
+}
+
+ul.checklist
+{
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+ul.checklist li
+{    
+    font-size: 14px;
+    font-weight: bold;
+    color: #330066;
+}
+
+.bold_message
+{
+    font-size: 15px;
+    text-align: left;    
+    font-family: 'Open Sans Condensed','Arial Narrow',serif !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    color: #707070 !important;
+    margin-left: 0px;
+}
+
+.mandatory {
+    color: #FF3333;
+}
+/* register form::end */
+

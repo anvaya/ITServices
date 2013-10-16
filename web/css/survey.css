@@ -1,0 +1,117 @@
+/* 
+    Document   : survey
+    Created on : Feb 21, 2013, 8:01:40 PM
+    Author     : DREAMS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.question_text
+{
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+    padding-bottom: 5px !important;
+    padding-right: 5px !important;
+}
+
+.question_row td
+{
+    padding-bottom: 20px;
+}
+
+.sub_question_row td
+{
+    padding-bottom: 10px;
+}
+
+.subdata .question_text
+{
+    font-size: 14px;
+    font-weight: normal;
+    margin-top: 5px;
+}
+
+ul.error_list
+{
+  margin: 0;
+  margin-bottom: 7px;
+  color: #d33;
+  border: none;
+  background-color: #f33;
+  width: 400px;
+}
+
+ul.error_list li
+{
+  padding: 4px;
+  padding-left: 25px;
+  list-style: none;
+  color: #fff;  
+  font-weight: bold;
+  background: url(../images/error.png) no-repeat 4px 4px;
+}
+
+.error
+{
+  margin: 4px 0;
+  padding: 4px 4px 4px 30px;
+  background: url(../images/error.png) no-repeat 10px 4px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f33;
+  font-weight: bold;
+  color: #fff;
+}
+
+.radio_list, .checkbox_list
+{
+    list-style-type: none;
+}
+
+.linkbutton, input[type='submit'] {
+	-moz-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	box-shadow:inset 0px 1px 0px 0px #97c4fe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #3d94f6), color-stop(1, #1e62d0) );
+	background:-moz-linear-gradient( center top, #3d94f6 5%, #1e62d0 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#3d94f6', endColorstr='#1e62d0');
+	background-color:#3d94f6;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #337fed;
+	display:inline-block;
+	color:#ffffff !important;
+        text-decoration: none;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #1570cd;
+        cursor: pointer;
+}.linkbutton:hover, input[type='submit']:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #1e62d0), color-stop(1, #3d94f6) );
+	background:-moz-linear-gradient( center top, #1e62d0 5%, #3d94f6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#1e62d0', endColorstr='#3d94f6');
+	background-color:#1e62d0;
+        cursor: pointer;
+        text-decoration: none;
+}.linkbutton:active, input[type='submit']:active {
+	position:relative;
+	top:1px;
+        cursor: pointer;
+        text-decoration: none;
+}
+
+input[type=text]
+{
+    min-width: 300px;
+    font-size: small/1.5;
+    font-family: Arial,sans-serif
+}

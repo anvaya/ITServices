@@ -1,0 +1,29 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           member_type
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          member_type
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+        type_name:
+          label: Member Type
+      list:    
+        display: [ type_name ]
+        sort: [ type_name, asc ]
+        title: Member Types
+      filter:  
+        display: [ type_name ]
+      form:    
+        display: [ type_name, description ]
+      edit:    
+        title: Edit Member Type "%%type_name%%"
+      new:     ~
