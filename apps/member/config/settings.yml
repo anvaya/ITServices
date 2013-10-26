@@ -24,7 +24,7 @@ test:
 
 all:
   .settings:
-    survey_encryption_key: 7>Z]hM6D+OpKvr*kdHf$G2!q7rqiDh
+    mail_encryption_key: 7>Z]hM6D+OpKvr*kdHf$G2!q7rqiDh
         
     # Form security secret (CSRF protection)
     csrf_secret:            9708e78a4afa07c7e0ca66ff1cc3dcb1b1a227d9
