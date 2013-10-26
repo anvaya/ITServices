@@ -1,47 +1,13 @@
-blog_comment:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                blog_comment
-    module:               blogcomment
-    prefix_path:          /blogcomment
-    column:               id
-    with_wildcard_routes: true
+panapplication_paymentVerified:
+  url:      /panapplication/paymentVerified/:verify
+  param:    { module: panapplication, action: paymentVerified }
 
-survey_submission:
+submission:
   class: sfDoctrineRouteCollection
   options:
-    model:                survey_submission
-    module:               survey_submission
-    prefix_path:          /survey_submission
-    column:               id
-    with_wildcard_routes: true
-
-resources:
-  url: /resources/:rid
-  param:    { module: content, action: resource }
-  
-  
-content:
-  url:      /c/:slug
-  class:    sfDoctrineRoute
-  param:    { module: content, action: show }
-  options:  { model: site_page, type: object }
-  
-site_page:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                site_page
-    module:               content
-    prefix_path:          /content
-    column:               id
-    with_wildcard_routes: true
-
-calendar_event:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                calendar_event
-    module:               calendar_event
-    prefix_path:          /calendar_event
+    model:                submission
+    module:               submission
+    prefix_path:          /submission
     column:               id
     with_wildcard_routes: true
 
@@ -54,31 +20,6 @@ member:
     column:               id
     with_wildcard_routes: true
 
-blog_public:
-  url:          /blog/public
-  param:        { module: blog, action: public }
-
-blog_comment_approved:
-  url:          /blog/commentApproved
-  param:        { module: blog, action: commentApproved }
-  
-blog_comment_add:  
-  url:          /blog/commentAdd
-  param:        { module: blog, action: commentAdd }
-  
-blog:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                blog
-    module:               blog
-    prefix_path:          /blog
-    column:               id
-    with_wildcard_routes: true
-
-blog_by_slug:
-  url:          /blog/:slug
-  param:        { module: blog, action: show }
-  
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
