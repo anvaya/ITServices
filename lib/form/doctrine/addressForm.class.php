@@ -20,6 +20,7 @@ class addressForm extends BaseaddressForm
       $address_type =  $this->getOption("address_type", null);
       if($address_type == addressTable::ADDRESS_TYPE_IND)
       {
+        $this->widgetSchema['country'] = new sfWidgetFormInputHidden(array('default'=> 'IN'));
         $choices = array( ""=>"--Select--",
                                 "1"=>"Andaman &amp; Nicobar Islands",
                                 "2"=>"Andhra Pradesh",

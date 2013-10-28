@@ -10,26 +10,32 @@
  * @property integer $user_id
  * @property integer $submission_ip
  * @property boolean $archieved
+ * @property integer $status
  * @property sfGuardUser $sfGuardUser
  * @property submission_form $submission_form
  * @property Doctrine_Collection $submission_data
+ * @property Doctrine_Collection $payment
  * 
  * @method integer             getId()              Returns the current record's "id" value
  * @method integer             getFormId()          Returns the current record's "form_id" value
  * @method integer             getUserId()          Returns the current record's "user_id" value
  * @method integer             getSubmissionIp()    Returns the current record's "submission_ip" value
  * @method boolean             getArchieved()       Returns the current record's "archieved" value
+ * @method integer             getStatus()          Returns the current record's "status" value
  * @method sfGuardUser         getSfGuardUser()     Returns the current record's "sfGuardUser" value
  * @method submission_form     getSubmissionForm()  Returns the current record's "submission_form" value
  * @method Doctrine_Collection getSubmissionData()  Returns the current record's "submission_data" collection
+ * @method Doctrine_Collection getPayment()         Returns the current record's "payment" collection
  * @method submission          setId()              Sets the current record's "id" value
  * @method submission          setFormId()          Sets the current record's "form_id" value
  * @method submission          setUserId()          Sets the current record's "user_id" value
  * @method submission          setSubmissionIp()    Sets the current record's "submission_ip" value
  * @method submission          setArchieved()       Sets the current record's "archieved" value
+ * @method submission          setStatus()          Sets the current record's "status" value
  * @method submission          setSfGuardUser()     Sets the current record's "sfGuardUser" value
  * @method submission          setSubmissionForm()  Sets the current record's "submission_form" value
  * @method submission          setSubmissionData()  Sets the current record's "submission_data" collection
+ * @method submission          setPayment()         Sets the current record's "payment" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -69,6 +75,19 @@ abstract class Basesubmission extends sfDoctrineRecord
              'notnull' => true,
              'default' => 0,
              ));
+        $this->hasColumn('status', 'integer', 1, array(
+             'type' => 'integer',
+             'size' => 1,
+             'unsigned' => true,
+             'notnull' => false,
+             'length' => 1,
+             ));
+        $this->setSubClasses(array(
+             'pan_application' => 
+             array(
+              'form_id' => 1,
+             ),
+             ));
     }
 
     public function setUp()
@@ -90,6 +109,10 @@ abstract class Basesubmission extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'submission_id'));
 
+        $this->hasMany('payment', array(
+             'local' => 'id',
+             'foreign' => 'payment_id'));
+					
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
     }

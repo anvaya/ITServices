@@ -8,12 +8,13 @@
  * @author     Anvaya Technologies
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class memberForm extends BasememberForm {
-
+class memberForm extends BasememberForm
+{
     /**
      * @see sfGuardUserForm
      */
-    public function configure() {
+    public function configure()
+    {
         parent::configure();
         $this->widgetSchema['country'] = new sfWidgetFormI18nChoiceCountry(array("add_empty" => true));
         $this->validatorSchema['country'] = new sfValidatorI18nChoiceCountry(array("required" => false));
@@ -26,6 +27,7 @@ class memberForm extends BasememberForm {
 
         $this->validatorSchema['email_address'] = new sfValidatorEmail(array("required" => true));
 
+     $this->useFields( array("first_name", "middle_name", "last_name","email_address", "dob", "country","passport_no", "pan_no", "gender", "married", "marriage_anniversary", "year_as_nri", "occupation_type", "job_title", "industry", "other_income_source","timezone","culture" ));
 
 
         //$this->embedForm("nri_address", new addressForm(null, array('address_type'=> addressTable::ADDRESS_TYPE_NRI)));

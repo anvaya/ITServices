@@ -20,6 +20,7 @@ abstract class BasesubmissionForm extends BaseFormDoctrine
       'user_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'add_empty' => true)),
       'submission_ip' => new sfWidgetFormInputText(),
       'archieved'     => new sfWidgetFormInputCheckbox(),
+      'status'        => new sfWidgetFormInputText(),
       'created_at'    => new sfWidgetFormDateTime(),
       'updated_at'    => new sfWidgetFormDateTime(),
     ));
@@ -30,6 +31,7 @@ abstract class BasesubmissionForm extends BaseFormDoctrine
       'user_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('sfGuardUser'), 'required' => false)),
       'submission_ip' => new sfValidatorInteger(array('required' => false)),
       'archieved'     => new sfValidatorBoolean(array('required' => false)),
+      'status'        => new sfValidatorInteger(array('required' => false)),
       'created_at'    => new sfValidatorDateTime(),
       'updated_at'    => new sfValidatorDateTime(),
     ));

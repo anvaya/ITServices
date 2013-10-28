@@ -17,10 +17,9 @@ class contactForm extends BasecontactForm
       if($isd_code == "91")
         $this->widgetSchema['isd_code'] = new sfWidgetFormInputHidden(array('default'=> '91'));
       else
-      $this->widgetSchema['isd_code'] = new sfWidgetFormChoice(array("choices"=>$choices));
+        $this->widgetSchema['isd_code'] = new sfWidgetFormChoice(array("choices"=>$choices));
 
       $this->widgetSchema['country'] = new sfWidgetFormInputHidden();
-
       
       $contact_type =  $this->getOption("contact_type", null);
       if($contact_type)
