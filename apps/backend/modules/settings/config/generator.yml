@@ -1,0 +1,43 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           settings
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          settings
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+        description: { label: Setting }
+      list:
+        sort: [ setting_key, asc ]
+        display: [ =description, value1 ]
+        object_actions:
+          _edit: ~
+        actions: []
+        batch_actions: []
+      filter:
+        display: [description]
+      form:
+        fields:
+          value1:
+            attributes:
+              size: 100
+          value2:
+            attributes:
+              size: 100
+          value3:
+            attributes:
+              size: 100
+      edit: 
+        title: Edit Setting "%%description%%"
+        actions:
+          save:
+          back_to_list:  {action: index}
+      new:     ~

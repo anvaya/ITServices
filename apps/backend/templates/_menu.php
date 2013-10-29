@@ -11,35 +11,27 @@
                                         "Members"=>
                                         array(
                                             array(
-                                                    "Applications"=>array("@application","application","index"),
+                                                    "Pancard Applications"=>array("@pan_application","pan_application","index"),
                                                     "Members"=>array("@member","member","index"),                                                    
-                                                    "Alerts"=>array("@reminder","reminder","index"),
                                                   ),
-                                        ),                                                                                
-                                        "Surveys"=>array
-                                            (
-                                                array(
-                                                        "Surveys"=>array("@survey","survey","index"),
-                                                        "Question Bank"=>array("@question_bank","question_bank","index"),
-                                                        "Submissions"=>array("@survey_submission","survey_submission","index"),
-                                                    ),
-                                            ),                                        
-                                        "Events"=>array("@calendar_event","calendar_event","index"),                                        
-                                        
+					     ),
+					"Submission"=> array('@submission', 'submission','index'),
+                                       
                                         "Settings"=>array(array(
+                                                            "Settings"=>array("@settings","settings","index"),                                                    
                                                             "Users"=>array("@sf_guard_user","guard","users"),                                                    
                                                             "Groups"=>array("@sf_guard_group","guard","groups"),
                                                             "Member Types"=>array("@member_type","member_type","index"),
                                                             //"Countries"=>array("@country","country","index"),
                                                         )),
-                                        "Website"=>array
+                                        /*"Website"=>array
                                         ( 
                                            array(                                               
                                             "Pages"=>array("@site_page","site_page","index"),
                                             "Resources"=>array("@resource","resource","index"),
                                             "Slideshows"=>array("@slideshow","slideshow","index"),
                                                ),
-                                        ),
+                                        ),*/
                                         "Logout"=>array("@sf_guard_signout","sf_guard_auth","signout")    
                                     );
         ?> 

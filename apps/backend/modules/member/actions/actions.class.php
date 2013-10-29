@@ -13,4 +13,8 @@ require_once dirname(__FILE__).'/../lib/memberGeneratorHelper.class.php';
  */
 class memberActions extends autoMemberActions
 {
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->member = $this->getRoute()->getObject();
+  }
 }

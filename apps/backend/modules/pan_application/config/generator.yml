@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           pan_application
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          pan_application
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        fields:
+          sfGuardUser: { label: Username }
+          statuss: { label: Status }
+        display: [sfGuardUser, ip_address, statuss, created_at, updated_at] 
+        actions: []
+        object_actions: []
+        batch_actions: []
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

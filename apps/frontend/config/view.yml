@@ -18,7 +18,7 @@ default:
     - menu.css
     - ui-lightness/jquery-ui-1.10.0.custom.min.css
     - http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic    
-    
+    - jmpress.min.js
 
   javascripts:    [jquery-1.9.0.min.js, jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js, jmpress.min.js ]
 

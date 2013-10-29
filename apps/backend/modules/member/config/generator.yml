@@ -17,9 +17,12 @@ generator:
       list:    
         title: Members
         display: [ member_type, first_name, last_name, email_address, country ]
+        object_actions:
+          _edit: ~
+        batch_actions: []
         actions: []
       filter:  
-        display: [ member_type_id, first_name, last_name, email_address, country, groups_list ]
+        display: [ member_type_id, first_name, last_name, email_address, country ]
       form:    
         fields:
           email_address: 
@@ -27,4 +30,7 @@ generator:
               size: 80
       edit:    
         title: Edit Member "%%first_name%% %%last_name%%"
+        actions:
+          _save: ~
+          _list: ~
       new:     ~

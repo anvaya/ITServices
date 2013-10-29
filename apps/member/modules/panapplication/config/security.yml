@@ -3,3 +3,9 @@
 
 default:
   is_secure: true
+paymentVerified:
+  is_secure: false
+paymentConfirmed:
+  is_secure: false
+paymentnotification:
+  is_secure: false

@@ -2,3 +2,5 @@
 indexSuccess:
   stylesheets: [ member/form.css ]
   
+paymentVerifiedSuccess:
+  stylesheets: [ member/form.css ]

@@ -1,3 +1,31 @@
+settings:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                settings
+    module:               settings
+    prefix_path:          /settings
+    column:               setting_key
+    with_wildcard_routes: true
+
+pan_application:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                pan_application
+    module:               pan_application
+    prefix_path:          /pan_application
+    column:               id
+    with_wildcard_routes: true
+
+pancard:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                submission
+    module:               pancard
+    prefix_path:          /pancard
+    column:               id
+    with_wildcard_routes: true
+
+
 blog:
   class: sfDoctrineRouteCollection
   options:
