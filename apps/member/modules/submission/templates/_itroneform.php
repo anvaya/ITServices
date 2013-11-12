@@ -1,5 +1,7 @@
 <?php use_helper('I18N') ?>
 <?php 
+use_javascript("knockout-3.0.0.js");
+
 $tab_labels = array
   (
     "Personal_Detail" =>"Personal Details",
@@ -52,8 +54,7 @@ has acquired by means of a transfer, a capital asset in India :'
         <?php foreach($itrone_form as $key => $field ):?>
           <?php
             // pass for hidden field and program year id
-            if($field->isHidden() || $key == "captcha") continue;
-            
+            if($field->isHidden() || $key == "captcha" || $key == "itrone_subs") continue;
             // explode field name for get group_code,question_id and answer_type
             $arr_q_id = explode("_",$key);
             /* @var $form_question form_question */
@@ -99,6 +100,33 @@ has acquired by means of a transfer, a capital asset in India :'
                 </div>
           <?php $group = $gc; ?>
         <?php endforeach;?>
+        <div class="sf_admin_form_row sf_admin_text">
+          <div>
+            <label>Itrone Subs</label>
+            <div class="content" id="itrone_subs_form_div">
+              <?php foreach ($itrone_form['itrone_subs'] as $itrone_subs): ?>
+                <table>
+                  <thead><tr><td colspan="2"><?php echo image_tag('toggle_collapse.png', array('class'=>'toggle-property')) ?></td></tr></thead>
+                  <tbody class="table-subform">
+                  <?php foreach ($itrone_subs as $sub_key => $sub_fields): ?>
+                    <?php if($sub_fields->isHidden()) continue; ?>
+                    <tr>
+                      <td><?php echo $sub_fields->renderLabel(); ?></td>
+                      <td><?php echo $sub_fields->render(); ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                  <tr><?php echo $itrone_subs->renderHiddenFields(); ?></tr>
+                  </tbody>
+                </table>
+              <?php endforeach; ?>
+            </div>
+            <div class="">
+              <label>&nbsp;</label>
+              <a id="add_itrone_subs_form" href="#" class="fg-button ui-state-default fg-button-icon-left add_new_sub_form"><?php echo __('Add New Sub Form',null,'submission') ?></a>
+            </div>
+          </div>
+        </div>
+      <div style="clear:both;height: 30px;">&nbsp;</div>
       <div class="sf_admin_form_row sf_admin_text">
         <div>
           <label>&nbsp;</label>
@@ -226,4 +254,99 @@ has acquired by means of a transfer, a capital asset in India :'
           
           return err;
     }    
+</script>
+<?php 
+  /* @var $form ItroneForm */
+  if($itrone_form->isNew())
+    $number =1;
+  else{
+    $itrone_form->getObject()->getId();
+    $number = Doctrine_Query::create()
+        ->from("submission_inner si")
+        ->where("si.submission_id = ?",$itrone_form->getObject()->getId())
+        ->count();
+  }
+?>
+
+<script type="text/javascript">
+var newfieldscount = <?php echo $number ?>;
+
+function addNewField(num){
+    return jQuery.ajax({
+    type: 'GET',
+    url: '<?php echo str_replace('/action','',url_for('submission/additronesub')) ?>?num='+num+'&id=<?php echo $itrone_form->getObject()->getId() ?>',
+    async: false
+  }).responseText;
+}
+
+jQuery(document).ready(function(){
+  jQuery('#add_itrone_subs_form').click(function(e){
+    e.preventDefault();
+
+    jQuery('#itrone_subs_form_div').append(addNewField(newfieldscount));
+
+    newfieldscount = newfieldscount + 1;
+    jQuery('.removenew').unbind('click');
+    jQuery("toggle-property").unbind("click");  
+    removeNew();
+  });
+});
+
+var removeNew = function(){
+  jQuery('.removenew').click(function(e){
+    e.preventDefault();
+    jQuery(this).parent().parent().remove();
+  })
+};
+
+jQuery(document).ready(function(){
+  jQuery(".toggle-property").click(function() {
+      var image_name = this.src;
+      $(".table-subform").hide();
+      if(this.src.match('toggle-expand'))
+      {
+        jQuery('.toggle-property').attr('src','<?php echo image_tag('toggle_collapse.png') ?>');
+        image_name = image_name.replace("toggle-expand.png","toggle_collapse.png");
+        jQuery(this).attr('src',image_name);
+        $(this).parent().parent().parent().siblings().show();
+      }
+      else
+      {
+        jQuery('.toggle-property').attr('src','<?php echo image_tag('toggle_collapse.png') ?>');
+        image_name = image_name.replace("toggle_collapse.png","toggle-expand.png");
+        jQuery(this).attr('src',image_name);
+        $(this).parent().parent().parent().siblings().hide();
+      }
+  });
+});
+/*function PropertyFormViewModel()
+{
+    var self = this;
+
+    self.cities = ko.observableArray
+    ([                
+        <?php /* foreach($form['cities'] as $index=>$city):?>
+              <?php if($index > 0):?>,<?php endif;?>       
+              new City(<?php echo $city['id']->getValue(); ?>,"<?php echo $city['city_name']->getValue(); ?>",0)
+        <?php endforeach; */ ?>                            
+    ]);
+
+    self.addCity = function()
+    {
+        self.cities.push(new City("","",0));
+    };
+
+    self.removeCity = function(city)
+    {
+        if(!confirm('Remove this city ?'))
+        {
+           return;     
+        }
+
+        city.remove_flag(1);
+    };
+}
+
+ko.applyBindings(new PropertyFormViewModel()); */
+
 </script>
