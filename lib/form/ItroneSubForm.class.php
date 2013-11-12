@@ -1,18 +1,19 @@
 <?php
-class ItroneForm extends submissionForm
+class ItroneSubForm extends submission_innerForm
 {
   public function configure()
   {
-    unset($this['submission_ip'],$this['archieved'],$this['status'],$this['created_at'],$this['updated_at']);
+    unset($this['submission_ip'],$this['archieved'],$this['created_at'],$this['updated_at'],$this['submission_id']);
+    //$this->widgetSchema['submission_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['form_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['user_id'] = new sfWidgetFormInputHidden();
-    $this->setDefault('form_id', 2);
+    $this->setDefault('form_id', 3);
     $this->setDefault('user_id', sfContext::getInstance()->getUser()->getAttribute('user_id', null, 'sfGuardSecurityUser'));
     
     $query = Doctrine_Query::create()
             ->select('id,question_text,group_code,answer_type,mandatory')
             ->from('form_question')
-            ->where('form_id = ?', 2)
+            ->where('form_id = ?', 3)
             ->andWhere('disabled = 0')
             ->orderBy('page_num ASC, display_order ASC');
     $form_question = $query->execute();
@@ -218,45 +219,16 @@ class ItroneForm extends submissionForm
     $this->validatorSchema->setOption('allow_extra_fields', true);
     $this->validatorSchema->setOption('filter_extra_fields', FALSE);
     
-    $this->widgetSchema->setNameFormat('itrone[%s]'); 
+    $this->widgetSchema->setNameFormat('itrone_sub[%s]'); 
     
-    //$this->mergePostValidator(new RegisterSubFormValidatorSchema());
-
-    $itronesubForm = new ItroneSubCollectionForm(null, array("submission"=>$this->getObject()));
-    $this->embedForm("itrone_subs", $itronesubForm);
-
- }
+    $this->mergePostValidator(new RegisterSubFormValidatorSchema());
+    
+  }
   
   public function getName() 
   {
-      return "itrone";
+      return "itrone_sub";
   }  
-  
-  public function getFieldValue($submission_id, $question_id)
-  {
-    $val = "";
-    $submission_data = Doctrine::getTable('submission_data')->findOneBySubmissionIdAndQuestionId($submission_id, $question_id);
-    if($submission_data)
-    {
-      if($submission_data->getAnswserText() != "")
-      {
-        $val = $submission_data->getAnswserText();
-      }
-      else
-      {
-        if($submission_data->getSelectedOptions() != "")
-        {
-           $arr = unserialize($submission_data->getSelectedOptions());
-           if(count($arr) == 1)
-           {
-             $val = $arr[0]; 
-           }else
-             $val = $arr; 
-        }
-      }
-    }
-    return $val;
-  }
   
   private function getChoiceOption($question_id,$answer_type_select = 1){
     $arr_option = array();
@@ -275,22 +247,30 @@ class ItroneForm extends submissionForm
     return $arr_option;
   }
   
-  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  public function getFieldValue($submission_inner_id, $question_id)
   {
-      if(isset($taintedValues['itrone_subs']))
+    $val = "";
+    $submission_inner_data = Doctrine::getTable('submission_inner_data')->findOneBySubmissionInnerIdAndQuestionId($submission_inner_id, $question_id);
+    if($submission_inner_data)
+    {
+      if($submission_inner_data->getAnswserText() != "")
       {
-          foreach ($taintedValues["itrone_subs"] as $key=>$form)
-          {
-            if(false === $this->embeddedForms["itrone_subs"]->offsetExists($key))
-            {
-                $subform = $this->embeddedForms["itrone_subs"];
-
-                $subform->addDetailRow($key);
-                $this->embedForm("itrone_subs", $subform);
-            }
-          }
+        $val = $submission_inner_data->getAnswserText();
       }
-      parent::bind($taintedValues, $taintedFiles);
+      else
+      {
+        if($submission_inner_data->getSelectedOptions() != "")
+        {
+           $arr = unserialize($submission_inner_data->getSelectedOptions());
+           if(count($arr) == 1)
+           {
+             $val = $arr[0]; 
+           }else
+             $val = $arr; 
+        }
+      }
+    }
+    return $val;
   }
   /*protected function getFormField()
   {
