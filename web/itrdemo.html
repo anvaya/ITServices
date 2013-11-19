@@ -1,0 +1,1182 @@
+<!doctype html>
+<html>
+<head>
+<link rel="shortcut icon" href="/favicon.gif" type="image/gif" />
+<title>Groworth NRI Services</title>
+<link rel="stylesheet" type="text/css" href="css/itrdemo.css"></link>
+</head>
+<body>
+<div id="wrapper">
+<div id="page_heading">
+	<h3>My Income Tax Return Assessment Year: 2014-2015 (Demo)</h3>
+	<p data-bind="visible: currentPage() < 5">Please fill in the following details to the best of your knowledge</p>
+</div>
+<div id="page1" data-bind="visible: currentPage() == 1">
+<fieldset id="personal_details" title="Personal Details">
+<legend>Personal Details</legend>
+<div class="form_row">
+<label for="first_name">First Name</label>
+<div class="content">
+<input type="text" placeholder="First Name" id="first_name" />
+</div>
+</div>
+<div class="form_row">
+<label for="middle_name">Middle Name</label>
+<div class="content">
+<input type="text" placeholder="Middle Name" id="middle_name" />
+</div>
+</div>
+<div class="form_row">
+<label for="last_name">Last Name</label>
+<div class="content">
+<input type="text" placeholder="Last Name" id="last_name" />
+</div>
+</div>
+<div class="form_row">
+<label for="dob">Date Of Birth</label>
+<div class="content">
+    <input type="text" id="dob"  placeholder="Date of Birth"/>
+</div>
+</div>
+<div class="form_row">
+<label for="gender">Gender</label>
+<div class="content">
+    <select id="gender" class="txtbox">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select>
+</div>
+</div>
+<div class="form_row">
+<label for="pan_no">PAN No.</label>
+<div class="content">
+<input type="text" placeholder="PAN No" id="pan_no" />
+</div>
+</div>
+<div class="form_row">
+<label for="email_address">Email Address</label>
+<div class="content">
+<input type="text" placeholder="Email Address" id="email_address" />
+</div>
+</div>
+<div class="form_row">
+<label for="ph_no">Phone No.</label>
+<div class="content">
+<input type="text" id="ph_no" placeholder="Phone No." />
+</div>
+</div>
+<div class="form_row">
+<label for="father_name">Father's Name</label>
+<div class="content">
+<input type="text" placeholder="Father's Name" id="father_name" />
+</div>
+</div>
+<div class="form_row">
+<label for="mother_name">Mother's Name</label>
+<div class="content">
+<input type="text" id="mother_name" placeholder="Mother's Name" />
+</div>
+</div>
+</fieldset>
+<fieldset id="address">
+<legend>Address</legend>
+<div class="form_row">
+<label for="flat_no">Flat/Door/Block No.</label>
+<div class="content">
+    <input type="text" id="flat_no" placeholder="Flat No"/>
+</div>
+</div>
+<div class="form_row">
+<label for="building">Name of Building Premises</label>
+<div class="content">
+<input type="text" id="building" placeholder="Name of Building" />
+</div>
+</div>
+<div class="form_row">
+<label for="street">Road/ Street/ Post Office</label>
+<div class="content">
+<input type="text" id="street" placeholder="Road / Street" />
+</div>
+</div>
+<div class="form_row">
+<label for="area">Area/Locality</label>
+<div class="content">
+<input type="text" id="area" placeholder="Area/Locality" />
+</div>
+</div>
+<div class="form_row">
+<label for="town">Town/City/District</label>
+<div class="content">
+<input type="text" id="town" placeholder="City/Town/District" />
+</div>
+</div>
+<div class="form_row">
+<label for="state">State</label>
+<div class="content">
+<input type="text" id="state" placeholder ="State" />
+</div>
+</div>
+<div class="form_row">
+<label for="country">Country</label>
+<div class="content">
+<select id="country" class="txtbox">
+<option value="" selected="selected">---Select---</option>
+<option value="AF">Afghanistan</option>
+<option value="AX">Åland Islands</option>
+<option value="AL">Albania</option>
+<option value="DZ">Algeria</option>
+<option value="AS">American Samoa</option>
+<option value="0">Americas</option>
+<option value="AD">Andorra</option>
+<option value="AO">Angola</option>
+<option value="AI">Anguilla</option>
+<option value="AQ">Antarctica</option>
+<option value="AG">Antigua and Barbuda</option>
+<option value="AR">Argentina</option>
+<option value="AM">Armenia</option>
+<option value="AW">Aruba</option>
+<option value="1">Asia</option>
+<option value="AU">Australia</option>
+<option value="2">Australia and New Zealand</option>
+<option value="AT">Austria</option>
+<option value="AZ">Azerbaijan</option>
+<option value="BS">Bahamas</option>
+<option value="BH">Bahrain</option>
+<option value="BD">Bangladesh</option>
+<option value="BB">Barbados</option>
+<option value="BY">Belarus</option>
+<option value="BE">Belgium</option>
+<option value="BZ">Belize</option>
+<option value="BJ">Benin</option>
+<option value="BM">Bermuda</option>
+<option value="BT">Bhutan</option>
+<option value="BO">Bolivia</option>
+<option value="BA">Bosnia and Herzegovina</option>
+<option value="BW">Botswana</option>
+<option value="BV">Bouvet Island</option>
+<option value="BR">Brazil</option>
+<option value="IO">British Indian Ocean Territory</option>
+<option value="VG">British Virgin Islands</option>
+<option value="BN">Brunei</option>
+<option value="BG">Bulgaria</option>
+<option value="BF">Burkina Faso</option>
+<option value="BI">Burundi</option>
+<option value="KH">Cambodia</option>
+<option value="CM">Cameroon</option>
+<option value="CA">Canada</option>
+<option value="CV">Cape Verde</option>
+<option value="3">Caribbean</option>
+<option value="KY">Cayman Islands</option>
+<option value="CF">Central African Republic</option>
+<option value="4">Central America</option>
+<option value="5">Central Asia</option>
+<option value="TD">Chad</option>
+<option value="6">Channel Islands</option>
+<option value="CL">Chile</option>
+<option value="CN">China</option>
+<option value="CX">Christmas Island</option>
+<option value="CC">Cocos [Keeling] Islands</option>
+<option value="CO">Colombia</option>
+<option value="7">Commonwealth of Independent States</option>
+<option value="KM">Comoros</option>
+<option value="CG">Congo - Brazzaville</option>
+<option value="CD">Congo - Kinshasa</option>
+<option value="CK">Cook Islands</option>
+<option value="CR">Costa Rica</option>
+<option value="CI">Côte d’Ivoire</option>
+<option value="HR">Croatia</option>
+<option value="CU">Cuba</option>
+<option value="CY">Cyprus</option>
+<option value="8">Czechoslovakia</option>
+<option value="CZ">Czech Republic</option>
+<option value="DK">Denmark</option>
+<option value="DJ">Djibouti</option>
+<option value="DM">Dominica</option>
+<option value="DO">Dominican Republic</option>
+<option value="9">Eastern Africa</option>
+<option value="10">Eastern Asia</option>
+<option value="11">Eastern Europe</option>
+<option value="EC">Ecuador</option>
+<option value="EG">Egypt</option>
+<option value="SV">El Salvador</option>
+<option value="GQ">Equatorial Guinea</option>
+<option value="ER">Eritrea</option>
+<option value="EE">Estonia</option>
+<option value="ET">Ethiopia</option>
+<option value="12">Europe</option>
+<option value="QU">European Union</option>
+<option value="FK">Falkland Islands</option>
+<option value="FO">Faroe Islands</option>
+<option value="FJ">Fiji</option>
+<option value="FI">Finland</option>
+<option value="FR">France</option>
+<option value="GF">French Guiana</option>
+<option value="PF">French Polynesia</option>
+<option value="TF">French Southern Territories</option>
+<option value="GA">Gabon</option>
+<option value="GM">Gambia</option>
+<option value="GE">Georgia</option>
+<option value="DE">Germany</option>
+<option value="GH">Ghana</option>
+<option value="GI">Gibraltar</option>
+<option value="GR">Greece</option>
+<option value="GL">Greenland</option>
+<option value="GD">Grenada</option>
+<option value="GP">Guadeloupe</option>
+<option value="GU">Guam</option>
+<option value="GT">Guatemala</option>
+<option value="GG">Guernsey</option>
+<option value="GN">Guinea</option>
+<option value="GW">Guinea-Bissau</option>
+<option value="GY">Guyana</option>
+<option value="HT">Haiti</option>
+<option value="HM">Heard Island and McDonald Islands</option>
+<option value="HN">Honduras</option>
+<option value="HK">Hong Kong SAR China</option>
+<option value="HU">Hungary</option>
+<option value="IS">Iceland</option>
+<option value="IN">India</option>
+<option value="ID">Indonesia</option>
+<option value="IR">Iran</option>
+<option value="IQ">Iraq</option>
+<option value="IE">Ireland</option>
+<option value="IM">Isle of Man</option>
+<option value="IL">Israel</option>
+<option value="IT">Italy</option>
+<option value="JM">Jamaica</option>
+<option value="JP">Japan</option>
+<option value="JE">Jersey</option>
+<option value="JO">Jordan</option>
+<option value="KZ">Kazakhstan</option>
+<option value="KE">Kenya</option>
+<option value="KI">Kiribati</option>
+<option value="KW">Kuwait</option>
+<option value="KG">Kyrgyzstan</option>
+<option value="LA">Laos</option>
+<option value="13">Latin America and the Caribbean</option>
+<option value="LV">Latvia</option>
+<option value="LB">Lebanon</option>
+<option value="LS">Lesotho</option>
+<option value="LR">Liberia</option>
+<option value="LY">Libya</option>
+<option value="LI">Liechtenstein</option>
+<option value="LT">Lithuania</option>
+<option value="LU">Luxembourg</option>
+<option value="MO">Macau SAR China</option>
+<option value="MK">Macedonia</option>
+<option value="MG">Madagascar</option>
+<option value="MW">Malawi</option>
+<option value="MY">Malaysia</option>
+<option value="MV">Maldives</option>
+<option value="ML">Mali</option>
+<option value="MT">Malta</option>
+<option value="MH">Marshall Islands</option>
+<option value="MQ">Martinique</option>
+<option value="MR">Mauritania</option>
+<option value="MU">Mauritius</option>
+<option value="YT">Mayotte</option>
+<option value="14">Melanesia</option>
+<option value="MX">Mexico</option>
+<option value="FM">Micronesia</option>
+<option value="15">Micronesian Region</option>
+<option value="16">Middle Africa</option>
+<option value="MD">Moldova</option>
+<option value="MC">Monaco</option>
+<option value="MN">Mongolia</option>
+<option value="ME">Montenegro</option>
+<option value="MS">Montserrat</option>
+<option value="MA">Morocco</option>
+<option value="MZ">Mozambique</option>
+<option value="MM">Myanmar [Burma]</option>
+<option value="NA">Namibia</option>
+<option value="NR">Nauru</option>
+<option value="NP">Nepal</option>
+<option value="NL">Netherlands</option>
+<option value="AN">Netherlands Antilles</option>
+<option value="NC">New Caledonia</option>
+<option value="NZ">New Zealand</option>
+<option value="NI">Nicaragua</option>
+<option value="NE">Niger</option>
+<option value="NG">Nigeria</option>
+<option value="NU">Niue</option>
+<option value="NF">Norfolk Island</option>
+<option value="17">Northern Africa</option>
+<option value="18">Northern America</option>
+<option value="19">Northern Europe</option>
+<option value="MP">Northern Mariana Islands</option>
+<option value="KP">North Korea</option>
+<option value="NO">Norway</option>
+<option value="20">Oceania</option>
+<option value="OM">Oman</option>
+<option value="QO">Outlying Oceania</option>
+<option value="PK">Pakistan</option>
+<option value="PW">Palau</option>
+<option value="PS">Palestinian Territories</option>
+<option value="PA">Panama</option>
+<option value="PG">Papua New Guinea</option>
+<option value="PY">Paraguay</option>
+<option value="PE">Peru</option>
+<option value="PH">Philippines</option>
+<option value="PN">Pitcairn Islands</option>
+<option value="PL">Poland</option>
+<option value="21">Polynesia</option>
+<option value="PT">Portugal</option>
+<option value="PR">Puerto Rico</option>
+<option value="QA">Qatar</option>
+<option value="RE">Réunion</option>
+<option value="RO">Romania</option>
+<option value="RU">Russia</option>
+<option value="RW">Rwanda</option>
+<option value="BL">Saint Barthélemy</option>
+<option value="SH">Saint Helena</option>
+<option value="KN">Saint Kitts and Nevis</option>
+<option value="LC">Saint Lucia</option>
+<option value="MF">Saint Martin</option>
+<option value="PM">Saint Pierre and Miquelon</option>
+<option value="VC">Saint Vincent and the Grenadines</option>
+<option value="WS">Samoa</option>
+<option value="SM">San Marino</option>
+<option value="ST">São Tomé and Príncipe</option>
+<option value="SA">Saudi Arabia</option>
+<option value="SN">Senegal</option>
+<option value="RS">Serbia</option>
+<option value="CS">Serbia and Montenegro</option>
+<option value="SC">Seychelles</option>
+<option value="SL">Sierra Leone</option>
+<option value="SG">Singapore</option>
+<option value="SK">Slovakia</option>
+<option value="SI">Slovenia</option>
+<option value="SB">Solomon Islands</option>
+<option value="SO">Somalia</option>
+<option value="ZA">South Africa</option>
+<option value="22">South America</option>
+<option value="23">South-Central Asia</option>
+<option value="24">South-Eastern Asia</option>
+<option value="25">Southern Asia</option>
+<option value="26">Southern Europe</option>
+<option value="GS">South Georgia and the South Sandwich Islands</option>
+<option value="KR">South Korea</option>
+<option value="ES">Spain</option>
+<option value="LK">Sri Lanka</option>
+<option value="SD">Sudan</option>
+<option value="SR">Suriname</option>
+<option value="SJ">Svalbard and Jan Mayen</option>
+<option value="SZ">Swaziland</option>
+<option value="SE">Sweden</option>
+<option value="CH">Switzerland</option>
+<option value="SY">Syria</option>
+<option value="TW">Taiwan</option>
+<option value="TJ">Tajikistan</option>
+<option value="TZ">Tanzania</option>
+<option value="TH">Thailand</option>
+<option value="TL">Timor-Leste</option>
+<option value="TG">Togo</option>
+<option value="TK">Tokelau</option>
+<option value="TO">Tonga</option>
+<option value="TT">Trinidad and Tobago</option>
+<option value="TN">Tunisia</option>
+<option value="TR">Turkey</option>
+<option value="TM">Turkmenistan</option>
+<option value="TC">Turks and Caicos Islands</option>
+<option value="TV">Tuvalu</option>
+<option value="UG">Uganda</option>
+<option value="UA">Ukraine</option>
+<option value="AE">United Arab Emirates</option>
+<option value="GB">United Kingdom</option>
+<option value="US">United States</option>
+<option value="ZZ">Unknown or Invalid Region</option>
+<option value="UY">Uruguay</option>
+<option value="UM">U.S. Minor Outlying Islands</option>
+<option value="VI">U.S. Virgin Islands</option>
+<option value="UZ">Uzbekistan</option>
+<option value="VU">Vanuatu</option>
+<option value="VA">Vatican City</option>
+<option value="VE">Venezuela</option>
+<option value="VN">Vietnam</option>
+<option value="WF">Wallis and Futuna</option>
+<option value="27">Western Africa</option>
+<option value="28">Western Asia</option>
+<option value="29">Western Europe</option>
+<option value="EH">Western Sahara</option>
+<option value="YE">Yemen</option>
+<option value="ZM">Zambia</option>
+<option value="ZW">Zimbabwe</option>
+</select>
+</div>
+</div>
+<div class="form_row">
+<label for="pin">Pin Code</label>
+<div class="content">
+    <input type="text" id="pin" placeholder="Pin Code" />
+</div>
+</div>
+</fieldset>
+<fieldset id="bank">
+<legend>Bank Details</legend>
+<div class="form_row">
+<label for="bank_ac_no">Bank account No.</label>
+<div class="content">
+<input type="text" placeholder="Bank Account No." id="bank_ac_no" />
+</div>
+</div>
+<div class="form_row">
+<label for="ac_type">Type of account</label>
+<div class="content">
+    <select id="ac_type" class="txtbox">
+        <option value="sav">Savings</option>
+        <option value="cur">Current</option>
+        <option value="oth">Other</option>
+    </select>    
+</div>
+</div>
+<div class="form_row">
+<label for="ifsc">IFSC Code</label>
+<div class="content">
+<input type="text" id="ifsc" />
+</div>
+</div>
+</fieldset>
+</div>
+
+
+<div id="page2" data-bind = "visible: currentPage() == 2">
+	<h3>Details of House Property In India</h3>
+
+	<div><button class="purple-btn" onclick="myViewModel.addProperty(); return false;">Add Property</button></div>
+
+	<div data-bind="foreach: properties, visible: properties().length > 0" id="properties">
+		<table data-bind="attr: {id: 'properties' + $index()}" cellspacing="0" style="margin-top: 20px">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Address of Property</th>
+					<th>Town/City</th>
+					<th>State</th>
+					<th>PIN Code</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="property_main_details">
+					<td data-bind="text: $index() + 1"></td>
+					<td><input type="text" data-bind="value: address" /></td>
+					<td><input type="text" data-bind="value: city" /></td>
+					<td>
+						<select data-bind="value: state">
+							<option value="" selected="selected">--Select--</option>
+                                                        <option value="1">Andaman &amp; Nicobar Islands</option>
+                                                        <option value="2">Andhra Pradesh</option>
+                                                        <option value="3">Arunachal Pradesh</option>
+                                                        <option value="4">Assam</option>
+                                                        <option value="5">Bihar</option>
+                                                        <option value="6">Chandigarh</option>
+                                                        <option value="33">Chhattisgarh</option>
+                                                        <option value="7">Dadra &amp; Nagar Haveli</option>
+                                                        <option value="8">Daman &amp; Diu</option>
+                                                        <option value="9">Delhi</option>
+                                                        <option value="10">Goa</option>
+                                                        <option value="11">Gujarat</option>
+                                                        <option value="12">Haryana</option>
+                                                        <option value="13">Himachal Pradesh</option>
+                                                        <option value="14">Jammu &amp; Kashmir</option>
+                                                        <option value="35">Jharkhand</option>
+                                                        <option value="15">Karnataka</option>
+                                                        <option value="16">Kerala</option>
+                                                        <option value="17">Lakhswadeep</option>
+                                                        <option value="18">Madhya Pradesh</option>
+                                                        <option value="19">Maharashtra</option>
+                                                        <option value="20">Manipur</option>
+                                                        <option value="21">Meghalaya</option>
+                                                        <option value="22">Mizoram</option>
+                                                        <option value="23">Nagaland</option>
+                                                        <option value="24">Orissa</option>
+                                                        <option value="25">Pondicherry</option>
+                                                        <option value="26">Punjab</option>
+                                                        <option value="27">Rajasthan</option>
+                                                        <option value="28">Sikkim</option>
+                                                        <option value="29">Tamil Nadu</option>
+                                                        <option value="30">Tripura</option>
+                                                        <option value="31">Uttar Pradesh</option>
+                                                        <option value="32">West Bengal</option>
+                                                        <option value="34">Uttaranchal</option> 
+						</select>
+					</td>
+					<td>
+						<input type="text" data-bind="value: pincode" />
+					</td>
+				</tr>
+				<tr>	
+					<td colspan="5">
+					<div class="property_details">
+						<div>
+							<label data-bind="attr: {for:'coowned_' + $index()}">Is the Property co-owned ?</label>
+							<div class="content2"><select data-bind="value: coowned, attr: {id: 'coowned_' + $index()}"><option value="N">No</option><option value="Y">Yes</option></select></div>
+						</div>
+
+						<!-- ko if: coowned() == 'Y' -->						
+						<div>
+							<label data-bind="attr: {for:'owner_share_' + $index()}">Your Percentage of share in Property</label>
+							<div class="content2"><input type="text" data-bind="value: percentage,  attr: {id: 'owner_share_' + $index()}" /></div>
+						</div>
+						
+						<fieldset>
+						<legend>Details of Coowners:</legend>
+						<div>
+							<button class="purple-btn" data-bind="click: function(data, event) { myViewModel.addOwner($index()); return false;}">Add co-owner</button>
+						</div>
+						<table cellspacing="0" class="coowners">
+							<thead>
+								<tr>
+									<th>S.No.</th>
+									<th>Name of Co-owner</th>
+									<th>PAN of Co-owner</th>
+									<th>Percentage Share in Property</th>
+								</tr>
+							</thead>
+							<tbody data-bind="foreach: coowners">
+								<tr>
+									<td data-bind="text: $index() + 1"></td>
+									<td><input data-bind="value: name" /></td>
+									<td><input data-bind="value: pan_no" /></td>
+									<td><input data-bind="value: percentage" /></td>
+								</tr>
+							</tbody>
+						</table>
+						</fieldset>
+						
+						<!-- /ko -->
+						
+						<div style="margin-top: 5px;">	
+							<label data-bind="attr: {for: 'let_out_' + $index() }">Is the Property Let Out ?</label>
+							<div class="content2">
+								<select data-bind="value: letout, attr: {id: 'let_out_' + $index()}">
+									<option value="Y">Yes</option>
+									<option value="N">No</option>
+								</select>			
+							</div>
+						</div>
+						
+						<!-- ko if: letout() == 'Y' -->
+						<fieldset>
+						<legend>Rental Information</legend>
+						<div>	
+							<label data-bind="attr: {for: 'tenant_' + $index() }">Name of the Tenant</label>
+							<div class="content2"><input type="text" data-bind="value: tenant, attr: {id: 'tenant_' + $index() }" /></div>
+						</div>
+
+						<div>	
+							<label data-bind="attr: {for: 'tenant_pan' + $index() }">PAN of the Tenant</label>
+							<div class="content2"><input type="text" data-bind="value: tenant_pan, attr: {id: 'tenant_pan' + $index() }" /></div>
+						</div>
+
+						<div>	
+							<label data-bind="attr: {for: 'rent_foregone' + $index() }">The amount of rent which cannot be realized</label>
+							<div class="content2"><input type="text" data-bind="value: rent_foregone, attr: {id: 'rent_foregone' + $index() }" /></div>
+						</div>
+
+						<div>	
+							<label data-bind="attr: {for: 'taxes_paid_' + $index() }">Tax paid to local authorities</label>
+							<div class="content2"><input type="text" data-bind="value: taxes_paid, attr: {id: 'taxes_paid_' + $index() }" /></div>
+						</div>
+						</fieldset>
+						<!-- /ko -->
+
+						<p class="bold">If any Loan is taken for purchase of House property, then details of Loan as follows</p>
+
+						<div>	
+							<label data-bind="attr: {for: 'cost' + $index() }">Cost of House Property</label>
+							<div class="content2"><input type="text" data-bind="value: cost, attr: {id: 'cost' + $index() }" /></div>
+						</div>
+
+						<div>	
+							<label data-bind="attr: {for: 'loan_amt' + $index() }">Amount of Loan taken</label>
+							<div class="content2"><input type="text" data-bind="value: loan_amt, attr: {id: 'loan_amt' + $index() }" /></div>
+						</div>
+
+						<div>	
+							<label data-bind="attr: {for: 'loan_repaid' + $index() }">Amount repaid during the year</label>
+							<div class="content2"><input type="text" data-bind="value: loan_repaid, attr: {id: 'loan_repaid' + $index() }" /></div>
+						</div>
+					
+						<div>	
+							<label data-bind="attr: {for: 'int_paid' + $index() }">Interest paid during the year</label>
+							<div class="content2"><input type="text" data-bind="value: int_paid, attr: {id: 'int_paid' + $index() }" /></div>
+						</div>
+						
+						<div>	
+							<label data-bind="attr: {for: 'loan_outstanding' + $index() }">Bal loan out standing</label>
+							<div class="content2"><input type="text" data-bind="value: loan_outstanding, attr: {id: 'loan_outstanding' + $index() }" /></div>
+						</div>
+						
+						<p class="bold">If any rent of previous years received during the year, then details of rent received</p>
+						<div data-bind="foreach: prev_rent_received">
+							<div>	
+								<label data-bind="attr: {for: 'prev_rent_year' + $index() }">Year</label>
+								<div class="content2"><input type="text" data-bind="value: year, attr: {id: 'prev_rent_year' + $index() }" /></div>
+							</div>
+							<div>	
+								<label data-bind="attr: {for: 'prev_rent_amt' + $index() }">Amount</label>
+								<div class="content2"><input type="text" data-bind="value: amount, attr: {id: 'prev_rent_amt' + $index() }" /></div>
+							</div>
+						</div>
+					</div>	
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div id="page3" data-bind = "visible: currentPage() == 3">
+    <h3>Details of Investments which are sold during the year</h3>
+    <h4>(If Investments or any assets are sold during the year, it attracts Capital Gain.)</h4>
+    <br />
+    
+    <h4>Investments in Shares in India</h4>
+    
+    <div class="investent_head">
+        <h4>1) Investments in Shares in India</h4>
+        
+        <div class="investment_group">
+            <h4>a) Shares (listed in stock Exchange)</h4>
+            <div><button class="purple-btn" onclick="myViewModel.addCapitalItem(1); return false;">Add Row</button></div><br />
+            <table>
+                <tbody data-bind="foreach: capitalItems">
+                    <tr>
+                        <td valign="top" data-bind="text: $index()+1"></td>
+                        <td>
+                            <table>
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'name_' + $index() }" >Details of Shares</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: name, attr: {id: 'name_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'pdate_' + $index() }" >Date of Acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_bought, attr: {id: 'pdate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'selldate_' + $index() }" >Date of Sale</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_sold, attr: {id: 'selldate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'qty_' + $index() }" >No. of Shares</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: qty, attr: {id: 'qty_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'cost_' + $index() }" >Cost of acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: purchase_price, attr: {id: 'cost_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'value_' + $index() }" >Sell Value</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: sell_value, attr: {id: 'value_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan='2'>
+                                            <p class="bold">Details of expenditure done for selling of shares</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'brokerage_' + $index() }" >Paid to Broker</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: brokerage, attr: {id: 'brokerage_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'othexp_' + $index() }" >Other Expenses</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: other_charges, attr: {id: 'othexp_' + $index() }" />
+                                        </td>
+                                    </tr>     
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>b) Shares (unlisted)</h4>
+            <div><button class="purple-btn" onclick="myViewModel.addCapitalItem(2); return false;">Add Row</button></div><br />
+            <table>
+                <tbody data-bind="foreach: capitalItems2">
+                    <tr>
+                        <td valign="top" data-bind="text: $index()+1"></td>
+                        <td>
+                            <table>
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'name_' + $index() }" >Details of Shares</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: name, attr: {id: 'name_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'pdate_' + $index() }" >Date of Acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_bought, attr: {id: 'pdate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'selldate_' + $index() }" >Date of Sale</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_sold, attr: {id: 'selldate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'qty_' + $index() }" >No. of Shares</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: qty, attr: {id: 'qty_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'cost_' + $index() }" >Cost of acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: purchase_price, attr: {id: 'cost_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'value_' + $index() }" >Sell Value</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: sell_value, attr: {id: 'value_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan='2'>
+                                            <p class="bold">Details of expenditure done for selling of shares</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'brokerage_' + $index() }" >Paid to Broker</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: brokerage, attr: {id: 'brokerage_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'othexp_' + $index() }" >Other Expenses</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: other_charges, attr: {id: 'othexp_' + $index() }" />
+                                        </td>
+                                    </tr>     
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="investent_head">
+        <h4>2) Investments in other Securities</h4>
+        
+        <div class="investment_group">
+            <h4>a) Debentures/ Bonds(Listed in Stock Exchange)</h4>
+            <div><button class="purple-btn" onclick="myViewModel.addCapitalItem(3); return false;">Add Row</button></div><br />
+            <table>
+                <tbody data-bind="foreach: capitalItems3">
+                    <tr>
+                        <td valign="top" data-bind="text: $index()+1"></td>
+                        <td>
+                            <table>
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'name_' + $index() }" >Details of Debenture/bond</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: name, attr: {id: 'name_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'pdate_' + $index() }" >Date of Acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_bought, attr: {id: 'pdate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'selldate_' + $index() }" >Date of Sale</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_sold, attr: {id: 'selldate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'qty_' + $index() }" >No of Debenture/bond</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: qty, attr: {id: 'qty_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'cost_' + $index() }" >Cost of acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: purchase_price, attr: {id: 'cost_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'value_' + $index() }" >Sell Value</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: sell_value, attr: {id: 'value_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan='2'>
+                                            <p class="bold">Details of expenditure done for selling of Debenture/bond</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'brokerage_' + $index() }" >Paid to Broker</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: brokerage, attr: {id: 'brokerage_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'othexp_' + $index() }" >Other Expenses</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: other_charges, attr: {id: 'othexp_' + $index() }" />
+                                        </td>
+                                    </tr>     
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h4>b) Debentures/ Bonds(Unlisted)</h4>
+            <div><button class="purple-btn" onclick="myViewModel.addCapitalItem(4); return false;">Add Row</button></div><br />
+            <table>
+                <tbody data-bind="foreach: capitalItems4">
+                    <tr>
+                        <td valign="top" data-bind="text: $index()+1"></td>
+                        <td>
+                            <table>
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'name_' + $index() }" >Details of Debenture/bond</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: name, attr: {id: 'name_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'pdate_' + $index() }" >Date of Acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_bought, attr: {id: 'pdate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'selldate_' + $index() }" >Date of Sale</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_sold, attr: {id: 'selldate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'qty_' + $index() }" >No of Debenture/bond</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: qty, attr: {id: 'qty_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'cost_' + $index() }" >Cost of acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: purchase_price, attr: {id: 'cost_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'value_' + $index() }" >Sell Value</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: sell_value, attr: {id: 'value_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan='2'>
+                                            <p class="bold">Details of expenditure done for selling of Debenture/bond</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'brokerage_' + $index() }" >Paid to Broker</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: brokerage, attr: {id: 'brokerage_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'othexp_' + $index() }" >Other Expenses</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: other_charges, attr: {id: 'othexp_' + $index() }" />
+                                        </td>
+                                    </tr>     
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+        
+    <div class="investent_head">
+        <h4>3) Any other assets sold during the year such as, House property / land / motor /vehicles etc.</h4>
+         <div class="investment_group">            
+            <div><button class="purple-btn" onclick="myViewModel.addCapitalItem(5); return false;">Add Row</button></div><br />
+            <table>
+                <tbody data-bind="foreach: capitalItems5">
+                    <tr>
+                        <td valign="top" data-bind="text: $index()+1"></td>
+                        <td>
+                            <table>
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'name_' + $index() }" >Details of Asset</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: name, attr: {id: 'name_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'pdate_' + $index() }" >Date of Acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_bought, attr: {id: 'pdate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'selldate_' + $index() }" >Date of Sale</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: date_sold, attr: {id: 'selldate_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'qty_' + $index() }" >No of Asset</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: qty, attr: {id: 'qty_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                     <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'cost_' + $index() }" >Cost of acquisition</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: purchase_price, attr: {id: 'cost_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'value_' + $index() }" >Sell Value</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: sell_value, attr: {id: 'value_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan='2'>
+                                            <p class="bold">Details of expenditure done for selling of Asset</p>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'brokerage_' + $index() }" >Paid to Broker</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: brokerage, attr: {id: 'brokerage_' + $index() }" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            <label data-bind="attr: {for: 'othexp_' + $index() }" >Other Expenses</label>                            
+                                        </td>
+                                        <td>
+                                            <input type='text' data-bind="value: other_charges, attr: {id: 'othexp_' + $index() }" />
+                                        </td>
+                                    </tr>     
+                            </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+    </div>        
+    
+</div>
+
+<div id="page4" data-bind = "visible: currentPage() == 4">
+    <h3>Details of Investments which are sold during the year</h3>
+    <br />
+    <h4>1) Dividend received during the year</h4>
+    <div><button class="purple-btn" onclick="myViewModel.addDivident(); return false;">Add Row</button></div><br />
+    <table>
+        <thead>
+            <tr>
+                <th>Date Received</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: dividentIncomes">
+            <tr>
+                <td><input type="text" data-bind="value: date" /></td>
+                <td><input type="text" data-bind="value: amount" /></td>
+            </tr>
+        </tbody>
+    </table>    
+    
+    <h4>2) Interest received during the year</h4>
+    <div><button class="purple-btn" onclick="myViewModel.addInterestIncome(); return false;">Add Row</button></div><br />
+    <table>
+        <thead>
+            <tr>
+                <th>Date Received</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: interestIncomes">
+            <tr>
+                <td><input type="text" data-bind="value: date" /></td>
+                <td><input type="text" data-bind="value: amount" /></td>
+            </tr>
+        </tbody>
+    </table>    
+    
+    <h4>3) Rent Received from other than House property (such as machinery, vehicles Etc.)</h4>
+    <div><button class="purple-btn" onclick="myViewModel.addRentIncome(); return false;">Add Row</button></div><br />
+    <table>
+        <thead>
+            <tr>
+                <th>Date Received</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: rentIncomes">
+            <tr>
+                <td><input type="text" data-bind="value: date" /></td>
+                <td><input type="text" data-bind="value: amount" /></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+    
+<div id="page5" data-bind = "visible: currentPage() == 5">
+    <h4>Thank You !</h4>
+    <p class="bold">Your IT return will be processed by our experts soon.</p>
+</div>
+    
+<div id="command_bar">
+	<button id="cmdPrev" class="purple-btn" onclick="changePage(-1); return false;" data-bind = "visible: currentPage() > 1 && currentPage() < 5">Previous</button>
+	<button id="cmdNext" class="purple-btn" onclick="changePage(1); return false;" data-bind = "visible: currentPage() < 4">Next</button>
+	<input type="submit" class="green-btn" id="cmdSave" onclick="changePage(1);" data-bind = "visible: currentPage() == 4" value="Save"></input>
+</div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="js/knockout-3.0.0.js"></script>
+<script type="text/javascript" src="js/itrdemo.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,209 @@
+html,body
+{
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 13px;
+}
+
+td
+{
+	border:	1px solid #ddd;
+	padding: 2px 8px;
+}
+
+.form_row
+{	
+	/*border-bottom: 1px solid #ccc;*/
+	margin-bottom: 5px;
+}
+
+.form_row label
+{
+	float: left;
+}
+
+.content
+{
+	display: block;
+	margin-left: 200px;
+}
+
+.content input[type="text"]
+{
+	width: 300px;
+}
+
+.content input:focus
+{
+	background-color: yellow;
+	font-weight: bold;
+}
+
+#command_bar
+{
+	background-color: #DFE7FF;
+	padding: 20;
+	border: 1px solid #ddd;
+	margin-top: 5px;
+	text-align: center;
+}
+
+fieldset
+{
+	margin-top: 5px;
+}
+
+legend
+{
+	font-weight: bold;
+	padding-bottom: 5px;
+}
+
+#properties label
+{
+	float: left;
+}
+
+.content2 
+{	
+	display: block;
+	margin-left: 400px;
+	padding-top: 4px;
+}
+
+th
+{	
+	border:	1px solid #ddd;
+	padding: 2px 8px;
+	background-color: #DFE7FF;
+}
+
+.property_details
+{
+	margin-left: 40px;
+	padding-top: 40px;
+}
+
+.property_main_details td
+{
+	background-color: #eee;
+	padding: 2px;
+}
+
+.content2 input:focus
+{
+	background-color: yellow;
+}
+
+p.bold
+{
+	font-weight: bold;
+}
+
+.coowners td, .coowners th
+{
+	border: 1px solid #CCC;
+}
+
+
+.green-btn {
+	cursor: pointer;
+	-moz-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #a4e271;
+	box-shadow:inset 0px 1px 0px 0px #a4e271;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #89c403), color-stop(1, #77a809) );
+	background:-moz-linear-gradient( center top, #89c403 5%, #77a809 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#89c403', endColorstr='#77a809');
+	background-color:#89c403;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #74b807;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #528009;
+}.green-btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #77a809), color-stop(1, #89c403) );
+	background:-moz-linear-gradient( center top, #77a809 5%, #89c403 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#77a809', endColorstr='#89c403');
+	background-color:#77a809;
+}.green-btn:active {
+	position:relative;
+	top:1px;
+}
+
+.txtbox 
+{
+	height: 26px !important;
+	width: 240px!important;
+	margin-bottom: 10px !important;
+	border: 1px solid #d5d6d6 !important;
+	font-size: 15px !important;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	display: inline-block;
+	padding: 4px 6px;
+	line-height: 20px;
+	color: #979696;
+	font-weight: 400;
+}
+
+
+.purple-btn {
+	cursor: pointer;
+	-moz-box-shadow:inset 0px 1px 0px 0px #d197fe;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #d197fe;
+	box-shadow:inset 0px 1px 0px 0px #d197fe;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a53df6), color-stop(1, #7c16cb) );
+	background:-moz-linear-gradient( center top, #a53df6 5%, #7c16cb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a53df6', endColorstr='#7c16cb');
+	background-color:#a53df6;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #9c33ed;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #7d15cd;
+}.purple-btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7c16cb), color-stop(1, #a53df6) );
+	background:-moz-linear-gradient( center top, #7c16cb 5%, #a53df6 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7c16cb', endColorstr='#a53df6');
+	background-color:#7c16cb;
+}.purple-btn:active {
+	position:relative;
+	top:1px;
+}
+
+#wrapper
+{
+	margin: auto !important;
+	width: 950px;
+}
+
+#page_heading
+{
+	background-color: #3EBDFF;
+	text-align: center;
+	padding: 5px;
+}
+
+#properties
+{
+	font-size: 13px;
+}
+
+.investment_group
+{
+    margin-left: 10px;
+}
