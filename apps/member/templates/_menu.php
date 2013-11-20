@@ -5,11 +5,11 @@
                 <?php echo image_tag("logo3.jpg", array("border"=>0));?>                    					
             </div>
             <ul>
-                <li><a href="<?php echo url_for("@default"); ?>">Home</a></li>
-                <li><a href="/aboutus.html">About Us</a></li>
-                <li><a href="/services.html">Services</a></li>
-                <li><a href="#">Blog</a></li>						
-                <li><a href="/contactus.html">Contact Us</a></li>						
+                <li><a href="<?php echo public_path("index.html");?>">Home</a></li>
+                <li><a href="<?php echo public_path("aboutus.html");?>">About Us</a></li>
+                <li><a href="<?php echo public_path("services.html");?>">Services</a></li>
+                <!--<li><a href="#">Blog</a></li>-->						
+                <li><a href="<?php echo public_path("contactus.html");?>">Contact Us</a></li>						
                 <?php if($sf_user->isAuthenticated()):?>
                     <li><a href="<?php echo url_for("@member") ?>">Profile</a></li>						
                 <?php endif;?>

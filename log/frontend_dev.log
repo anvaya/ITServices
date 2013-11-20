@@ -2250,3 +2250,61 @@ Nov 20 19:01:58 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Fou
 Nov 20 19:01:58 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
 Nov 20 19:01:58 symfony [info] {sfWebDebugLogger} Configuration 13.81 ms (5)
 Nov 20 19:01:58 symfony [info] {sfWebDebugLogger} Factories 68.38 ms (1)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_register" (/guard/register)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Match route "sf_guard_register" (/guard/register) for /guard/register with parameters array (  'module' => 'sfGuardRegister',  'action' => 'index',)
+Nov 20 19:21:04 symfony [info] {sfFilterChain} Executing filter "sfGuardRememberMeFilter"
+Nov 20 19:21:04 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 20 19:21:04 symfony [info] {sfFilterChain} Executing filter "MySecureFilter"
+Nov 20 19:21:04 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 20 19:21:04 symfony [info] {sfGuardRegisterActions} Call "sfGuardRegisterActions->executeIndex()"
+Nov 20 19:21:04 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\modules/sfGuardRegister/templates/indexSuccess.php"
+Nov 20 19:21:04 symfony [info] {sfPartialView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\modules/sfGuardRegister/templates/_form.php"
+Nov 20 19:21:04 symfony [info] {sfPHPView} Decorate content with "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\templates/layout.php"
+Nov 20 19:21:04 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\templates/layout.php"
+Nov 20 19:21:04 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 20 19:21:04 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 20 19:21:04 symfony [info] {sfWebDebugLogger} Configuration 22.09 ms (10)
+Nov 20 19:21:04 symfony [info] {sfWebDebugLogger} Factories 67.95 ms (1)
+Nov 20 19:21:04 symfony [info] {sfWebDebugLogger} Action "sfGuardRegister/index" 168.13 ms (1)
+Nov 20 19:21:04 symfony [info] {sfWebDebugLogger} View "Success" for "sfGuardRegister/index" 189.53 ms (1)
+Nov 20 19:21:04 symfony [info] {sfWebDebugLogger} Partial "sfGuardRegister/_form" 157.14 ms (1)
+Nov 20 19:21:04 symfony [info] {sfWebResponse} Send content (107513 o)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 20 19:21:04 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_register" (/guard/register)
+Nov 20 19:21:05 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/css/jmpress.min.js" (/).
+Nov 20 19:21:05 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Nov 20 19:21:05 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 20 19:21:05 symfony [info] {sfWebDebugLogger} Configuration 8.78 ms (5)
+Nov 20 19:21:05 symfony [info] {sfWebDebugLogger} Factories 61.23 ms (1)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_register" (/guard/register)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Match route "sf_guard_register" (/guard/register) for /guard/register with parameters array (  'module' => 'sfGuardRegister',  'action' => 'index',)
+Nov 20 19:21:20 symfony [info] {sfFilterChain} Executing filter "sfGuardRememberMeFilter"
+Nov 20 19:21:20 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 20 19:21:20 symfony [info] {sfFilterChain} Executing filter "MySecureFilter"
+Nov 20 19:21:20 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 20 19:21:20 symfony [info] {sfGuardRegisterActions} Call "sfGuardRegisterActions->executeIndex()"
+Nov 20 19:21:20 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\modules/sfGuardRegister/templates/indexSuccess.php"
+Nov 20 19:21:20 symfony [info] {sfPartialView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\modules/sfGuardRegister/templates/_form.php"
+Nov 20 19:21:20 symfony [info] {sfPHPView} Decorate content with "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\templates/layout.php"
+Nov 20 19:21:20 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\frontend\templates/layout.php"
+Nov 20 19:21:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 200 OK"
+Nov 20 19:21:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Configuration 18.74 ms (10)
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Factories 58.11 ms (1)
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Action "sfGuardRegister/index" 164.41 ms (1)
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} View "Success" for "sfGuardRegister/index" 191.84 ms (1)
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Partial "sfGuardRegister/_form" 158.18 ms (1)
+Nov 20 19:21:20 symfony [info] {sfWebResponse} Send content (107479 o)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 20 19:21:20 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_register" (/guard/register)
+Nov 20 19:21:20 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/css/jmpress.min.js" (/).
+Nov 20 19:21:20 symfony [info] {sfWebResponse} Send status "HTTP/1.1 404 Not Found"
+Nov 20 19:21:20 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Configuration 8.44 ms (5)
+Nov 20 19:21:20 symfony [info] {sfWebDebugLogger} Factories 56.14 ms (1)

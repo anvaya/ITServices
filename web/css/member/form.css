@@ -20,12 +20,12 @@
 
 .sf_admin_form_row label
 {
-  display: inline-block;
-  padding: 0 1em 3px 0;
-  float: none;
+  display: inline-block !important;
+  padding: 0 1em 3px 0 !important;
+  float: none !important;
   text-align: right;
-  width: 15em;
-  color: #666;
+  width: 15em !important;
+  color: #666 !important;
   font-weight: normal;
   vertical-align: top;
 }
