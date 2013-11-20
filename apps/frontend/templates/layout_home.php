@@ -4,7 +4,7 @@
         <?php include_http_metas() ?>
         <?php include_metas() ?>
         <?php include_title() ?>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.gif" type="image/gif" />
         <?php include_stylesheets() ?>
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
@@ -42,8 +42,9 @@
                                         <!--
                                         <li><a href="#">Resources</a></li>
                                         <li><a href="#">FAQ</a></li>
-                                        -->
+                                        
                                         <li><a href="#">Blog</a></li>						
+                                        -->
                                         <li><a href="/contactus.html">Contact Us</a></li>						
                                 </ul>
                                 <div class="search">
@@ -51,11 +52,11 @@
                                 </div>                            
                                 <div class="login">
                                     <?php if($sf_user->isAuthenticated()):?>
-                                        <a id="openact" class="purple-btn" href="/member.php">My Account</a>
+                                    <a id="openact" class="purple-btn" href="<?php public_path("member.php");?>">My Account</a>
                                         <a id="openact" class="green-btn" href="<?php echo url_for("@sf_guard_signout");?>">Log Out</a>
                                     <?php else:?>
                                         <a id="openact" class="purple-btn" href="<?php echo url_for("@sf_guard_register");?>">Open Account</a>
-                                        <a id="openact" class="green-btn" href="/member.php">Login</a>
+                                        <a id="openact" class="green-btn" href="<?php echo public_path("member.php");?>">Login</a>
                                     <?php endif;?>
                                 </div>
                         </div>
@@ -64,7 +65,7 @@
                 <div class="container">					
                         <section id="jms-slideshow" class="jms-slideshow">
 
-                                <div id="contact_box" class="jmstep1">
+                                <div id="contact_box" class="jmstep1" style="display: none;">
                                         <?php echo link_to_function(image_tag("chat_icon_new.png", array("alt"=>"Chat Now"))."Chat Now","chatOpen();" );?>                                        
                                         &nbsp;&nbsp;|&nbsp;&nbsp;
                                         <?php echo image_tag("phone_icon_new.png", array("alt"=>"0)- 0000 000 000") );?>(0) 000 000 000                                        
@@ -74,38 +75,44 @@
                                 <div class="step" data-color="color-1" data-x="1000">
                                         <div class="jms-content1">
                                                 <h3>Manage your taxes</h3>
-                                                <p>Income Tax Returns</p>
+                                                <p>PAN Card</p>
                                         </div>
                                 </div>
 
                                 <div class="step" data-color="color-2" data-x="2000">
                                         <div class="jms-content1">
                                                 <h3>Manage your taxes</h3>
-                                                <p>Tax consultation and planning.</p>
+                                                <p>Filing of Income Tax Return</p>
                                         </div>
                                 </div>
 
                                 <div class="step" data-color="color-3" data-x="3000">
                                         <div class="jms-content1">
                                                 <h3>Manage your taxes</h3>
-                                                <p>RBI / FEMA related services</p>
+                                                <p>Maintenance of  Income Tax Records</p>
                                         </div>
                                 </div>
 
                                 <div class="step" data-color="color-4" data-x="4500">
                                         <div class="jms-content1">
-                                                <h3>Tours and Travel</h3>
-                                                <p>Coming soon...</p>
+                                                <h3>Manage your taxes</h3>
+                                                <p>Online Helpline for NRI’s</p>
                                         </div>
                                 </div>
 
                                 <div class="step" data-color="color-5" data-x="5500">
                                         <div class="jms-content1">
-                                                <h3>Property Management</h3>
-                                                <p>Coming soon...</p>								
+                                                <h3>Manage your taxes</h3>
+                                                <p>FEMA Consultancy</p>								
                                         </div>
                                 </div>
-
+                                
+                                <div class="step" data-color="color-5" data-x="5500">
+                                        <div class="jms-content1">
+                                                <h3>Manage your taxes</h3>
+                                                <p>Conversion from NRO a/c to NRE a/c</p>								
+                                        </div>
+                                </div>
                         </div>
                 </div>
 

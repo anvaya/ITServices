@@ -7,10 +7,10 @@
              "Personal Information"=>array('first_name','middle_name','last_name','dob','married','gender'),
              "Current Address (Outside India) "=>array("country","nri_address"),
              "Address in India"=>array("in_address"),
-             "Contact Information"=>array("nri_mobile","nri_landline","nri_office","nri_fax"),
+             "Contact Information"=>array("nri_mobile","nri_landline"/*,"nri_office","nri_fax"*/),
              "Contact Information (India)"=>array("in_mobile","in_landline"),
-             "Occupation"=>array("occupation_type","job_title","industry","other_income_source"),
-             "Indentification and Taxation"=>array("passport_no","pan_no")
+             /*"Occupation"=>array("occupation_type","job_title","industry","other_income_source"),
+             "Indentification and Taxation"=>array("pan_no")*/
              
         )
 ?>

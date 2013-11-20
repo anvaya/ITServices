@@ -7,14 +7,13 @@
                     <h2 class="title"><?php echo __('Thank you !', null, 'messages') ?></h2>						                
                     <br />
                     <div class="entry">
-                        <p>Your registration application has been submitted successfully.</p>
-                        <p>You can now log into your <a href='/member.php'>member's</a> area..</p>                        
+                        <p>Our representative will get back to you shortly.</p>                        
                         <p>Please <a href="/contactus.html">contact us</a> in case you have any queries or feedback.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  <p><?php echo link_to('Go To Home Page','@homepage'); ?></p>
+    <p><a href="<?php public_path("index.html"); ?>">Go To Home Page</a></p>
   <div style="clear:both;"></div>
 </div>

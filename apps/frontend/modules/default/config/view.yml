@@ -6,3 +6,7 @@ indexSuccess:
   javascripts:   
     - jquery.jmslideshow.js
     - modernizr.custom.48780.js
+contactSuccess:
+  layout: layout
+  stylesheets: [ contact_form.css ]
+      

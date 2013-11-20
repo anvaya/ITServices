@@ -43,18 +43,19 @@ class defaultActions extends sfActions
                       "Name: ".$form->getValue("sender_name")."\n".
                       "Phone: ".$form->getValue("phone_number")."\n".
                       "Country: ".$form->getValue("country")."\n".
-                      "City: ".$form->getValue("city")."\n".
+                      /*"City: ".$form->getValue("city")."\n".
                       "State: ".$form->getValue("state")."\n".
                       "Zip Code: ".$form->getValue("zip_code")."\n".
                       "Address1: ".$form->getValue("address1")."\n".
-                      "Address2: ".$form->getValue("address2")."\n".
+                      "Address2: ".$form->getValue("address2")."\n".*/
                       "Message: \n".
-                      "=================================".
+                      "=================================\n".
                       $form->getValue("message");
               
-              $to      = 'contact@anvayatech.com';
+              $to      = 'nrihelp@groworth.in';
               $subject = 'Contact Us: Growth Real Solutions';              
               $headers = 'From: '.$sender_name.'<'.$sender_email. ">\r\n" . 
+                      'Reply-To: '.$sender_name.'<'.$sender_email. ">\r\n" .
                       "Cc: contact@anvayatech.com\r\n".
                     'X-Mailer: PHP/' . phpversion();
 
@@ -67,11 +68,12 @@ class defaultActions extends sfActions
           }
       }   
       
-      $content = site_pageTable::getInstance()
-                    ->find(3);
-      /* @var $content site_page */
-      $this->content = $content->getPageContent();          
       
+      //$content = site_pageTable::getInstance()
+                    //->find(3);
+      /* @var $content site_page */
+      //$this->content = $content->getPageContent();          
+      $this->content = "";
       
       $this->form = $form;
   }

@@ -1,0 +1,120 @@
+Nov 15 07:44:39 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 15 07:44:39 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 15 07:44:39 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 15 07:44:39 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 15 07:44:39 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 15 07:44:39 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 15 07:44:39 symfony [info] {sfPHPView} Render "I:/Yog/Projects/Web/groworth/NRIServices/wwwroot/www/plugins/sfDoctrineGuardPlugin/modules/sfGuardAuth/templates/signinSuccess.php"
+Nov 15 07:44:40 symfony [info] {sfPartialView} Render "I:/Yog/Projects/Web/groworth/NRIServices/wwwroot/www/plugins/sfDoctrineGuardPlugin/modules/sfGuardAuth/templates/_signin_form.php"
+Nov 15 07:44:40 symfony [info] {sfPHPView} Decorate content with "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\member\templates/layout_main_content.php"
+Nov 15 07:44:40 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\member\templates/layout_main_content.php"
+Nov 15 07:44:40 symfony [info] {sfWebResponse} Send status "HTTP/1.1 401 Unauthorized"
+Nov 15 07:44:40 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 15 07:44:40 symfony [info] {sfWebDebugLogger} Configuration 148.31 ms (10)
+Nov 15 07:44:40 symfony [info] {sfWebDebugLogger} Factories 101.63 ms (1)
+Nov 15 07:44:40 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 12.67 ms (1)
+Nov 15 07:44:40 symfony [info] {sfWebDebugLogger} View "Success" for "sfGuardAuth/signin" 192.19 ms (1)
+Nov 15 07:44:40 symfony [info] {sfWebDebugLogger} Partial "sfGuardAuth/_signin_form" 6.29 ms (1)
+Nov 15 07:44:40 symfony [info] {sfWebResponse} Send content (41138 o)
+Nov 15 07:44:41 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 15 07:44:41 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 15 07:44:41 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 15 07:44:41 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 15 07:44:41 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 15 07:44:41 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 15 07:44:42 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php on line 471 (PDO::__construct() [<a href='pdo.--construct'>pdo.--construct</a>]: [2002] No connection could be made because the target machine actively  (trying to connect via tcp://localhost:3306))
+Nov 15 07:44:42 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\exception\sfException.class.php on line 107 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 15 07:44:42 symfony [err] {Doctrine_Connection_Exception} PDO Connection Error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+Nov 15 07:44:42 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\exception\sfException.class.php on line 161 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 15 07:44:42 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\response\sfWebResponse.class.php on line 336 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 15 07:44:42 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Nov 15 07:44:42 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\response\sfWebResponse.class.php on line 357 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 15 07:44:42 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 15 07:44:42 symfony [info] {sfWebDebugLogger} Configuration 19.79 ms (8)
+Nov 15 07:44:42 symfony [info] {sfWebDebugLogger} Factories 58.03 ms (1)
+Nov 15 07:44:42 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 1266.98 ms (1)
+Nov 15 07:44:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 15 07:44:59 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 15 07:44:59 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 15 07:45:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 15 07:45:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 15 07:45:00 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 15 07:45:08 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Nov 15 07:45:08 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.first_name AS g__first_name, g.last_name AS g__last_name, g.email_address AS g__email_address, g.username AS g__username, g.algorithm AS g__algorithm, g.salt AS g__salt, g.password AS g__password, g.is_active AS g__is_active, g.is_super_admin AS g__is_super_admin, g.last_login AS g__last_login, g.is_member AS g__is_member, g.member_type_id AS g__member_type_id, g.country AS g__country, g.timezone AS g__timezone, g.culture AS g__culture, g.middle_name AS g__middle_name, g.dob AS g__dob, g.passport_no AS g__passport_no, g.pan_no AS g__pan_no, g.occupation_type AS g__occupation_type, g.job_title AS g__job_title, g.industry AS g__industry, g.other_income_source AS g__other_income_source, g.married AS g__married, g.gender AS g__gender, g.marriage_anniversary AS g__marriage_anniversary, g.year_as_nri AS g__year_as_nri, g.created_at AS g__created_at, g.updated_at AS g__updated_at FROM gts_sf_guard_user g WHERE (g.username = ? AND g.is_active = ?) - (johnwoo, 1)
+Nov 15 07:45:09 symfony [info] {myUser} User is authenticated
+Nov 15 07:45:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.user_id AS g2__user_id, g2.permission_id AS g2__permission_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_permission g LEFT JOIN gts_sf_guard_user_permission g2 ON g.id = g2.permission_id WHERE (g2.user_id IN (?)) - (2)
+Nov 15 07:45:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.user_id AS g2__user_id, g2.group_id AS g2__group_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_group g LEFT JOIN gts_sf_guard_user_group g2 ON g.id = g2.group_id WHERE (g2.user_id IN (?)) - (2)
+Nov 15 07:45:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.group_id AS g2__group_id, g2.permission_id AS g2__permission_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_permission g LEFT JOIN gts_sf_guard_group_permission g2 ON g.id = g2.permission_id WHERE (g2.group_id IN (?)) - (1)
+Nov 15 07:45:09 symfony [info] {myUser} Add credential(s) "member"
+Nov 15 07:45:09 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE gts_sf_guard_user SET last_login = ?, updated_at = ? WHERE id = ? - (2013-11-15 07:45:09, 2013-11-15 07:45:09, 2)
+Nov 15 07:45:09 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.first_name AS g__first_name, g.last_name AS g__last_name, g.email_address AS g__email_address, g.username AS g__username, g.algorithm AS g__algorithm, g.salt AS g__salt, g.password AS g__password, g.is_active AS g__is_active, g.is_super_admin AS g__is_super_admin, g.last_login AS g__last_login, g.is_member AS g__is_member, g.member_type_id AS g__member_type_id, g.country AS g__country, g.timezone AS g__timezone, g.culture AS g__culture, g.middle_name AS g__middle_name, g.dob AS g__dob, g.passport_no AS g__passport_no, g.pan_no AS g__pan_no, g.occupation_type AS g__occupation_type, g.job_title AS g__job_title, g.industry AS g__industry, g.other_income_source AS g__other_income_source, g.married AS g__married, g.gender AS g__gender, g.marriage_anniversary AS g__marriage_anniversary, g.year_as_nri AS g__year_as_nri, g.created_at AS g__created_at, g.updated_at AS g__updated_at FROM gts_sf_guard_user g WHERE (g.id = ?) - (2)
+Nov 15 07:45:09 symfony [info] {sfFrontWebController} Redirect to "http://itservices.local/member.php"
+Nov 15 07:45:09 symfony [info] {sfWebResponse} Send status "HTTP/1.1 302 Found"
+Nov 15 07:45:09 symfony [info] {sfWebResponse} Send header "Location: http://itservices.local/member.php"
+Nov 15 07:45:09 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 15 07:45:09 symfony [info] {sfWebDebugLogger} Configuration 23.92 ms (8)
+Nov 15 07:45:09 symfony [info] {sfWebDebugLogger} Factories 1265.85 ms (1)
+Nov 15 07:45:09 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 9192.20 ms (1)
+Nov 15 07:45:09 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.06 ms (7)
+Nov 15 07:45:09 symfony [info] {sfWebResponse} Send content (105 o)
+Nov 16 16:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 16 16:00:08 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 16 16:00:08 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 16 16:00:08 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 16 16:00:08 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 16 16:00:08 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 16 16:00:08 symfony [info] {sfPHPView} Render "I:/Yog/Projects/Web/groworth/NRIServices/wwwroot/www/plugins/sfDoctrineGuardPlugin/modules/sfGuardAuth/templates/signinSuccess.php"
+Nov 16 16:00:08 symfony [info] {sfPartialView} Render "I:/Yog/Projects/Web/groworth/NRIServices/wwwroot/www/plugins/sfDoctrineGuardPlugin/modules/sfGuardAuth/templates/_signin_form.php"
+Nov 16 16:00:08 symfony [info] {sfPHPView} Decorate content with "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\member\templates/layout_main_content.php"
+Nov 16 16:00:08 symfony [info] {sfPHPView} Render "I:\Yog\Projects\Web\groworth\NRIServices\wwwroot\www\apps\member\templates/layout_main_content.php"
+Nov 16 16:00:08 symfony [info] {sfWebResponse} Send status "HTTP/1.1 401 Unauthorized"
+Nov 16 16:00:08 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 16 16:00:08 symfony [info] {sfWebDebugLogger} Configuration 30.96 ms (9)
+Nov 16 16:00:08 symfony [info] {sfWebDebugLogger} Factories 112.82 ms (1)
+Nov 16 16:00:08 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 13.48 ms (1)
+Nov 16 16:00:08 symfony [info] {sfWebDebugLogger} View "Success" for "sfGuardAuth/signin" 42.72 ms (1)
+Nov 16 16:00:08 symfony [info] {sfWebDebugLogger} Partial "sfGuardAuth/_signin_form" 7.19 ms (1)
+Nov 16 16:00:08 symfony [info] {sfWebResponse} Send content (41134 o)
+Nov 16 16:00:10 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 16 16:00:10 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 16 16:00:10 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 16 16:00:10 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 16 16:00:10 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 16 16:00:10 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 16 16:00:11 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php on line 471 (PDO::__construct() [<a href='pdo.--construct'>pdo.--construct</a>]: [2002] No connection could be made because the target machine actively  (trying to connect via tcp://localhost:3306))
+Nov 16 16:00:11 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\exception\sfException.class.php on line 107 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 16 16:00:11 symfony [err] {Doctrine_Connection_Exception} PDO Connection Error: SQLSTATE[HY000] [2002] No connection could be made because the target machine actively refused it.
+
+Nov 16 16:00:11 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\exception\sfException.class.php on line 161 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 16 16:00:11 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\response\sfWebResponse.class.php on line 336 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 16 16:00:11 symfony [info] {sfWebResponse} Send status "HTTP/1.1 500 Internal Server Error"
+Nov 16 16:00:11 symfony [warning] {sfWebDebugLogger}  Warning at C:\phplib\symfony\symfony-1.4.17\lib\response\sfWebResponse.class.php on line 357 (Cannot modify header information - headers already sent by (output started at C:\phplib\symfony\symfony-1.4.17\lib\plugins\sfDoctrinePlugin\lib\vendor\doctrine\Doctrine\Connection.php:471))
+Nov 16 16:00:11 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 16 16:00:11 symfony [info] {sfWebDebugLogger} Configuration 21.30 ms (8)
+Nov 16 16:00:11 symfony [info] {sfWebDebugLogger} Factories 54.08 ms (1)
+Nov 16 16:00:11 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 1136.86 ms (1)
+Nov 16 16:01:00 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signin" (/guard/login)
+Nov 16 16:01:00 symfony [info] {sfPatternRouting} Connect sfRoute "sf_guard_signout" (/guard/logout)
+Nov 16 16:01:00 symfony [info] {sfPatternRouting} Match route "sf_guard_signin" (/guard/login) for /guard/login with parameters array (  'module' => 'sfGuardAuth',  'action' => 'signin',)
+Nov 16 16:01:00 symfony [info] {sfFilterChain} Executing filter "sfRenderingFilter"
+Nov 16 16:01:00 symfony [info] {sfFilterChain} Executing filter "sfExecutionFilter"
+Nov 16 16:01:00 symfony [info] {sfGuardAuthActions} Call "sfGuardAuthActions->executeSignin()"
+Nov 16 16:01:00 symfony [info] {Doctrine_Connection_Mysql} exec : SET NAMES 'UTF8' - ()
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.first_name AS g__first_name, g.last_name AS g__last_name, g.email_address AS g__email_address, g.username AS g__username, g.algorithm AS g__algorithm, g.salt AS g__salt, g.password AS g__password, g.is_active AS g__is_active, g.is_super_admin AS g__is_super_admin, g.last_login AS g__last_login, g.is_member AS g__is_member, g.member_type_id AS g__member_type_id, g.country AS g__country, g.timezone AS g__timezone, g.culture AS g__culture, g.middle_name AS g__middle_name, g.dob AS g__dob, g.passport_no AS g__passport_no, g.pan_no AS g__pan_no, g.occupation_type AS g__occupation_type, g.job_title AS g__job_title, g.industry AS g__industry, g.other_income_source AS g__other_income_source, g.married AS g__married, g.gender AS g__gender, g.marriage_anniversary AS g__marriage_anniversary, g.year_as_nri AS g__year_as_nri, g.created_at AS g__created_at, g.updated_at AS g__updated_at FROM gts_sf_guard_user g WHERE (g.username = ? AND g.is_active = ?) - (johnwoo, 1)
+Nov 16 16:01:01 symfony [info] {myUser} User is authenticated
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.user_id AS g2__user_id, g2.permission_id AS g2__permission_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_permission g LEFT JOIN gts_sf_guard_user_permission g2 ON g.id = g2.permission_id WHERE (g2.user_id IN (?)) - (2)
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.user_id AS g2__user_id, g2.group_id AS g2__group_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_group g LEFT JOIN gts_sf_guard_user_group g2 ON g.id = g2.group_id WHERE (g2.user_id IN (?)) - (2)
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.name AS g__name, g.description AS g__description, g.created_at AS g__created_at, g.updated_at AS g__updated_at, g2.group_id AS g2__group_id, g2.permission_id AS g2__permission_id, g2.created_at AS g2__created_at, g2.updated_at AS g2__updated_at FROM gts_sf_guard_permission g LEFT JOIN gts_sf_guard_group_permission g2 ON g.id = g2.permission_id WHERE (g2.group_id IN (?)) - (1)
+Nov 16 16:01:01 symfony [info] {myUser} Add credential(s) "member"
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : UPDATE gts_sf_guard_user SET last_login = ?, updated_at = ? WHERE id = ? - (2013-11-16 16:01:01, 2013-11-16 16:01:01, 2)
+Nov 16 16:01:01 symfony [info] {Doctrine_Connection_Statement} execute : SELECT g.id AS g__id, g.first_name AS g__first_name, g.last_name AS g__last_name, g.email_address AS g__email_address, g.username AS g__username, g.algorithm AS g__algorithm, g.salt AS g__salt, g.password AS g__password, g.is_active AS g__is_active, g.is_super_admin AS g__is_super_admin, g.last_login AS g__last_login, g.is_member AS g__is_member, g.member_type_id AS g__member_type_id, g.country AS g__country, g.timezone AS g__timezone, g.culture AS g__culture, g.middle_name AS g__middle_name, g.dob AS g__dob, g.passport_no AS g__passport_no, g.pan_no AS g__pan_no, g.occupation_type AS g__occupation_type, g.job_title AS g__job_title, g.industry AS g__industry, g.other_income_source AS g__other_income_source, g.married AS g__married, g.gender AS g__gender, g.marriage_anniversary AS g__marriage_anniversary, g.year_as_nri AS g__year_as_nri, g.created_at AS g__created_at, g.updated_at AS g__updated_at FROM gts_sf_guard_user g WHERE (g.id = ?) - (2)
+Nov 16 16:01:01 symfony [info] {sfFrontWebController} Redirect to "http://itservices.local/member.php"
+Nov 16 16:01:01 symfony [info] {sfWebResponse} Send status "HTTP/1.1 302 Found"
+Nov 16 16:01:01 symfony [info] {sfWebResponse} Send header "Location: http://itservices.local/member.php"
+Nov 16 16:01:01 symfony [info] {sfWebResponse} Send header "Content-Type: text/html; charset=utf-8"
+Nov 16 16:01:01 symfony [info] {sfWebDebugLogger} Configuration 20.42 ms (8)
+Nov 16 16:01:01 symfony [info] {sfWebDebugLogger} Factories 51.50 ms (1)
+Nov 16 16:01:01 symfony [info] {sfWebDebugLogger} Action "sfGuardAuth/signin" 733.61 ms (1)
+Nov 16 16:01:01 symfony [info] {sfWebDebugLogger} Database (Doctrine) 0.06 ms (7)
+Nov 16 16:01:01 symfony [info] {sfWebResponse} Send content (105 o)

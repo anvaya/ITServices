@@ -4,7 +4,7 @@
         <?php include_http_metas() ?>
         <?php include_metas() ?>
         <?php include_title() ?>
-        <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.gif" type="image/gif" />
         <?php include_stylesheets() ?>
 
         <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300,300italic' rel='stylesheet' type='text/css'>
@@ -41,29 +41,29 @@
                             <div class="span3">
                                     <h5>Our Services</h5>
                                     <ul class="unstyled">
-                                            <li><a href="/services.html">Tax Management</a></li>
-                                            <li><a href="/services.html#rbi">FEMA / RBI Services</a></li>
-                                            <li><a href="#">Property Management</a></li>
-                                            <li><a href="#">Tours and Travels</a></li>
+                                            <li><a href="<?php echo public_path("services.html");?>">Tax Management</a></li>
+                                            <li><a href="<?php echo public_path("services.html#rbi");?>">Online Helpline for NRI’s</a></li>
+                                            <li><a href="<?php echo public_path("services.html#rbi");?>">Conversion from NRO a/c to NRE a/c</a></li>														
+                                            <li><a href="<?php echo public_path("services.html#rbi");?>">Certifications / Attestations</a></li>
                                     </ul>
                             </div>
 
                             <div class="span3">
                                     <h5>Why Groworth</h5>
                                     <ul class="unstyled">
-                                            <li><a href="/aboutus.html">Advantages</a></li>
-                                            <li><a href="/contactus.html">How you can join</a></li>
-                                            <li><a href="#">Blog</a></li>
+                                            <li><a href="<?php echo public_path("aboutus.html");?>">Advantages</a></li>
+                                            <li><a href="<?php echo public_path("contactus.html");?>">How you can join</a></li>
+                                            <!-- <li><a href="#">Blog</a></li> -->
                                     </ul>
                             </div>
 
                             <div class="span3">
                                     <h5>The Company</h5>
                                     <ul class="unstyled">
-                                            <li><a href="/aboutus.html">About Us</a></li>
-                                            <li><a href="/contactus.html">Contact us</a></li>
-                                            <li><a href="/privacy.html">Privacy policy</a></li>
-                                            <li><a href="/terms.html">Terms &amp; conditions</a></li>
+                                            <li><a href="<?php echo public_path("aboutus.html");?>">About Us</a></li>
+                                            <li><a href="<?php echo public_path("contactus.html");?>">Contact us</a></li>
+                                            <li style="display: none"><a href="#">Privacy policy</a></li>
+                                            <li style="display: none"><a href="#">Terms &amp; conditions</a></li>
                                     </ul>
                             </div>
 
@@ -80,9 +80,9 @@
 
 
                     </div>
-                    <p style="margin-top: 20px">Copyright &copy; <?php echo date('Y'); ?> Groworth Real Solutions Pvt. Ltd.</p>
+                    <p style="margin-top: 20px">Copyright &copy; <?php echo date('y');?> Groworth Real Solutions Pvt. Ltd.</p>
             </div>
-    </div>	
+        </div>	
         
     </body>
 </html>

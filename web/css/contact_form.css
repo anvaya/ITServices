@@ -1,0 +1,144 @@
+/* 
+    Document   : contact_form
+    Created on : May 17, 2013, 5:13:43 PM
+    Author     : DREAMS
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+label
+{    
+    /*font-family: arial, serif;*/
+    font-size: 16px;
+    font-weight: 400;
+    font-weight: bold;
+   
+}
+
+div.error
+{
+  margin: 4px 0;
+  padding: 4px 4px 4px 30px;
+  background: url(../images/error.png) no-repeat 10px 4px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #0000bb;
+  color: #fff;
+  font-weight: bold;
+}
+
+input[type=text], select
+{
+    background-color: #F5F6F6;
+    background-image: url("/images/input-bg.png");
+    background-position: left top;
+    background-repeat: repeat-x;
+    border: 1px solid #B4B4B5;
+    /*float: left;*/
+    height: 35px;
+    margin: 10px 0;      
+    padding: 0 10px;
+    width: 318px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+select
+{
+    padding: 4px 0px 2px 10px;
+}
+
+span.required
+{
+    color: #FC0320;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+
+
+h2.pt 
+{
+	padding-top: 10px;
+	font-size: 10pt;
+	color: #004BAD;
+	font-family: Calibri,Arial,Helvetica,sans-serif;
+	line-height: 15px;
+	margin: 0;	
+	cursor:pointer;
+}
+
+span.bold_green
+{
+	font-weight: bold;
+	color: green;
+	font-size: 8pt;
+	line-height: 15px;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+span.map_text
+{
+	font-size: 8pt;
+	color:	#414141;
+	font-family: Arial,Helvetica,sans-serif;
+	font-weight: normal;
+	line-height: 15px;	
+}
+
+div.google_photobox
+{
+	background-color:#FFFFFF;
+	border:1px solid #000000;
+	cursor:pointer;
+	float:left;
+	padding:4px 0;
+	margin-right:10px;
+}
+
+span.map_text a:link
+{
+	color: #155EB5
+}
+
+.bluelink 
+{
+	color: #155EB5 !important;
+}
+
+img.photo_thumb
+{
+	width: 90px;
+	height:60px;
+}
+
+
+#maps_close_button
+{
+	float: right; z-index:10;position: absolute; top: 2px; left: 225px;
+	cursor: pointer;
+}
+
+ul.error_list
+{
+  margin: 0;
+  margin-bottom: 7px;
+  color: #d33;
+  border: none;
+  background-color: #f33;
+}
+
+ul.error_list li
+{
+  padding: 4px;
+  padding-left: 25px;
+  list-style: none;
+  color: #fff;
+  font-size: 14px;
+  background: url(../images/error.png) no-repeat 4px 4px;
+}
