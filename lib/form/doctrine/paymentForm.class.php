@@ -18,7 +18,10 @@ class paymentForm extends BasepaymentForm
     $this->widgetSchema['payment_type'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['status'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['ip_address'] = new sfWidgetFormInputHidden();
-    $this->widgetSchema['payment_date'] = new sfWidgetFormJQueryDate();
+    
+    $date_widget = new sfWidgetFormDate(array("format"=>"%day%/%month%/%year%"));
+    $this->widgetSchema['payment_date'] = new sfWidgetFormJQueryDate(array("date_widget"=>$date_widget));
+    
     $this->widgetSchema['amount'] = new sfWidgetFormInputText(array(),array('readonly'=>'readonly'));
     $this->widgetSchema['transaction_id'] = new sfWidgetFormInputText(array('label'=>'Transaction Id'),array());
     
@@ -35,8 +38,8 @@ class paymentForm extends BasepaymentForm
     $this->validatorSchema['payment_ref_no'] = new sfValidatorString(array('required'=>true));
     $this->validatorSchema['transaction_id'] = new sfValidatorString(array('required'=>true));
     
-    $amount = Doctrine::getTable('settings')->find('pan_application_fee');
-    $this->setDefault('amount', $amount->getValue1());
+    $amount = $this->getOption("amount"); //Doctrine::getTable('settings')->find('pan_application_fee');
+    $this->setDefault('amount', $amount);
     
   }
 }

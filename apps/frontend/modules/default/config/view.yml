@@ -9,4 +9,6 @@ indexSuccess:
 contactSuccess:
   layout: layout
   stylesheets: [ contact_form.css ]
-      
+
+confirmPaySuccess:
+  stylesheets: [ form.css ]  

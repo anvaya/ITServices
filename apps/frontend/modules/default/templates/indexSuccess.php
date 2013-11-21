@@ -1,5 +1,5 @@
 <div class="wrapper1" style="text-align: center">
-                        <img src="images/tax01.png" style="height: 500px;" alt="NRI Tax Services" />			
+                    <?php echo image_tag("tax01.png",array("style"=>"height: 500px;","alt"=>"NRI Tax Services"));?>                        
 		</div>
 
 		<div class="wrapper1" style="min-height: 180px; display: none;">

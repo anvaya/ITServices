@@ -72,7 +72,7 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
     
     //$years = range(date('Y')-80, date('Y')-18);       
     
-    
+    $this->widgetSchema['dob']->setOption("format","%day%/%month%/%year%");
     $this->widgetSchema['dob']->setOption('years',$years);
     $this->widgetSchema['dob']->setLabel('Date of Birth');
     $this->validatorSchema['dob'] = new sfValidatorDate();
@@ -84,7 +84,7 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
     );
     
     $this->widgetSchema['occupation_type'] = new sfWidgetFormChoice(array("choices"=>$occupations));
-    $this->validatorSchema['occupation_type'] = new sfValidatorChoice(array("choices"=>array_keys($occupations)));
+    $this->validatorSchema['occupation_type'] = new sfValidatorChoice(array("choices"=>array_keys($occupations),"required"=>false));
     
 
     $nri_address = new address();

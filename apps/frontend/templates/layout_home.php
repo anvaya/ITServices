@@ -72,50 +72,48 @@
                                 </div>
 
 
-                                <div class="step" data-color="color-1" data-x="1000">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>PAN Card</p>
-                                        </div>
-                                </div>
-
-                                <div class="step" data-color="color-2" data-x="2000">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>Filing of Income Tax Return</p>
-                                        </div>
-                                </div>
-
-                                <div class="step" data-color="color-3" data-x="3000">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>Maintenance of  Income Tax Records</p>
-                                        </div>
-                                </div>
-
-                                <div class="step" data-color="color-4" data-x="4500">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>Online Helpline for NRI’s</p>
-                                        </div>
-                                </div>
-
-                                <div class="step" data-color="color-5" data-x="5500">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>FEMA Consultancy</p>								
-                                        </div>
-                                </div>
-                                
-                                <div class="step" data-color="color-5" data-x="5500">
-                                        <div class="jms-content1">
-                                                <h3>Manage your taxes</h3>
-                                                <p>Conversion from NRO a/c to NRE a/c</p>								
-                                        </div>
-                                </div>
+                        <div class="step" data-color="color-1" data-x="1000">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>Online Helpline for NRI’s</p>
+                            </div>
                         </div>
-                </div>
 
+                        <div class="step" data-color="color-2" data-x="2000">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>PAN Card</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-color="color-3" data-x="3000">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>Filing of Income Tax Return and Maintenance of Records</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-color="color-4" data-x="4500">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>FEMA Consultancy</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-color="color-5" data-x="5500">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>Conversion from NRO a/c to NRE a/c</p>								
+                            </div>
+                        </div>
+
+                        <div class="step" data-color="color-5" data-x="5500">
+                            <div class="jms-content1">
+                                    <h3>Manage your taxes</h3>
+                                    <p>Certifications / Attestations</p>								
+                            </div>
+                        </div>        
+                        
                         </section>
                 </div>
 

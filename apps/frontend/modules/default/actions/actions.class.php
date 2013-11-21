@@ -78,8 +78,71 @@ class defaultActions extends sfActions
       $this->form = $form;
   }
   
-  public function executeThankyou(sfWebRequest $request)
+  public function executeConfirmPay(sfWebRequest $request)
+  {      
+    $this->forward404Unless($request->hasParameter("mid"));
+    $user_id = $request->getParameter("mid");
+    $submission = submissionTable::getInstance()
+                    ->findOneByUserIdAndFormId($user_id, 2, null);
+    
+    /* @var $submission submission */
+    if($submission->getPayment()->count()>0)
+    {
+        $this->forward404();
+    }
+    
+    $payment = new payment();
+    $payment->setMemberId($user_id);
+    $payment->setSubmission($submission);
+    $this->form = new paymentForm($payment, array("submission_id"=>$submission->getId(),"ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>"750.00") );      
+  }
+  
+  public function executeConfirmPayUpdate(sfWebRequest $request)
+  {           
+     $form = new paymentForm();            
+     
+     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+     
+     if ($form->isValid())
+     {
+         $payment = $form->save();                
+         
+         try
+         {
+            $email_body = $this->getPartial("default/email_pay_alert", array("payment"=>$payment) );
+            $msg = $this->getMailer()->compose();
+            $msg->setSubject("Growroth.in: Subscription Payment Alert");
+            $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+            $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+            $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");
+            $msg->addCc("mrugendrabhure@gmail.com", "Mrugendra Bhure");
+            $msg->setBody($email_body, 'text/html', "utf-8");
+            $this->getMailer()->sendNextImmediately();
+            $this->getMailer()->send($msg);
+         }catch(Exception $ex)
+         {
+             
+         }
+         
+         $this->payment = $payment;
+         $this->redirect("default/payThanks");
+     }
+     else
+     {
+         $this->form = $form;
+         $this->setTemplate("confirmPay");         
+     }
+     
+     return sfView::SUCCESS;
+  }
+  
+  public function executePayThanks(sfWebRequest $request)
   {
       
+  }
+  
+  public function executeThankyou(sfWebRequest $request)
+  {
+     
   }
 }

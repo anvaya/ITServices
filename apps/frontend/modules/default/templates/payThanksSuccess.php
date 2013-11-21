@@ -7,10 +7,8 @@
                     <h2 class="title"><?php echo __('Thank you !', null, 'messages') ?></h2>						                
                     <br />
                     <div class="entry">
-                        <p>Your registration application has been submitted successfully.</p>
-                        <p>
-                            You will shortly receive an email containing details of payment. Please follow the instructions therein to activate your account.
-                        </p>
+                        <p>Your payment notification has been submitted successfully.</p>
+                        <p>Our processing desk will process your payment on receipt and notify you accordingly.</p>
                         <p>Please <a href="<?php echo url_for("default/contact") ?>">contact us</a> in case you have any queries or feedback.</p>
                     </div>
                 </div>

@@ -111,7 +111,7 @@ abstract class Basesubmission extends sfDoctrineRecord
 
         $this->hasMany('payment', array(
              'local' => 'id',
-             'foreign' => 'payment_id'));
+             'foreign' => 'submission_id'));
 					
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);
