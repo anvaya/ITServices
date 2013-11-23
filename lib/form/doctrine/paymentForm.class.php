@@ -13,6 +13,8 @@ class paymentForm extends BasepaymentForm
   public function configure()
   {
     unset($this['created_at'],$this['updated_at'],$this['status']);
+    
+    $this->widgetSchema['subscription_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['member_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['submission_id'] = new sfWidgetFormInputHidden();
     $this->widgetSchema['payment_type'] = new sfWidgetFormInputHidden();
@@ -31,6 +33,7 @@ class paymentForm extends BasepaymentForm
     $this->setDefault('payment_type', paymentTable::STATUS_BANK_PAYMENT);
     $this->setDefault('payment_date',date('Y-m-d'));
     $this->setDefault('status', $this->getOption('status'));
+    $this->setDefault('subscription_id', $this->getOption('subscription_id'));
     $this->validatorSchema['status'] = new sfValidatorPass();
     
     $this->validatorSchema['bank_name'] = new sfValidatorString(array('required'=>true));

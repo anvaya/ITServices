@@ -8,13 +8,22 @@
  * @property member_type $member_type
  * @property Doctrine_Collection $contact
  * @property Doctrine_Collection $address
+ * @property Doctrine_Collection $payment
+ * @property Doctrine_Collection $support_ticket
+ * @property Doctrine_Collection $member_subscription
  * 
- * @method member_type         getMemberType()  Returns the current record's "member_type" value
- * @method Doctrine_Collection getContact()     Returns the current record's "contact" collection
- * @method Doctrine_Collection getAddress()     Returns the current record's "address" collection
- * @method member              setMemberType()  Sets the current record's "member_type" value
- * @method member              setContact()     Sets the current record's "contact" collection
- * @method member              setAddress()     Sets the current record's "address" collection
+ * @method member_type         getMemberType()          Returns the current record's "member_type" value
+ * @method Doctrine_Collection getContact()             Returns the current record's "contact" collection
+ * @method Doctrine_Collection getAddress()             Returns the current record's "address" collection
+ * @method Doctrine_Collection getPayment()             Returns the current record's "payment" collection
+ * @method Doctrine_Collection getSupportTicket()       Returns the current record's "support_ticket" collection
+ * @method Doctrine_Collection getMemberSubscription()  Returns the current record's "member_subscription" collection
+ * @method member              setMemberType()          Sets the current record's "member_type" value
+ * @method member              setContact()             Sets the current record's "contact" collection
+ * @method member              setAddress()             Sets the current record's "address" collection
+ * @method member              setPayment()             Sets the current record's "payment" collection
+ * @method member              setSupportTicket()       Sets the current record's "support_ticket" collection
+ * @method member              setMemberSubscription()  Sets the current record's "member_subscription" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -37,6 +46,18 @@ abstract class Basemember extends sfGuardUser
              'foreign' => 'member_id'));
 
         $this->hasMany('address', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('payment', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('support_ticket', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('member_subscription', array(
              'local' => 'id',
              'foreign' => 'member_id'));
     }

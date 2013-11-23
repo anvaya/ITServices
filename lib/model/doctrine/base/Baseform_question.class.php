@@ -17,31 +17,34 @@
  * @property submission_form $submission_form
  * @property Doctrine_Collection $formquestion_option
  * @property Doctrine_Collection $submission_data
+ * @property Doctrine_Collection $submission_inner_data
  * 
- * @method integer             getFormId()              Returns the current record's "form_id" value
- * @method boolean             getMandatory()           Returns the current record's "mandatory" value
- * @method varchar             getGroupCode()           Returns the current record's "group_code" value
- * @method integer             getDisplayOrder()        Returns the current record's "display_order" value
- * @method varchar             getCssClass()            Returns the current record's "css_class" value
- * @method integer             getPageNum()             Returns the current record's "page_num" value
- * @method integer             getDateMinYear()         Returns the current record's "date_min_year" value
- * @method integer             getDateMaxYear()         Returns the current record's "date_max_year" value
- * @method varchar             getErrorMsg()            Returns the current record's "error_msg" value
- * @method submission_form     getSubmissionForm()      Returns the current record's "submission_form" value
- * @method Doctrine_Collection getFormquestionOption()  Returns the current record's "formquestion_option" collection
- * @method Doctrine_Collection getSubmissionData()      Returns the current record's "submission_data" collection
- * @method form_question       setFormId()              Sets the current record's "form_id" value
- * @method form_question       setMandatory()           Sets the current record's "mandatory" value
- * @method form_question       setGroupCode()           Sets the current record's "group_code" value
- * @method form_question       setDisplayOrder()        Sets the current record's "display_order" value
- * @method form_question       setCssClass()            Sets the current record's "css_class" value
- * @method form_question       setPageNum()             Sets the current record's "page_num" value
- * @method form_question       setDateMinYear()         Sets the current record's "date_min_year" value
- * @method form_question       setDateMaxYear()         Sets the current record's "date_max_year" value
- * @method form_question       setErrorMsg()            Sets the current record's "error_msg" value
- * @method form_question       setSubmissionForm()      Sets the current record's "submission_form" value
- * @method form_question       setFormquestionOption()  Sets the current record's "formquestion_option" collection
- * @method form_question       setSubmissionData()      Sets the current record's "submission_data" collection
+ * @method integer             getFormId()                Returns the current record's "form_id" value
+ * @method boolean             getMandatory()             Returns the current record's "mandatory" value
+ * @method varchar             getGroupCode()             Returns the current record's "group_code" value
+ * @method integer             getDisplayOrder()          Returns the current record's "display_order" value
+ * @method varchar             getCssClass()              Returns the current record's "css_class" value
+ * @method integer             getPageNum()               Returns the current record's "page_num" value
+ * @method integer             getDateMinYear()           Returns the current record's "date_min_year" value
+ * @method integer             getDateMaxYear()           Returns the current record's "date_max_year" value
+ * @method varchar             getErrorMsg()              Returns the current record's "error_msg" value
+ * @method submission_form     getSubmissionForm()        Returns the current record's "submission_form" value
+ * @method Doctrine_Collection getFormquestionOption()    Returns the current record's "formquestion_option" collection
+ * @method Doctrine_Collection getSubmissionData()        Returns the current record's "submission_data" collection
+ * @method Doctrine_Collection getSubmissionInnerData()   Returns the current record's "submission_inner_data" collection
+ * @method form_question       setFormId()                Sets the current record's "form_id" value
+ * @method form_question       setMandatory()             Sets the current record's "mandatory" value
+ * @method form_question       setGroupCode()             Sets the current record's "group_code" value
+ * @method form_question       setDisplayOrder()          Sets the current record's "display_order" value
+ * @method form_question       setCssClass()              Sets the current record's "css_class" value
+ * @method form_question       setPageNum()               Sets the current record's "page_num" value
+ * @method form_question       setDateMinYear()           Sets the current record's "date_min_year" value
+ * @method form_question       setDateMaxYear()           Sets the current record's "date_max_year" value
+ * @method form_question       setErrorMsg()              Sets the current record's "error_msg" value
+ * @method form_question       setSubmissionForm()        Sets the current record's "submission_form" value
+ * @method form_question       setFormquestionOption()    Sets the current record's "formquestion_option" collection
+ * @method form_question       setSubmissionData()        Sets the current record's "submission_data" collection
+ * @method form_question       setSubmissionInnerData()   Sets the current record's "submission_inner_data" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -122,6 +125,10 @@ abstract class Baseform_question extends question
              'foreign' => 'question_id'));
 
         $this->hasMany('submission_data', array(
+             'local' => 'id',
+             'foreign' => 'question_id'));
+
+        $this->hasMany('submission_inner_data', array(
              'local' => 'id',
              'foreign' => 'question_id'));
     }

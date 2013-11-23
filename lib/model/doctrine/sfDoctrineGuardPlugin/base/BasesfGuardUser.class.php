@@ -41,6 +41,9 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
  * @property Doctrine_Collection $submission
+ * @property Doctrine_Collection $submission_inner
+ * @property Doctrine_Collection $support_ticket
+ * @property Doctrine_Collection $ticket_comment
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -76,6 +79,9 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
  * @method Doctrine_Collection   getSubmission()            Returns the current record's "submission" collection
+ * @method Doctrine_Collection   getSubmissionInner()       Returns the current record's "submission_inner" collection
+ * @method Doctrine_Collection   getSupportTicket()         Returns the current record's "support_ticket" collection
+ * @method Doctrine_Collection   getTicketComment()         Returns the current record's "ticket_comment" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -110,6 +116,9 @@ Doctrine_Manager::getInstance()->bindComponent('sfGuardUser', 'doctrine');
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
  * @method sfGuardUser           setSubmission()            Sets the current record's "submission" collection
+ * @method sfGuardUser           setSubmissionInner()       Sets the current record's "submission_inner" collection
+ * @method sfGuardUser           setSupportTicket()         Sets the current record's "support_ticket" collection
+ * @method sfGuardUser           setTicketComment()         Sets the current record's "ticket_comment" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -305,6 +314,18 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasMany('submission', array(
              'local' => 'id',
              'foreign' => 'user_id'));
+
+        $this->hasMany('submission_inner', array(
+             'local' => 'id',
+             'foreign' => 'user_id'));
+
+        $this->hasMany('support_ticket', array(
+             'local' => 'id',
+             'foreign' => 'created_by'));
+
+        $this->hasMany('ticket_comment', array(
+             'local' => 'id',
+             'foreign' => 'replied_by'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

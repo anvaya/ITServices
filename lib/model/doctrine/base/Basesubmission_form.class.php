@@ -15,6 +15,8 @@
  * @property varchar $template_name
  * @property Doctrine_Collection $form_question
  * @property Doctrine_Collection $submission
+ * @property Doctrine_Collection $submission_inner
+ * @property Doctrine_Collection $product
  * 
  * @method integer             getId()               Returns the current record's "id" value
  * @method varchar             getFormCode()         Returns the current record's "form_code" value
@@ -26,6 +28,8 @@
  * @method varchar             getTemplateName()     Returns the current record's "template_name" value
  * @method Doctrine_Collection getFormQuestion()     Returns the current record's "form_question" collection
  * @method Doctrine_Collection getSubmission()       Returns the current record's "submission" collection
+ * @method Doctrine_Collection getSubmissionInner()  Returns the current record's "submission_inner" collection
+ * @method Doctrine_Collection getProduct()          Returns the current record's "product" collection
  * @method submission_form     setId()               Sets the current record's "id" value
  * @method submission_form     setFormCode()         Sets the current record's "form_code" value
  * @method submission_form     setFormName()         Sets the current record's "form_name" value
@@ -36,6 +40,8 @@
  * @method submission_form     setTemplateName()     Sets the current record's "template_name" value
  * @method submission_form     setFormQuestion()     Sets the current record's "form_question" collection
  * @method submission_form     setSubmission()       Sets the current record's "submission" collection
+ * @method submission_form     setSubmissionInner()  Sets the current record's "submission_inner" collection
+ * @method submission_form     setProduct()          Sets the current record's "product" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -101,6 +107,14 @@ abstract class Basesubmission_form extends sfDoctrineRecord
              'foreign' => 'form_id'));
 
         $this->hasMany('submission', array(
+             'local' => 'id',
+             'foreign' => 'form_id'));
+
+        $this->hasMany('submission_inner', array(
+             'local' => 'id',
+             'foreign' => 'form_id'));
+
+        $this->hasMany('product', array(
              'local' => 'id',
              'foreign' => 'form_id'));
     }
