@@ -135,6 +135,9 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
     $this->widgetSchema['in_mobile']->setLabel("Mobile");
     $this->widgetSchema['in_landline']->setLabel("Landline");
     
+    $subscription = new member_subscription();    
+    $subscription_form = new member_subscription_subForm($subscription);
+    $this->embedForm("subscription", $subscription_form);    
   }
   
   public function saveEmbeddedForms($con = null, $forms = null)
