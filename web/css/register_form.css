@@ -203,5 +203,44 @@ input[type=text]
     width: 250px;
 }
 
-/* register form::end */
 
+table#subscriptions
+{
+    width: 600px;
+}
+
+table#subscriptions td
+{
+    border-bottom: 1px solid #333;
+}
+
+table#subscriptions ul li
+{
+    font-family: 'Open Sans Condensed','Arial Narrow',serif !important;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+table#subscriptions th
+{
+    font-weight: bold;
+    background-color: #F8BB00;
+    padding-left: 4px;
+    text-align: left;
+}
+
+table#subscriptions td
+{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #707070;
+    font-weight: bold;
+}
+
+table#subscriptions label
+{
+    float: none;
+    display: inline-block;
+}
+
+/* register form::end */
