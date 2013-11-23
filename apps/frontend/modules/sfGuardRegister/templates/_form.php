@@ -8,7 +8,7 @@
              "Current Address (Outside India) "=>array("country","nri_address"),
              "Address in India"=>array("in_address"),
              "Contact Information"=>array("nri_mobile","nri_landline"/*,"nri_office","nri_fax"*/),
-             "Contact Information (India)"=>array("in_mobile","in_landline"),
+             "Contact Information (India)"=>array("in_mobile","in_landline"),             
              /*"Occupation"=>array("occupation_type","job_title","industry","other_income_source"),
              "Indentification and Taxation"=>array("pan_no")*/
              
@@ -43,6 +43,59 @@
         <?php endforeach; ?>
       </fieldset>   
     <?php endforeach;?>   
+    
+    <?php $fieldset = "Subscription";?>        
+    <?php 
+            $subscriptions = subscriptionTable::getInstance()
+                                ->getActiveSubscriptions();
+    ?>        
+    <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>">
+          <h2><?php echo $fieldset ?></h2>
+          
+          
+        <div class="sf_admin_row">
+           <?php echo $form['subscription']->renderError(); ?>
+           <div>             
+             <div class="content" >
+                 <table id="subscriptions" cellspacing="0">
+                     <thead>
+                         <tr>
+                             <th align="left">Title</th>
+                             <th>Features</th>
+                             <th>Price</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <?php foreach($subscriptions as $index=>$subscription): /* @var $subscription subscription */?>
+                         <tr>
+                             <td>
+                                 <input type="radio" <?php if($index==0):?>checked<?php endif;?>  name="sf_guard_user[subscription][subscription_id]" id="user_subscription_subscription_id_<?php echo $subscription->getId() ?>" value="<?php echo $subscription->getId() ?>" />
+                                 <label for="user_subscription_subscription_id_<?php echo $subscription->getId() ?>"><?php echo $subscription->getName();?></label>
+                             </td>
+                             <td>
+                                 <ul class="product_list">
+                                    <?php 
+                                          $products = $subscription->getSubscriptionProduct();
+                                          foreach($products as $product): /* @var $product product*/
+                                    ?>
+                                     <li>
+                                         <?php echo $product->getProduct()->getName();?>
+                                     </li>
+                                     <?php endforeach;?>                                     
+                                 </ul>
+                             </td>
+                             <td><?php echo $subscription->getCurrency()." ".$subscription->getPrice(); ?></td>
+                         </tr>
+                         <?php endforeach;?>
+                     </tbody>                         
+                 </table>
+             </div>
+           </div>
+       </div>
+        
+    </fieldset>               
+            
+            
     </td></tr>
   </tbody>
     <tfoot>

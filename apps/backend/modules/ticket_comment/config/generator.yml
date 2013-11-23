@@ -1,0 +1,36 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           ticket_comment
+    theme:                 admin #jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          ticket_comment
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+        public_message: 
+          label: To Customer
+          help: This will be sent to the customer.
+          attributes: 
+            rows: 10
+            cols: 60          
+        private_message:
+          label: Office Notes
+          help: Private for office use only.
+          attributes: 
+            rows: 4
+            cols: 60
+      list:    ~
+      filter:  ~
+      form:            
+        actions: 
+          _save: ~
+      edit:    ~
+      new:     
+        title: Send Reply

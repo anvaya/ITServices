@@ -57,7 +57,15 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
     {
         try
         {
-            $body = $this->getPartial("email_payment", array("user"=>$user));
+            $subscription = member_subscriptionTable::getInstance()
+                                ->createQuery('ms')
+                                ->addWhere('ms.member_id = ?', $user->getId())
+                                ->orderBy('ms.id desc')
+                                ->fetchOne();
+            
+            /* @var $subscription member_subscription */
+            $amount = $subscription->getSubscription()->getCurrency()." ".$subscription->getPrice();
+            $body = $this->getPartial("email_payment", array("user"=>$user,'amount'=>$amount));
             
             $msg = $this->getMailer()->compose();
             $msg->setSubject("Welcome: Please complete your registration");

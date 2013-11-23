@@ -91,10 +91,28 @@ class defaultActions extends sfActions
         $this->forward404();
     }
     
+    $subscription = member_subscriptionTable::getInstance()
+                                ->createQuery('ms')
+                                ->addWhere('ms.member_id = ?', $user_id)
+                                ->orderBy('ms.id desc')
+                                ->fetchOne();
+            
+    /* @var $subscription member_subscription */
+    if($subscription)
+    {
+        $subscription_id = $subscription->getId();
+        $amount = $subscription->getPrice();
+    }
+    else
+    {
+        $subscription_id  = null;
+        $amount = "750";
+    }
+    
     $payment = new payment();
     $payment->setMemberId($user_id);
     $payment->setSubmission($submission);
-    $this->form = new paymentForm($payment, array("submission_id"=>$submission->getId(),"ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>"750.00") );      
+    $this->form = new paymentForm($payment, array("submission_id"=>$submission->getId(), "subscription_id"=>$subscription_id, "ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>$amount ) );      
   }
   
   public function executeConfirmPayUpdate(sfWebRequest $request)

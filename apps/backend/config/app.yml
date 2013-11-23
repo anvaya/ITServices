@@ -3,6 +3,14 @@
 
 # default values
 all:
+    company:
+        address: "N-7, Abhinav Shilp Apartments, Laxmi Nagar, Nagpur 440022"
+        phone: ""
+        fax: ""
+        email: "nrihelp@groworth.in"
+        auto_email: "auto@groworth.in"
+        auto_email_cc: "mrugendrabhure@gmail.com" 
+
     sf_guard_plugin:
       success_signout_url: default/index
       success_signin_url: default/index

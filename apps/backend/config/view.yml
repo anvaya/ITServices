@@ -3,7 +3,7 @@ default:
     content-type: text/html
 
   metas:
-    title:         Best Buddies Admin
+    title:         Groworth NRI Services - Admin
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en

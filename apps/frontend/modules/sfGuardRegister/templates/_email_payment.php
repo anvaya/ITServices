@@ -32,7 +32,7 @@
 				<tr><th align="left">Account No:</th><td>913020050376549</td></tr>
 				<tr><th align="left">IFSC Code for NEFT / RTGS</th><td>UTIB0000639</td></tr>
 				<tr><th align="left">Swift Code</th><td>AXISINBB048</td></tr>
-				<tr><th align="left">Amount</th><td>AED 750.00</td></tr>
+				<tr><th align="left">Amount</th><td><?php echo $amount ?></td></tr>
 			</table>
 		</div>		
 		<hr />

@@ -21,6 +21,7 @@
 <?php else: ?>
 <form action="<?php echo url_for('default/confirmPayUpdate') ?>" method="post" onsubmit="return validateForm()" >    
   <input type="hidden" name="verify" value="<?php echo $sf_request->getParameter('verify'); ?>" />
+  <?php echo $form->renderHiddenFields();?>
     <fieldset id="sf_fieldset_none" class="payment_verified">
         <?php foreach($form as $name => $field ): ?>
           <?php if ((isset($form[$name]) && $form[$name]->isHidden()) || (!isset($form[$name]) && $field->isReal())) continue ?>

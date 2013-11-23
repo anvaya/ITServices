@@ -24,6 +24,8 @@
                                                             "Member Types"=>array("@member_type","member_type","index"),
                                                             //"Countries"=>array("@country","country","index"),
                                                         )),
+                    
+                                        "Tickets"=> array('@support_ticket', 'ticket','index'),
                                         /*"Website"=>array
                                         ( 
                                            array(                                               

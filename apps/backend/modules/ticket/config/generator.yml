@@ -1,0 +1,46 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           support_ticket
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          support_ticket
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+        company:
+          label: Customer
+        member_id:
+          label: Member
+        AssignedToUser:
+          label: Assigned To
+        date_received:
+          date_format: d/M/y
+          label: Date Created
+        tracking_no:
+          label: "Tracking #"
+        status_name:
+          label: Status
+      list:    
+        title: Support Tickets        
+        display: [ tracking_no, member, date_received, status_name, AssignedToUser ]
+        sort: [status, asc]
+      filter:  
+        display: [ tracking_no, member_id, date_received, status, assigned_to ]
+      form:    
+        fields:
+          ticket_subject:
+            attributes:
+              size: 60
+        display: 
+          Ticket: [ tracking_no, member_id, ticket_subject, date_received, status, assigned_to ]
+          Replies: [ _replies ]
+      edit:    
+        title: "Edit Ticket #%%tracking_no%%"
+      new:     ~

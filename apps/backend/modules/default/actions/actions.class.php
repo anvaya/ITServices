@@ -19,4 +19,11 @@ class defaultActions extends sfActions
   {
     #$this->forward('question', 'index');
   }
+  
+  public function executeTicketImport(sfWebRequest $request)
+  {
+      chdir(sfConfig::get('sf_root_dir')); // Trick plugin into thinking you are in a project directory
+      $task = new ticketImportTask( $this->getContext()->getEventDispatcher(), new sfFormatter() ); //sfMyVerySpecialTask($this->dispatcher, new sfFormatter());
+      $task->run();
+  }
 }
