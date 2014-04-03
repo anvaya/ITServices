@@ -20,14 +20,14 @@
                     <?php $spouce = $user->getGender()=="M"?"wife":"husband";?>
 		</p>
 
-		<p>Thank you for registering with us. As a token of our appreciation, we are glad to offer your <?php echo $spouce ?> a 50% discount 
-                    on registration. Just use the following coupon code when your <?php echo $spouce ?> registers.
+		<p>Thank you for registering with us. As a token of  appreciation, we are glad to offer our subscription to your <?php echo $spouce ?> at 50% charge. 
+                    Just use the following coupon code when your <?php echo $spouce ?> registers.
                 </p>                     
                 <br />
                 <table bgcolor="#E2E1DD" cellpadding="5" cellspacing="10" height="138" style="line-height:normal;" width="600" id="yui_3_13_0_1_1396444206637_2435">
                 <tbody id="yui_3_13_0_1_1396444206637_2434">
                 <tr id="yui_3_13_0_1_1396444206637_2433">
-                <td bgcolor="#009999" height="116" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#FFFFFF;" width="316" id="yui_3_13_0_1_1396444206637_2441"><span style="font-size:25px;">50% OFF</span><br>
+                <td bgcolor="#009999" height="116" style="font-family:Arial, Helvetica, sans-serif;font-size:14px;color:#FFFFFF;" width="316" id="yui_3_13_0_1_1396444206637_2441"><span style="font-size:25px;">Special Benefit</span><br>
                 <br>
                 use Coupon Code:<br>
                 <span style="font-size:25px;text-transform:uppercase;" id="yui_3_13_0_1_1396444206637_2443"><strong id="yui_3_13_0_1_1396444206637_2442"><?php echo $coupon_code ?></strong></span><br>

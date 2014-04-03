@@ -80,7 +80,7 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
             
             $body = $this->getPartial("email_payment", array("user"=>$user,'amount'=>$amount));
             
-            file_put_contents(sfConfig::get('sf_log_dir')."/email_payment.html", $body);
+            //file_put_contents(sfConfig::get('sf_log_dir')."/email_payment.html", $body);
             
             $msg = $this->getMailer()->compose();
             $msg->setSubject("Welcome: Please complete your registration");
@@ -103,7 +103,11 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
             
         }catch (Exception $ex) 
         {
-            $message = $ex->getMessage();
+            try
+            {
+                file_put_contents(sfConfig::get('sf_log_dir')."/email_welcome.log", $ex->getMessage());
+            }catch(Exception $ex) {}
+            //$message = $ex->getMessage();
         }
     }
     

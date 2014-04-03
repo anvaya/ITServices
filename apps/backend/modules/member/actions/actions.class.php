@@ -75,18 +75,18 @@ class memberActions extends autoMemberActions
             $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
             $msg->addTo($member->getEmailAddress() , $member->getFirstName() );            
             $msg->setBody($email_body, 'text/html', "utf-8");
-            $this->getMailer()->sendNextImmediately();
+            $mailer->sendNextImmediately();
             $mailer->send($msg);
               
             $msg = $mailer->compose();
             $msg->setSubject("You Groworth.in account is now active");
             $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
             $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
-            //$msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
-            $msg->addTo("mrugendrabhure@gmail.com","Mrugendra Bhure" );            
+            $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
+            $msg->addCc("mrugendrabhure@gmail.com","Mrugendra Bhure" );            
             $msg->setBody($email_body, 'text/html', "utf-8");
-            $this->getMailer()->sendNextImmediately();
-            $mailer ->send($msg);
+            $mailer->sendNextImmediately();
+            $mailer->send($msg);
             
             $coupon = member_couponTable::getInstance()
                         ->createQuery('mc')
@@ -110,16 +110,27 @@ class memberActions extends autoMemberActions
                 $msg->setSubject("Important news for your ".$spouce);
                 $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
                 $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
-                $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
-                $msg->addTo("mrugendrabhure@gmail.com","Mrugendra Bhure" );            
-                $msg->addTo("mrugendra999@yahoo.com","Mrugendra Bhure" );            
+                $msg->addTo($member->getEmailAddress() , $member->getFirstName() );
                 $msg->setBody($email_body, 'text/html', "utf-8");
-                $this->getMailer()->sendNextImmediately();
+                $mailer->sendNextImmediately();
+                $mailer ->send($msg);
+                
+                $msg = $mailer->compose();
+                $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+                $msg->setSubject("Important news for your ".$spouce);
+                $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
+                $msg->addCc("mrugendrabhure@gmail.com","Mrugendra Bhure" );
+                $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+                $msg->setBody($email_body, 'text/html', "utf-8");
+                $mailer->sendNextImmediately();
                 $mailer ->send($msg);
             }
           }catch (Exception $ex) 
           {
-
+            try
+            {
+                file_put_contents(sfConfig::get('sf_log_dir')."/email_activation.log", $ex->getMessage());
+            }catch(Exception $ex) {}
           }
           
           $this->sendOrderPayAlert($member, $subscription);
@@ -172,6 +183,19 @@ class memberActions extends autoMemberActions
           $order_no = $subscription->getSubscriptionId().$subscription->getId().$member->getId();
           
           $amount = $subscription->getPrice();
+          
+          $m_coupon = $subscription->getMemberCoupon();
+          if($m_coupon)
+          {
+               $coupon = $m_coupon->getCoupon();
+               if( ($discount = $coupon->getDiscountRate()) )
+                {
+                    $amount -= $discount;
+                }
+          }
+            
+          $amount = $subscription->getSubscription()->getCurrency()." ".$amount;
+          
           $email_body =  $this->getPartial("email_order_complete_customer", array("user"=>$member,"order_no"=>$order_no,"products"=>$products,"amount"=>$amount));
 
           $msg = $this->getMailer()->compose();

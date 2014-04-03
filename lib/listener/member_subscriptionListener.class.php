@@ -36,7 +36,7 @@ class member_subscriptionListener extends Doctrine_Record_Listener
         $record = $event->getInvoker();
         
         /* @var $record member_subscription */
-        if(!$record->getMemberCouponId() && $record->getActive() ) //Check if this subscription used a coupon
+        if(!$record->getMemberCouponId() && $record->getActive() && $record->getMember()->getMarried() ) //Check if this subscription used a coupon
         {
            $already_issued = member_couponTable::getInstance()  
                                 ->createQuery('mc') 
@@ -47,12 +47,12 @@ class member_subscriptionListener extends Doctrine_Record_Listener
                                 ->count();
            
            if($already_issued == 0)
-           {
-               $coupon = new member_coupon();
-               $coupon->setMemberId($record->getMemberId());
-               $coupon->setCouponId(1);
-               $coupon->setCouponCode(member_couponTable::generateNewCode());
-               $coupon->save();
+           {               
+                $coupon = new member_coupon();
+                $coupon->setMemberId($record->getMemberId());
+                $coupon->setCouponId(1);
+                $coupon->setCouponCode(member_couponTable::generateNewCode());
+                $coupon->save();               
            }
         }
     }

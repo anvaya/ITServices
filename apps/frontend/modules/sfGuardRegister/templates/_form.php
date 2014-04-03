@@ -97,13 +97,14 @@
         
     </fieldset>               
             
-    <?php $fieldset = "Spouce Discount";?>        
+    <?php $fieldset = "Special Benefit";?>        
     <?php 
             $subscriptions = subscriptionTable::getInstance()
                                 ->getActiveSubscriptions();
     ?>        
           <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>">
-            <h2><?php echo $fieldset ?></h2>
+            <h2><?php echo $fieldset ?></h2>            
+            <label style="padding-bottom: 5px;">Received a special benefit coupon from Groworth ? Please enter it here.</label>
             <div class="sf_admin_row">
                 <div>
                     <?php echo $form['subscription']['coupon_code']->renderError(); ?>                
