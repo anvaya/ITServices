@@ -23,7 +23,8 @@ test:
     etag:                   false
 
 all:
-  .settings:
+  default_timezone: Asia/Calcutta  
+  .settings:      
     mail_encryption_key: 7>Z]hM6D+OpKvr*kdHf$G2!q7rqiDh
         
     # Form security secret (CSRF protection)
@@ -35,7 +36,7 @@ all:
 
     # Enable the database manager
     use_database:           true
-    enabled_modules: [default, sfGuardAuth ]
+    enabled_modules: [default, sfGuardAuth, sfGuardForgotPassword ]
   .actions:
       login_module:    sfGuardAuth
       login_action:    signin

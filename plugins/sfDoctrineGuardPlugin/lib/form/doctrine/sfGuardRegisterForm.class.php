@@ -19,22 +19,22 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
     
 
       $this->widgetSchema['email_address'] = new sfWidgetFormInputText(array(),array('class'=>'required'));
-      $this->validatorSchema['email_address'] = new sfValidatorEmail(array("required"=>true),array('required'=> 'Email Field cannot left blank','invalid'=>'Invalid Email address.'));              
+      $this->validatorSchema['email_address'] = new sfValidatorEmail(array("required"=>true),array('required'=> 'Email address is mandatory.','invalid'=>'Invalid Email address.'));              
 
       $this->widgetSchema['username'] = new sfWidgetFormInputText(array(),array('class'=>'required'));
-      $this->validatorSchema['username'] = new sfValidatorString(array('max_length' => 128),array('required'=> 'Username Field cannot left blank'));
+      $this->validatorSchema['username'] = new sfValidatorString(array('max_length' => 128),array('required'=> 'You must provide an Username'));
     
     
     $this->widgetSchema['password'] = new sfWidgetFormInputPassword(array(),array('class'=>'required'));
     //$this->validatorSchema['password']->setOption('required', true);
-    $this->validatorSchema['password'] = new sfValidatorString(array('max_length' => 32),array('required'=> 'Password Field cannot left blank'));
+    $this->validatorSchema['password'] = new sfValidatorString(array('max_length' => 32),array('required'=> 'You must provide a password.'));
     
     $this->widgetSchema['password_again'] = new sfWidgetFormInputPassword(array(),array('class'=>'required'));
     $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
 
-    $this->validatorSchema['first_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'First name Field cannot left blank'));
-    $this->validatorSchema['last_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'last name Field cannot left blank'));
-    $this->validatorSchema['middle_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'Middle name name Field cannot left blank'));
+    $this->validatorSchema['first_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'Your first name is required.'));
+    $this->validatorSchema['last_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'Your last name is required.'));
+    $this->validatorSchema['middle_name'] = new sfValidatorString(array('max_length' => 50),array('required'=> 'Your middle name is required.'));
     
     
     $this->widgetSchema['gender'] = new sfWidgetFormChoice(array('choices' => array('M' => 'Male', 'F' => 'Female')));
@@ -74,7 +74,7 @@ class sfGuardRegisterForm extends BasesfGuardRegisterForm
     
     $this->widgetSchema['dob']->setOption("format","%day%/%month%/%year%");
     $this->widgetSchema['dob']->setOption('years',$years);
-    $this->widgetSchema['dob']->setLabel('Date of Birth');
+    $this->widgetSchema['dob']->setLabel('Date of Birth (As per PAN Card)');
     $this->validatorSchema['dob'] = new sfValidatorDate();
     
     $occupations = array(

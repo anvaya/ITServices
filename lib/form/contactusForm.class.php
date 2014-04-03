@@ -40,6 +40,9 @@ class contactusForm extends sfForm
       $this->validatorSchema['zip_code']       = new sfValidatorString(array("required"=>false));
       $this->validatorSchema['captcha']        = new sfValidatorReCaptcha(array("private_key"=>"6LdTgeoSAAAAAEFtxL50SOgy29JM2EIlDL8IxbEC"));
       
+      $this->widgetSchema['member_id'] = new sfWidgetFormInputHidden();
+      $this->validatorSchema['member_id'] = new sfValidatorPass();
+      
       $labels = array
               (
                 "sender_name"=>"Your Name *",

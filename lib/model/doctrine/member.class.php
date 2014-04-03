@@ -12,5 +12,100 @@
  */
 class member extends Basemember
 {
-
+    /**
+     * Retrives current list of products for the user.
+     * @param int category_id Optional, product category.
+     * @return array Returns key-value pair array (id=>name) of products.
+     */
+    public function getProductList($category_id = false)
+    {        
+        $subscription = member_subscriptionTable::getInstance() 
+                            ->createQuery('ms')
+                            ->addWhere('member_id = ?', $this->getId())
+                            ->addWhere('active = 1')                            
+                            ->fetchOne();
+        
+        
+        if($subscription)
+        {            
+            $product_query = productTable::getInstance()
+                            ->createQuery('p')
+                            ->select('p.id, p.name')
+                            ->innerJoin('p.subscription_product sp')
+                            ->innerJoin('sp.subscription s')
+                            ->addWhere('p.category_id <> ?', product_categoryTable::CATEGORY_ITR)
+                            ->addWhere('s.id = ?', $subscription->getSubscriptionId())
+                            ->orderBy('p.name');
+            
+            if($category_id)
+            {
+                $product_query->addWhere('p.category_id = ?', $category_id);
+            }
+            
+            $my_services = $product_query
+                            ->execute(array(), 'key_value_pair' );        
+            
+            /* @var $subscription member_subscription */
+            if($subscription->getItrProductId())
+            {
+                $product = productTable::getInstance()
+                            ->find($subscription->getItrProductId());
+                $my_services[$product->getId()] = $product->getName();
+            }
+            
+            $ordered_query = productTable::getInstance()
+                                ->createQuery('p')
+                                ->select('p.id, p.name')
+                                ->innerJoin('p.order_item sp')                        
+                                ->innerJoin('sp.order oo')                        
+                                ->addWhere('oo.member_id = ?', $this->getId() )
+                                ->addWhere('oo.status = ?', orderTable::ORDER_STATUS_PAID)
+                                ->orderBy('p.name');
+            if($category_id)
+            {
+                $ordered_query->addWhere('p.category_id = ?', $category_id);
+            }                          
+            
+            $my_services2 = $ordered_query->execute(array(), 'key_value_pair' );                                      
+            
+            foreach($my_services2 as $key=>$value)
+            {
+                $my_services[$key] = $value;
+            }
+            
+            return $my_services;
+            
+        }
+        else
+        {
+            return array();
+        }
+    }       
+    
+    public function getQualifiedName()
+    {
+        $gender = $this->getGender();
+        $title  = "";
+        
+        if($gender)
+        {
+            if($gender == 'M')
+            {
+                $title = "Mr. ";
+            }
+            else
+            {
+                if($this->getMarried())
+                {
+                    $title = "Mrs. ";
+                }
+                else
+                {
+                    $title = "Ms. ";
+                }
+            }            
+        }
+        
+        return $title.$this->getFirstName();
+    }
 }

@@ -1,0 +1,20 @@
+## YAML Template.
+indexSuccess:
+    stylesheets:
+        - member/ticket.css
+showSuccess:
+    stylesheets:
+        #- -main.css
+        - /sfDoctrinePlugin/css/global.css
+        - /sfDoctrinePlugin/css/default.css 
+        - /sfAdminThemejRollerPlugin/css/fg.buttons.css        
+        #- main.css
+newSuccess:        
+    stylesheets:
+        #- -main.css
+        - /sfAdminThemejRollerPlugin/css/fg.buttons.css        
+sendReplySuccess:
+    stylesheets:
+        #- -main.css
+        - /sfAdminThemejRollerPlugin/css/fg.buttons.css        
+    

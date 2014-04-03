@@ -10,7 +10,7 @@ ul.mega-menu li
     list-style:none !important; 
 }
 
-body {font: normal 13px Arial, sans-serif;}
+/*body {font: normal 13px Arial, sans-serif;}*/
 h2 {font: normal 26px Arial, sans-serif; padding: 20px 0; margin: 0 0 30px 0;}
 .wrap {width: 960px; margin: 0 auto;}
 .demo-container {padding: 20px 0;}

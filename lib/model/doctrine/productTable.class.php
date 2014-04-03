@@ -7,6 +7,9 @@
  */
 class productTable extends Doctrine_Table
 {
+    const CATEGORY_IT_RETURNS = 4;
+    const CATEGORY_PAN_APPLICATION = 5;
+    
     /**
      * Returns an instance of this class.
      *

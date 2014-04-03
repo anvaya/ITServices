@@ -8,12 +8,26 @@ all:
         phone: ""
         fax: ""
         email: "nrihelp@groworth.in"
-        auto_email: "auto@groworth.in"
+        auto_email: "auto@groworth.in" #&rpv!xB^q})w
         auto_email_cc: "mrugendrabhure@gmail.com" 
-
-    sf_guard_plugin:
-      success_signout_url: default/index
-      success_signin_url: default/index
+        ticket_email: membersupport@groworth.in #Nga;vW[k](@%
+        ticket_sender_name: Groworth Support
+        
+    .array:
+        import_ticket: 
+            host: "just99.justhost.com"
+            port: 993
+            username: "membersupport@groworth.in"
+            pwd: "Nga;vW[k](@%"
+            ssl: true
+            tls: "notls"
+            folder: "INBOX"
+            fail_email: "contact@anvayatech.com"      
+        
+    #sf_guard_plugin:
+    #  routes_register: false  
+    #  success_signout_url: default/index
+    #  success_signin_url: default/index
 
     datagrid:
       date_format: "d/mmm/Y"
@@ -37,4 +51,14 @@ all:
       text_no: No
       insert_pager_bottom: true
       freezepanes: false
+      
+    sf_admin_theme_jroller_plugin:
+       #web_dir:      /sfAdminThemejRollerPlugin # specify your folder where to pick jquery and jquery UI.
+       use_jquery:  false # default. use the packaged jquery/UI
+       theme_dir:   /css #/sfAdminThemejRollerPlugin # default. change the theme directory
+       theme:       redmond # default. 
+       css_reset:   false #true # default. reset default css (from Blueprint CSS)     
+       
+           
+
 

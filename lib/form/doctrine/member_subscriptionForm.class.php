@@ -11,6 +11,7 @@
 class member_subscriptionForm extends Basemember_subscriptionForm
 {
   public function configure()
-  {
+  {      
+      unset($this['itr_product_id']);
   }
 }

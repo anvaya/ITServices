@@ -1,4 +1,4 @@
-Dear <?php echo $sf_guard_user->getFirstName() ?>,
+Dear <?php /* @var $sf_guard_user member */ echo $sf_guard_user->getQualifiedName()  ?>,
 <br/><br/>
 <h2 class="title"><?php echo __('Thank you !', null, 'messages') ?></h2><br />
 <br />

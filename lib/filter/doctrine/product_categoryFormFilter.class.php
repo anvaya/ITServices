@@ -16,5 +16,6 @@ class product_categoryFormFilter extends Baseproduct_categoryFormFilter
   public function configure()
   {
     parent::configure();
+    unset($this['type_id']);
   }
 }

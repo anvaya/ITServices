@@ -23,6 +23,7 @@ test:
     etag:                   false
 
 all:
+  default_timezone: Asia/Calcutta
   .settings:
     i18n: true
     # Form security secret (CSRF protection)

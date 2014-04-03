@@ -67,6 +67,10 @@ abstract class Basetype_info extends sfDoctrineRecord
              array(
               'type_id' => 3,
              ),
+             'exemption_category' => 
+             array(
+              'type_id' => 4,
+             ),
              ));
     }
 

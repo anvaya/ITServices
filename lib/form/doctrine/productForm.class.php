@@ -12,5 +12,10 @@ class productForm extends BaseproductForm
 {
   public function configure()
   {
+      $date_widget = new sfWidgetFormDate(array('format'=>'%day%/%month%/%year%'));
+      $date_config = array('config'=>'{dateFormat: "dd/MMM/yy"}','date_widget'=>$date_widget );            
+      
+      $this->widgetSchema['expiry_date'] = new sfWidgetFormJQueryDate($date_config);    
+      $this->validatorSchema['billing_unit_id'] = new sfValidatorPass();
   }
 }

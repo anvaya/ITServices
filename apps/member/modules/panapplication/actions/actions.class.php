@@ -29,13 +29,18 @@ class panapplicationActions extends sfActions
 
       if ($this->sub_form->isValid())
       {
-        $sf_guard_user = Doctrine::getTable('sfGuardUser')->find($this->getUser()->getAttribute('user_id', null, 'sfGuardSecurityUser'));
+        $user_id = $this->getUser()->getAttribute('user_id', null, 'sfGuardSecurityUser');   
+        $member = memberTable::getInstance()->find($user_id);
+        
+        /* @var $member member */                
+        //$sf_guard_user = Doctrine::getTable('sfGuardUser')->find($user_id);
+        
         $arr_subform = $this->sub_form->getValues();               
         
         /* @var $submission submission */
         $submission = new submission();
         $submission->setFormId(1);
-        $submission->setUserId($this->getUser()->getAttribute('user_id', null, 'sfGuardSecurityUser'));
+        $submission->setUserId($user_id);
         $submission->setSubmissionIp(ip2long($this->getRealIpAddress()));
         $submission->setStatus(pan_applicationTable::STATUS_TYPE_PAYMENT_PENDING);
         $submission->save();
@@ -77,24 +82,47 @@ class panapplicationActions extends sfActions
             }
         }
 	
-        $encryption_key = sfConfig::get('sf_mail_encryption_key');
-        $submission_info = array($submission_id, $this->getUser()->getAttribute('user_id', null, 'sfGuardSecurityUser'));
+        $encryption_key = "".sfConfig::get('sf_mail_encryption_key');
+        $submission_info = array($submission_id, "".$this->getUser()->getGuardUser()->getId() );
         $serialized  = serialize($submission_info);
         $encrypted   = RIJNDAEL_encrypt($serialized, $encryption_key);
-        $link        = urlencode($encrypted);
+        $link        = $submission_id;// urlencode($encrypted);
+        
+         try
+         {
+            $email_body = $this->getPartial("panapplication/paymentnotification_email_body", array("sf_guard_user" => $member, "amount"=>"100", "submission" => $submission, "link" => $link));
+            $msg = $this->getMailer()->compose();
+            $msg->setSubject("Your PAN Application");
+            $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+            $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+            $msg->addTo($member->getEmailAddress(), $member->getFirstName());
+            $msg->addCc("mrugendrabhure@gmail.com", "Mrugendra Bhure");
+            $msg->setBody($email_body, 'text/html', "utf-8");
+            $this->getMailer()->sendNextImmediately();
+            $result = $this->getMailer()->send($msg);
+            
+         }catch(Exception $ex)
+         {
+             $result = false;
+         }
+        
+        /*
         
         $admin_email = SettingsTable::getValue('admin_email');
         $email_body = get_partial("panapplication/paymentnotification_email_body", array("sf_guard_user" => $sf_guard_user, "submission" => $submission, "link" => $link));
-        $subject  = "ITservices:: Your pan application successfully submit please pay the payment";
+        $subject  = "Your PAN Application";
         // Additional headers
         $headers  = 'MIME-Version: 1.0' . "\r\n";
         $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
         $headers .= 'From: It Services <'.$admin_email.'>' . "\r\n";
         //$headers .= 'Cc: contact@anvayatech.com' . "\r\n";
-        $headers .= 'Cc: keval23@gmail.com' . "\r\n";
+        $headers .= 'Cc: mrugendrabhure@gmail.com' . "\r\n";
         //$headers .= 'To: '. $member->getFirstName()."<". $member->getEmailAddress().">". "\r\n";
         $to = $sf_guard_user->getFirstName()."<". $sf_guard_user->getEmailAddress().">";
         $result = @mail($to, $subject, $email_body, $headers);
+         * 
+         */
+         
         if($result)
         {
           $this->getUser()->setFlash('notice', 'The pan application was created successfully');
@@ -133,11 +161,11 @@ class panapplicationActions extends sfActions
 
   public function executePaymentVerified(sfWebRequest $request)
   {
-    $admin_email = SettingsTable::getValue('admin_email');
+    $admin_email = "mrugendrabhure@gmail.com"; //SettingsTable::getValue('admin_email');
     $this->flg = "";
-    //$invitation_key = $request->getParameter('verify', false);
-    //$invitation_key = urldecode($invitation_key);
-    $invitation_key = urldecode("hoqIWIDTq7VnuS8NCz%2BGIMCDc2hQYGROdzliCRgC%2Blw%3D");
+    $invitation_key = $request->getParameter('payment', false);
+    $invitation_key = urldecode($invitation_key);
+    //$invitation_key = urldecode("hoqIWIDTq7VnuS8NCz%2BGIMCDc2hQYGROdzliCRgC%2Blw%3D");
      
      if(!$invitation_key)
      {
@@ -146,29 +174,34 @@ class panapplicationActions extends sfActions
      
      try
      {         
-         $submission_info = unserialize(RIJNDAEL_decrypt($invitation_key, sfConfig::get('sf_mail_encryption_key')));
+         //$submission_info = unserialize(RIJNDAEL_decrypt($invitation_key, sfConfig::get('sf_mail_encryption_key')));
          
-         $submission_id = $submission_info[0];
-         $user_id   = $submission_info[1];
+         $submission_id = $invitation_key; // $submission_info[0];
+         //$user_id   = $submission_info[1];
          
          if(!$submission_id)
-             $this->flg = "The page you were looking for is no longer here.<br/>You can go back to <a href='".url_for('@homepage')."'>Home page</a> or contact us on ".$admin_email.", if you need an answer to your question. Sorry.";
-             
-         $submission = Doctrine::getTable('submission')->findOneByIdAndUserId($submission_id, $user_id);
+         {
+             $this->flg = "NA";
+         }
+         
+         //$submission = Doctrine::getTable('submission')->findOneByIdAndUserId($submission_id, $user_id);
+         $submission = Doctrine::getTable('submission')->find($submission_id);
          if(!$submission)
          {
-             $this->flg = "The page you were looking for is no longer here.<br/>You can go back to <a href='".url_for('@homepage')."'>Home page</a> or contact us on ".$admin_email.", if you need an answer to your question. Sorry.";
+             $this->flg = "NA";
          }
          else if($submission->getStatus() > 1)
          {
-             $this->flg = "<h2>Thank you</h2><br/>You have already sent payment for pan application.<br/>We appreciate your continuing business, and we look forward to hearing from you shortly.";
+             $this->flg = "AP";
          }
            
+         /* @var $submission submission */
+         $user_id = $submission->getUserId();
          $this->form = new paymentForm(null,array('member_id' => $user_id, 'submission_id' => $submission_id, 'status' => 2,'ip_address'=> ip2long($this->getRealIpAddress())));
      }catch(Exception $e)
      {
        //$this->flg = "Execption :".$e;
-       $this->flg = "Illegal process, please try again";
+       $this->flg = "EX";
      }
   }
   
@@ -186,27 +219,32 @@ class panapplicationActions extends sfActions
         $payment = $this->form->save();
         $user_id = $payment->getMemberId();
         $submission_id = $payment->getSubmissionId();
-
+        
         $submission = Doctrine::getTable('submission')->find($submission_id);
         $submission->setStatus(2);
         $submission->save();
         
         $sf_guard_user = Doctrine::getTable('sfGuardUser')->find($user_id);
-        $settings = Doctrine::getTable('settings')->find('admin_email');
+                
+        //email send to admin        
+        try
+         {
+            $email_body = $this->getPartial("panapplication/paymentconfirmend_email_body", array("sf_guard_user" => $sf_guard_user, "payment" => $payment));
+            $subject  = "PAN Application Payment Confirmed";
+            $msg = $this->getMailer()->compose();
+            $msg->setSubject($subject);
+            $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");            
+            $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");
+            $msg->addCc("mrugendrabhure@gmail.com", "Mrugendra Bhure");
+            $msg->setBody($email_body, 'text/html', "utf-8");
+            $this->getMailer()->sendNextImmediately();
+            $result = $this->getMailer()->send($msg);
+            
+         }catch(Exception $ex)
+         {
+             $result = false;
+         }        
         
-        //email send to admin
-        $email_body = get_partial("panapplication/paymentconfirmend_email_body", array("sf_guard_user" => $sf_guard_user, "payment" => $payment));
-        $subject  = "ITservices:: One pan application payment received";
-        // Additional headers
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        //$headers .= 'To: '. $member->getFirstName()."<". $member->getEmailAddress().">". "\r\n";
-        $headers .= "From: ".$sf_guard_user->getFirstName()." <".$sf_guard_user->getEmailAddress().">" . "\r\n";
-        //$headers .= 'Cc: contact@anvayatech.com' . "\r\n";
-        $headers .= 'Cc: keval23@gmail.com' . "\r\n";
-        $to = 'It Services <'.$settings->getValue1().'>';
-        
-        $result = @mail($to, $subject, $email_body, $headers);
         if($result)
         {
           $this->getUser()->setFlash('notice', 'The pan application payment confirmation sent successfully');
@@ -214,50 +252,25 @@ class panapplicationActions extends sfActions
         else
         {
           $this->logMessage("pancard application  payment confirmend mail not sent to admin",'notice');
-        }  
-        //email send to customer
-        $email_body = get_partial("panapplication/paymentconfirmend_applicatint_email_body", array("sf_guard_user" => $sf_guard_user, "payment" => $payment));
+        }          
         
-        $subject  = "ITservices:: payment received mail copy";
-        // Additional headers
-        $headers  = 'MIME-Version: 1.0' . "\r\n";
-        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-        //$headers .= 'To: '. $member->getFirstName()."<". $member->getEmailAddress().">". "\r\n";
-        
-        $headers .= 'From: It Services <'.$settings->getValue1().'>' . "\r\n";
-        //$headers .= 'Cc: contact@anvayatech.com' . "\r\n";
-        $headers .= 'Cc: keval23@gmail.com' . "\r\n";
-        //$headers .= 'To: '. $member->getFirstName()."<". $member->getEmailAddress().">". "\r\n";
-        $to = $sf_guard_user->getFirstName()."<". $sf_guard_user->getEmailAddress().">";
-        //$headers .= 'Cc: contact@anvayatech.com' . "\r\n";
-        
-        $result = @mail($to, $subject, $email_body, $headers);
-        if($result)
-        {
-          $this->getUser()->setFlash('notice', 'The pan application payment confirmation sent successfully');
-        }
-        else
-        {
-          $this->logMessage("pancard application  payment confirmation mail not sent to user",'notice');
-        }  
         $flg =2;
-      } catch (Doctrine_Validator_Exception $e) {
-
+      } 
+      catch (Doctrine_Validator_Exception $e) 
+      {
         $flg = 1;
         $errorStack = $this->form->getObject()->getErrorStack();
 
         $message = get_class($this->form->getObject()) . ' has ' . count($errorStack) . " field" . (count($errorStack) > 1 ?  's' : null) . " with validation errors: ";
-        foreach ($errorStack as $field => $errors) {
+        foreach ($errorStack as $field => $errors) 
+        {
             $message .= "$field (" . implode(", ", $errors) . "), ";
         }
         $message = trim($message, ', ');
         $this->getUser()->setFlash('error', $message);
         $this->logMessage("pancard application  payment confirmend ".$e->getMessage(),'notice');
-
       }
-
       $this->getUser()->setFlash('notice', $notice);
-
     }
     else
     {

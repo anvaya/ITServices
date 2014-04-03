@@ -27,7 +27,7 @@ div.error
     font-weight: bold;
 }
 
-input[type=text]
+input[type=text],input[type=password]
 {
     background-color: #F5F6F6;
     background-image: url("/images/input-bg.png");

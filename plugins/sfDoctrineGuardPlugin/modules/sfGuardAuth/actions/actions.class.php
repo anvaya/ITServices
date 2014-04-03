@@ -36,6 +36,12 @@ class sfGuardAuthActions extends BasesfGuardAuthActions
       if ($this->form->isValid())
       {
         $values = $this->form->getValues(); 
+        
+        $usr = sfGuardUserTable::getInstance()
+                    ->find($values['user']->getId());
+                 
+        $this->getUser()->setAttribute("prev_login", $usr->getLastLogin());
+        
         $this->getUser()->signin($values['user'], array_key_exists('remember', $values) ? $values['remember'] : false);
 
         // always redirect to a URL set in app.yml

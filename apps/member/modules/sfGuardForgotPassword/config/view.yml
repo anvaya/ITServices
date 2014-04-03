@@ -1,0 +1,7 @@
+## YAML Template.
+indexSuccess:
+    stylesheets: [form.css]
+changeSuccess:
+    stylesheets: [form.css]    
+    
+        

@@ -23,7 +23,7 @@
             <link rel="stylesheet" type="text/css" href="css/style_ie7.css" />
         <![endif]-->            
         <!--[if lt IE 9]>
-            <?php echo javascript_tag("html5.js");?>                
+            <script type="text/javascript" src="<?php echo public_path("js/html5.js");?>"></script>              
         <![endif]-->
         <!-- Le styles -->            
         <?php include_javascripts() ?>

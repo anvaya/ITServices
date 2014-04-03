@@ -10,4 +10,8 @@
  */
 class memberGeneratorConfiguration extends BaseMemberGeneratorConfiguration
 {
+    public function getFormClass() 
+    {
+        return "backendMemberForm";
+    }
 }

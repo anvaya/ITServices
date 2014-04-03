@@ -99,7 +99,7 @@ li a:hover
 
 .head ul
 {
-	width: 34%;
+	width: 50%;
 	text-align: center;
 	float: left;
 	padding: 10px 0 0 0;
@@ -316,16 +316,17 @@ text-align: center;
 line-height: 51px;
 }
 
-.step p {
-color: #FFFFFF;
-font-family: din-medium, Arial;
-font-size: 24px;
-font-weight: normal !important;
-line-height: 31px;
-margin: 0;
-padding-top: 13px;
-position: relative;
-text-align: center;
+.step p 
+{
+    color: #FFFFFF;
+    font-family: din-medium, Arial;
+    font-size: 24px;
+    font-weight: normal !important;
+    line-height: 31px;
+    margin: 0;
+    padding-top: 13px;
+    position: relative;
+    text-align: center;
 }
 
 a.jms-link {
@@ -533,3 +534,25 @@ entry, .entry p
 {
 	margin-bottom: 1.2em;
 }
+
+ol.faq_list
+{
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+ol.faq_list li a
+{
+    color: #E48605;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.faq h5
+{
+    background-image: url('../images/q.gif');
+    background-position: center left;
+    background-repeat: no-repeat;
+    padding-left: 25px;
+}
+

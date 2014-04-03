@@ -14,15 +14,17 @@
              
         )
 ?>
-<?php /* if ($form->hasErrors()): ?>
-    <p>The form has some errors you need to fix.</p>
-    <?php foreach($form->getWidgetSchema()->getPositions() as $widgetName): ?>
+<?php  if ($form->hasErrors()): ?>
+    <div class="error_message ui-corner-all" >
+        Oops, we found some errors in the data you submitted. Please check and submit again.    
+    </div>    
+    <?php /*foreach($form->getWidgetSchema()->getPositions() as $widgetName): ?>
         <?php if($form[$widgetName]->hasError()): ?>
         <p><?php echo $form[$widgetName]->renderLabelName().': '.$form[$widgetName]->getError()->getMessageFormat(); ?></p>
         <?php endif; ?>
-    <?php endforeach; ?>
+    <?php endforeach;*/ ?>
 <?php endif; ?>
-<?php echo $form->renderGlobalErrors() */ ?> 
+<?php echo $form->renderGlobalErrors()  ?> 
 <form action="<?php echo url_for('@sf_guard_register') ?>" method="post">
   <table class="sf_admin_row"><tbody>
     <tr><td>
@@ -49,7 +51,7 @@
             $subscriptions = subscriptionTable::getInstance()
                                 ->getActiveSubscriptions();
     ?>        
-    <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>">
+            <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>" style="display: none;">
           <h2><?php echo $fieldset ?></h2>
           
           
@@ -95,7 +97,23 @@
         
     </fieldset>               
             
-            
+    <?php $fieldset = "Spouce Discount";?>        
+    <?php 
+            $subscriptions = subscriptionTable::getInstance()
+                                ->getActiveSubscriptions();
+    ?>        
+          <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>">
+            <h2><?php echo $fieldset ?></h2>
+            <div class="sf_admin_row">
+                <div>
+                    <?php echo $form['subscription']['coupon_code']->renderError(); ?>                
+                    <label for="sf_guard_user_subscription_coupon_code">Enter Coupon Code  </label>
+                    <div class="content">
+                        <?php echo $form['subscription']['coupon_code'];?>
+                    </div>
+                </div>
+            </div>
+          </fieldset>              
     </td></tr>
   </tbody>
     <tfoot>

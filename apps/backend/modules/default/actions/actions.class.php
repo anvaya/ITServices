@@ -1,5 +1,7 @@
 <?php
 
+require_once(sfConfig::get('sf_lib_dir')."/vendor/anvaya/utils.php");
+
 /**
  * default actions.
  *
@@ -18,6 +20,8 @@ class defaultActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     #$this->forward('question', 'index');
+      $data = file_get_contents(sfConfig::get('sf_log_dir')."/reminder.html");
+      send_email("John", "mrugendra999@yahoo.com", "Income Tax Return Submission Reminder", $data);      
   }
   
   public function executeTicketImport(sfWebRequest $request)

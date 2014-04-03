@@ -4,10 +4,10 @@
     $reply_delimiter = "========= PLEASE DO NOT REMOVE THIS LINE =======<br />";
     echo $reply_delimiter;
 ?>
-Dear Customer,<br /><br />
+Dear Member,<br /><br />
 
-<p>
-    <?php echo $ticket_comment->getPublicMessage();?>
+<p>    
+    <?php echo str_replace("\n", "<br />", $ticket_comment->getPublicMessage());?>    
 </p>
 
 <br />

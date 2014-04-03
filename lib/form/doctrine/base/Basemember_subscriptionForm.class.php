@@ -15,23 +15,31 @@ abstract class Basemember_subscriptionForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'              => new sfWidgetFormInputHidden(),
-      'member_id'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => false)),
-      'subscription_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('subscription'), 'add_empty' => false)),
-      'price'           => new sfWidgetFormInputText(),
-      'start_date'      => new sfWidgetFormDate(),
-      'end_date'        => new sfWidgetFormDate(),
-      'active'          => new sfWidgetFormInputCheckbox(),
+      'id'               => new sfWidgetFormInputHidden(),
+      'member_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => false)),
+      'subscription_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('subscription'), 'add_empty' => false)),
+      'price'            => new sfWidgetFormInputText(),
+      'start_date'       => new sfWidgetFormDate(),
+      'end_date'         => new sfWidgetFormDate(),
+      'active'           => new sfWidgetFormInputCheckbox(),
+      'itr_product_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('product'), 'add_empty' => true)),
+      'member_coupon_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member_coupon'), 'add_empty' => true)),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'              => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'member_id'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member'))),
-      'subscription_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('subscription'))),
-      'price'           => new sfValidatorNumber(array('required' => false)),
-      'start_date'      => new sfValidatorDate(array('required' => false)),
-      'end_date'        => new sfValidatorDate(array('required' => false)),
-      'active'          => new sfValidatorBoolean(array('required' => false)),
+      'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'member_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member'))),
+      'subscription_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('subscription'))),
+      'price'            => new sfValidatorNumber(array('required' => false)),
+      'start_date'       => new sfValidatorDate(array('required' => false)),
+      'end_date'         => new sfValidatorDate(array('required' => false)),
+      'active'           => new sfValidatorBoolean(array('required' => false)),
+      'itr_product_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('product'), 'required' => false)),
+      'member_coupon_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member_coupon'), 'required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('member_subscription[%s]');

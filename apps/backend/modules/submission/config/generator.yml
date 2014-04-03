@@ -2,7 +2,7 @@ generator:
   class: sfDoctrineGenerator
   param:
     model_class:           submission
-    theme:                 admin
+    theme:                 jroller #admin
     non_verbose_templates: true
     with_show:             false
     singular:              ~
@@ -16,10 +16,16 @@ generator:
       fields:  ~
       list:
         fields:
+          created_at: 
+              date_format: dd/MM/y
+          updated_at:
+              date_format: dd/MM/y
           submission_form: { label: Form }
           sfGuardUser: { label: Username }
         display: [id, submission_form, sfGuardUser, ip_address, archieved, created_at, updated_at] 
+        actions: []            
+        sort: [created_at, desc]
       filter:  ~
-      form:    ~
+      form:   ~          
       edit:    ~
       new:     ~

@@ -1,19 +1,29 @@
-<?php use_helper('I18N') ?>
 <div id="main_content" style="width: 960px;">
-<h1 style="font-size: 18px;" ><?php echo __('Add Payment detail for pan application', null, 'messages') ?></h1>
+<h1 style="font-size: 18px;" ><?php echo __('Details of your PAN Application Payment', null, 'messages') ?></h1>
 <?php if ($form->hasErrors()): ?>
-    <p>The form has some errors you need to fix.</p>
-    <?php foreach($form->getWidgetSchema()->getPositions() as $widgetName): ?>
-        <?php if($form[$widgetName]->hasError()): ?>
-        <p><?php echo $form[$widgetName]->renderLabelName().': '.$form[$widgetName]->getError()->getMessageFormat(); ?></p>
-        <?php endif; ?>
-    <?php endforeach; ?>
+    <div class="error">Your payment receipt could not be recorded due to some errors.</div>    
 <?php endif; ?>
 <?php echo $form->renderGlobalErrors(); ?> 
+
 <div style="clear:both;"></div>
 <?php if(isset($flg) && $flg != ""): ?>
     <fieldset id="sf_fieldset_none" class="payment_verified">
-      <?php echo html_entity_decode($flg); ?>
+      <?php switch($flg)
+      {
+         case "NA":
+             $msg = "<h2>This page is no longer available.</h2>";
+             break;
+         case "AP":
+             $msg = "<h2>You have already confirmed the payment for this application.</h2>";
+             break;
+         case "EX":
+             $msg= "<h2>An Error occurred while processing this request. Please try again later.</h2>";
+             break;
+      }                 
+            
+      ?>
+        
+      <?php echo $msg; ?>
     </fieldset>
 <?php else: ?>
 <form action="<?php echo url_for('panapplication/paymentconfirmed') ?>" method="post" onsubmit="return validateForm()" >    

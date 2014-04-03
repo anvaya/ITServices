@@ -1,3 +1,62 @@
+member_autocomplete:
+  url: /member/search
+  param: { module: member, action: ajaxAutoComplete } 
+      
+  
+order:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                order
+    module:               order
+    prefix_path:          /order
+    column:               id
+    with_wildcard_routes: true
+
+payment:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                payment
+    module:               payment
+    prefix_path:          /payment
+    column:               id
+    with_wildcard_routes: true
+
+newsnevent:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                newsnevent
+    module:               newsnevent
+    prefix_path:          /newsnevent
+    column:               id
+    with_wildcard_routes: true
+
+faq:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                faq
+    module:               faq
+    prefix_path:          /faq
+    column:               id
+    with_wildcard_routes: true
+    
+itr_submission:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                itr_submission
+    module:               itr
+    prefix_path:          /itr
+    column:               id
+    with_wildcard_routes: true
+
+product:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                product
+    module:               product
+    prefix_path:          /product
+    column:               id
+    with_wildcard_routes: true
+
 ticket_comment_close:
   url: /ticket_comment/close  
   param:    

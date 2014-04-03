@@ -9,17 +9,17 @@ resources:
     column:               id
     with_wildcard_routes: true 
 
-content:
-  url:      /c/:slug
-  class:    sfDoctrineRoute
-  param:    { module: content, action: show }
-  options:  { model: site_page, type: object }
-  
-contentfull:
-  url:      /content/:slug
-  class:    sfDoctrineRoute
-  param:    { module: content, action: index }
-  options:  { model: site_page, type: object }
+#content:
+#  url:      /c/:slug
+#  class:    sfDoctrineRoute
+#  param:    { module: content, action: show }
+#  options:  { model: site_page, type: object }
+#  
+#contentfull:
+#  url:      /content/:slug
+#  class:    sfDoctrineRoute
+#  param:    { module: content, action: index }
+#  options:  { model: site_page, type: object }
   
 
 # default rules

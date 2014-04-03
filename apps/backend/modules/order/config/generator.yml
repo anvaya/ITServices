@@ -1,0 +1,44 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           order
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          order
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+          sort: [ order_date, desc ]
+          batch_actions: [ ]
+          actions: [ ]
+          object_actions:
+              _edit: ~
+          fields:
+              status_name:
+                  label: Status
+              order_date:
+                  date_format: dd/MM/y
+          title: Orders
+          display: [ order_no, order_date,  member, status_name ]
+          sort: [order_date, desc]
+      filter:  
+          display: [ order_no, member_id, status, order_date ]
+              
+      form:    
+          display:
+            Order: [_info, status]
+            Products: [ _items ]
+            Payment:  [ _payment]
+      edit:    
+          actions:
+              _list: ~
+              _save: ~
+          title: Edit Order "%%order_no%%"
+      new:     ~

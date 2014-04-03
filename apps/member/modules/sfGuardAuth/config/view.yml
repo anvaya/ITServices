@@ -1,3 +1,7 @@
 ## YAML Template.
 all:  
   layout: layout_main_content
+  stylesheets: [ form.css ]
+changeSuccess:
+  layout: layout_main_content
+  stylesheets: [ form.css ]    

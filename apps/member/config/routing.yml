@@ -1,3 +1,32 @@
+cart_index:
+  url:   /cart
+  param: { module: cart, action: index }
+
+cart_add:
+  url:   /cart/add/:id
+  param: { module: cart, action: add }
+  
+product_show:
+  url:   /product/show/:id
+  param: { module: product, action: show }
+  
+product_index:
+  url:   /product/:page
+  param: { module: product, action: index }
+
+supportticket_sendreply:
+  url:      /ticket/sendReply/:id
+  param:    { module: ticket, action: sendReply }
+
+support_ticket:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                support_ticket
+    module:               ticket
+    prefix_path:          /ticket
+    column:               id
+    with_wildcard_routes: true
+    
 panapplication_paymentVerified:
   url:      /panapplication/paymentVerified/:verify
   param:    { module: panapplication, action: paymentVerified }

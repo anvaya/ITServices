@@ -12,33 +12,45 @@
  * @property date $start_date
  * @property date $end_date
  * @property boolean $active
+ * @property integer $itr_product_id
+ * @property integer $member_coupon_id
  * @property member $member
  * @property subscription $subscription
+ * @property product $product
+ * @property member_coupon $member_coupon
  * @property Doctrine_Collection $payment
  * @property Doctrine_Collection $product_usage
  * 
- * @method integer             getId()              Returns the current record's "id" value
- * @method integer             getMemberId()        Returns the current record's "member_id" value
- * @method integer             getSubscriptionId()  Returns the current record's "subscription_id" value
- * @method decimal             getPrice()           Returns the current record's "price" value
- * @method date                getStartDate()       Returns the current record's "start_date" value
- * @method date                getEndDate()         Returns the current record's "end_date" value
- * @method boolean             getActive()          Returns the current record's "active" value
- * @method member              getMember()          Returns the current record's "member" value
- * @method subscription        getSubscription()    Returns the current record's "subscription" value
- * @method Doctrine_Collection getPayment()         Returns the current record's "payment" collection
- * @method Doctrine_Collection getProductUsage()    Returns the current record's "product_usage" collection
- * @method member_subscription setId()              Sets the current record's "id" value
- * @method member_subscription setMemberId()        Sets the current record's "member_id" value
- * @method member_subscription setSubscriptionId()  Sets the current record's "subscription_id" value
- * @method member_subscription setPrice()           Sets the current record's "price" value
- * @method member_subscription setStartDate()       Sets the current record's "start_date" value
- * @method member_subscription setEndDate()         Sets the current record's "end_date" value
- * @method member_subscription setActive()          Sets the current record's "active" value
- * @method member_subscription setMember()          Sets the current record's "member" value
- * @method member_subscription setSubscription()    Sets the current record's "subscription" value
- * @method member_subscription setPayment()         Sets the current record's "payment" collection
- * @method member_subscription setProductUsage()    Sets the current record's "product_usage" collection
+ * @method integer             getId()               Returns the current record's "id" value
+ * @method integer             getMemberId()         Returns the current record's "member_id" value
+ * @method integer             getSubscriptionId()   Returns the current record's "subscription_id" value
+ * @method decimal             getPrice()            Returns the current record's "price" value
+ * @method date                getStartDate()        Returns the current record's "start_date" value
+ * @method date                getEndDate()          Returns the current record's "end_date" value
+ * @method boolean             getActive()           Returns the current record's "active" value
+ * @method integer             getItrProductId()     Returns the current record's "itr_product_id" value
+ * @method integer             getMemberCouponId()   Returns the current record's "member_coupon_id" value
+ * @method member              getMember()           Returns the current record's "member" value
+ * @method subscription        getSubscription()     Returns the current record's "subscription" value
+ * @method product             getProduct()          Returns the current record's "product" value
+ * @method member_coupon       getMemberCoupon()     Returns the current record's "member_coupon" value
+ * @method Doctrine_Collection getPayment()          Returns the current record's "payment" collection
+ * @method Doctrine_Collection getProductUsage()     Returns the current record's "product_usage" collection
+ * @method member_subscription setId()               Sets the current record's "id" value
+ * @method member_subscription setMemberId()         Sets the current record's "member_id" value
+ * @method member_subscription setSubscriptionId()   Sets the current record's "subscription_id" value
+ * @method member_subscription setPrice()            Sets the current record's "price" value
+ * @method member_subscription setStartDate()        Sets the current record's "start_date" value
+ * @method member_subscription setEndDate()          Sets the current record's "end_date" value
+ * @method member_subscription setActive()           Sets the current record's "active" value
+ * @method member_subscription setItrProductId()     Sets the current record's "itr_product_id" value
+ * @method member_subscription setMemberCouponId()   Sets the current record's "member_coupon_id" value
+ * @method member_subscription setMember()           Sets the current record's "member" value
+ * @method member_subscription setSubscription()     Sets the current record's "subscription" value
+ * @method member_subscription setProduct()          Sets the current record's "product" value
+ * @method member_subscription setMemberCoupon()     Sets the current record's "member_coupon" value
+ * @method member_subscription setPayment()          Sets the current record's "payment" collection
+ * @method member_subscription setProductUsage()     Sets the current record's "product_usage" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -87,6 +99,20 @@ abstract class Basemember_subscription extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
+        $this->hasColumn('itr_product_id', 'integer', 5, array(
+             'type' => 'integer',
+             'size' => 5,
+             'notnull' => false,
+             'unsigned' => true,
+             'length' => 5,
+             ));
+        $this->hasColumn('member_coupon_id', 'integer', 5, array(
+             'type' => 'integer',
+             'size' => 5,
+             'unsigned' => true,
+             'notnull' => false,
+             'length' => 5,
+             ));
     }
 
     public function setUp()
@@ -104,6 +130,17 @@ abstract class Basemember_subscription extends sfDoctrineRecord
              'onDelete' => 'SET NULL',
              'onUpdate' => 'CASCADE'));
 
+        $this->hasOne('product', array(
+             'local' => 'itr_product_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL',
+             'onUpdate' => 'CASCADE'));
+
+        $this->hasOne('member_coupon', array(
+             'local' => 'member_coupon_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
+
         $this->hasMany('payment', array(
              'local' => 'id',
              'foreign' => 'subscription_id'));
@@ -111,5 +148,8 @@ abstract class Basemember_subscription extends sfDoctrineRecord
         $this->hasMany('product_usage', array(
              'local' => 'id',
              'foreign' => 'member_subscription_id'));
+
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $this->actAs($timestampable0);
     }
 }

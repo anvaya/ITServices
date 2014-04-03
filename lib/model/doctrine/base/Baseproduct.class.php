@@ -12,16 +12,20 @@
  * @property integer $category_id
  * @property date $expiry_date
  * @property boolean $expired
- * @property integer $billing_unit
+ * @property integer $billing_unit_id
  * @property integer $form_id
  * @property decimal $price
  * @property string $template
- * @property billing_unit $billing_unit
+ * @property integer $fy
  * @property product_category $product_category
  * @property submission_form $submission_form
  * @property Doctrine_Collection $support_ticket
  * @property Doctrine_Collection $subscription_product
+ * @property Doctrine_Collection $member_subscription
  * @property Doctrine_Collection $product_usage
+ * @property Doctrine_Collection $cart_items
+ * @property Doctrine_Collection $order_item
+ * @property Doctrine_Collection $itr_submission
  * 
  * @method integer             getId()                   Returns the current record's "id" value
  * @method string              getCode()                 Returns the current record's "code" value
@@ -30,15 +34,20 @@
  * @method integer             getCategoryId()           Returns the current record's "category_id" value
  * @method date                getExpiryDate()           Returns the current record's "expiry_date" value
  * @method boolean             getExpired()              Returns the current record's "expired" value
- * @method billing_unit        getBillingUnit()          Returns the current record's "billing_unit" value
+ * @method integer             getBillingUnitId()        Returns the current record's "billing_unit_id" value
  * @method integer             getFormId()               Returns the current record's "form_id" value
  * @method decimal             getPrice()                Returns the current record's "price" value
  * @method string              getTemplate()             Returns the current record's "template" value
+ * @method integer             getFy()                   Returns the current record's "fy" value
  * @method product_category    getProductCategory()      Returns the current record's "product_category" value
  * @method submission_form     getSubmissionForm()       Returns the current record's "submission_form" value
  * @method Doctrine_Collection getSupportTicket()        Returns the current record's "support_ticket" collection
  * @method Doctrine_Collection getSubscriptionProduct()  Returns the current record's "subscription_product" collection
+ * @method Doctrine_Collection getMemberSubscription()   Returns the current record's "member_subscription" collection
  * @method Doctrine_Collection getProductUsage()         Returns the current record's "product_usage" collection
+ * @method Doctrine_Collection getCartItems()            Returns the current record's "cart_items" collection
+ * @method Doctrine_Collection getOrderItem()            Returns the current record's "order_item" collection
+ * @method Doctrine_Collection getItrSubmission()        Returns the current record's "itr_submission" collection
  * @method product             setId()                   Sets the current record's "id" value
  * @method product             setCode()                 Sets the current record's "code" value
  * @method product             setName()                 Sets the current record's "name" value
@@ -46,15 +55,20 @@
  * @method product             setCategoryId()           Sets the current record's "category_id" value
  * @method product             setExpiryDate()           Sets the current record's "expiry_date" value
  * @method product             setExpired()              Sets the current record's "expired" value
- * @method product             setBillingUnit()          Sets the current record's "billing_unit" value
+ * @method product             setBillingUnitId()        Sets the current record's "billing_unit_id" value
  * @method product             setFormId()               Sets the current record's "form_id" value
  * @method product             setPrice()                Sets the current record's "price" value
  * @method product             setTemplate()             Sets the current record's "template" value
+ * @method product             setFy()                   Sets the current record's "fy" value
  * @method product             setProductCategory()      Sets the current record's "product_category" value
  * @method product             setSubmissionForm()       Sets the current record's "submission_form" value
  * @method product             setSupportTicket()        Sets the current record's "support_ticket" collection
  * @method product             setSubscriptionProduct()  Sets the current record's "subscription_product" collection
+ * @method product             setMemberSubscription()   Sets the current record's "member_subscription" collection
  * @method product             setProductUsage()         Sets the current record's "product_usage" collection
+ * @method product             setCartItems()            Sets the current record's "cart_items" collection
+ * @method product             setOrderItem()            Sets the current record's "order_item" collection
+ * @method product             setItrSubmission()        Sets the current record's "itr_submission" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -107,7 +121,7 @@ abstract class Baseproduct extends sfDoctrineRecord
              'type' => 'boolean',
              'notnull' => false,
              ));
-        $this->hasColumn('billing_unit', 'integer', 2, array(
+        $this->hasColumn('billing_unit_id', 'integer', 2, array(
              'type' => 'integer',
              'unsigned' => true,
              'size' => 2,
@@ -133,17 +147,17 @@ abstract class Baseproduct extends sfDoctrineRecord
              'notnull' => false,
              'length' => 60,
              ));
+        $this->hasColumn('fy', 'integer', 2, array(
+             'type' => 'integer',
+             'size' => 2,
+             'notnull' => false,
+             'length' => 2,
+             ));
     }
 
     public function setUp()
     {
         parent::setUp();
-        $this->hasOne('billing_unit', array(
-             'local' => 'billing_unit',
-             'foreign' => 'id',
-             'onDelete' => 'SET NULL',
-             'onUpdate' => 'CASCADE'));
-
         $this->hasOne('product_category', array(
              'local' => 'category_id',
              'foreign' => 'id',
@@ -164,7 +178,23 @@ abstract class Baseproduct extends sfDoctrineRecord
              'local' => 'id',
              'foreign' => 'product_id'));
 
+        $this->hasMany('member_subscription', array(
+             'local' => 'id',
+             'foreign' => 'itr_product_id'));
+
         $this->hasMany('product_usage', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
+
+        $this->hasMany('cart_items', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
+
+        $this->hasMany('order_item', array(
+             'local' => 'id',
+             'foreign' => 'product_id'));
+
+        $this->hasMany('itr_submission', array(
              'local' => 'id',
              'foreign' => 'product_id'));
     }

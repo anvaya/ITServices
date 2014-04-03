@@ -36,11 +36,16 @@ class support_ticketForm extends Basesupport_ticketForm
       $this->validatorSchema['tracking_no'] = new sfValidatorPass();
       $this->setDefault('tracking_no', "[Auto on Save]");
       
-      $this->widgetSchema['member_id']->setOption("order_by", array("username","asc") );      
+      
+      $this->widgetSchema['member_id']->setOption("order_by", array("username","asc") );                  
       
       $query = sfGuardUserTable::getInstance()
                 ->createQuery('su')
+                ->select('su.id, su.first_name, su.last_name, su.username')
                 ->addWhere('(su.is_member is NULL or su.is_member = 0)')
                 ->orderBy('su.first_name');
+      
+      $this->widgetSchema['assigned_to']->setOption('query', $query);
+              
   }
 }

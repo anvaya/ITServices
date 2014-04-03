@@ -16,5 +16,6 @@ class product_categoryForm extends Baseproduct_categoryForm
   public function configure()
   {
     parent::configure();
+    unset($this['type_id']);
   }
 }

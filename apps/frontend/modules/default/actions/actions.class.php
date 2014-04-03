@@ -37,29 +37,60 @@ class defaultActions extends sfActions
           
           if($form->isValid())
           {
-              $sender_name = $form->getValue("sender_name");
-              $sender_email = $form->getValue("sender_email");
-              $message      =
-                      "Name: ".$form->getValue("sender_name")."\n".
-                      "Phone: ".$form->getValue("phone_number")."\n".
-                      "Country: ".$form->getValue("country")."\n".
-                      /*"City: ".$form->getValue("city")."\n".
-                      "State: ".$form->getValue("state")."\n".
-                      "Zip Code: ".$form->getValue("zip_code")."\n".
-                      "Address1: ".$form->getValue("address1")."\n".
-                      "Address2: ".$form->getValue("address2")."\n".*/
-                      "Message: \n".
-                      "=================================\n".
-                      $form->getValue("message");
+              $member_id = $form->getValue("member_id");
               
-              $to      = 'nrihelp@groworth.in';
-              $subject = 'Contact Us: Growth Real Solutions';              
-              $headers = 'From: '.$sender_name.'<'.$sender_email. ">\r\n" . 
-                      'Reply-To: '.$sender_name.'<'.$sender_email. ">\r\n" .
-                      "Cc: contact@anvayatech.com\r\n".
-                    'X-Mailer: PHP/' . phpversion();
+              if(!$member_id)
+              {
+                  $email = $sender_email = $form->getValue("sender_email");
+                  $memebr = memberTable::getInstance()
+                          ->findOneByEmailAddress($email);
+                  if($member)
+                  {
+                      $member_id = $member->getId();
+                      unset($member);
+                  }
+              }
+              
+              if($member_id)
+              {
+                  $ticket = new support_ticket();
+                  $ticket->setMemberId($member_id);
+                  $ticket->setTicketSubject("Member Query");                 
+                  $ticket->setDateReceived(date('Y-m-d'));
+                  $ticket->setStatus(support_ticketTable::STATUS_OPEN);
+                  
+                  $reply = new ticket_comment();
+                  $reply->setSupportTicket($ticket);
+                  $reply->setPublicMessage("".$form->getValue("message"));
+                  $ticket->getTicketComment()->add($reply);
+                  $ticket->save();
+              }
+              else
+              {
+                $sender_name = $form->getValue("sender_name");
+                $sender_email = $form->getValue("sender_email");
+                $message      =
+                        "Name: ".$form->getValue("sender_name")."\n".
+                        "Phone: ".$form->getValue("phone_number")."\n".
+                        "Country: ".$form->getValue("country")."\n".
+                        /*"City: ".$form->getValue("city")."\n".
+                        "State: ".$form->getValue("state")."\n".
+                        "Zip Code: ".$form->getValue("zip_code")."\n".
+                        "Address1: ".$form->getValue("address1")."\n".
+                        "Address2: ".$form->getValue("address2")."\n".*/
+                        "Message: \n".
+                        "=================================\n".
+                        $form->getValue("message");
 
-              mail($to, $subject, $message, $headers);
+                $to      = 'nrihelp@groworth.in';
+                $subject = 'Contact Us: Growth Real Solutions';              
+                $headers = 'From: '.$sender_name.'<'.$sender_email. ">\r\n" . 
+                        'Reply-To: '.$sender_name.'<'.$sender_email. ">\r\n" .
+                        "Cc: contact@anvayatech.com\r\n".
+                      'X-Mailer: PHP/' . phpversion();
+
+                mail($to, $subject, $message, $headers);
+              }
               $this->setTemplate('contactThanks');
           }
           else

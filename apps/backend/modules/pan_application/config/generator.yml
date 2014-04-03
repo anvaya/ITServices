@@ -2,9 +2,9 @@ generator:
   class: sfDoctrineGenerator
   param:
     model_class:           pan_application
-    theme:                 admin
+    theme:                 jRoller #admin
     non_verbose_templates: true
-    with_show:             false
+    with_show:             true
     singular:              ~
     plural:                ~
     route_prefix:          pan_application
@@ -15,13 +15,16 @@ generator:
       actions: ~
       fields:  ~
       list:
+        title: PAN Applications
         fields:
           sfGuardUser: { label: Username }
           statuss: { label: Status }
         display: [sfGuardUser, ip_address, statuss, created_at, updated_at] 
-        actions: []
-        object_actions: []
+        actions:  [ ]        
+        object_actions: 
+           _show: ~
         batch_actions: []
+        sort: [created_at, desc]
       filter:  ~
       form:    ~
       edit:    ~

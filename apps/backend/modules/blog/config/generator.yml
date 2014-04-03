@@ -1,0 +1,38 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           blog
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          blog
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:    
+          title: Blogs
+          display: [ title, sfGuardUser, alert_on_comment, _approved, created_at, updated_at ]
+          object_actions:
+           _delete: ~
+           show: 
+            label:  Show
+            action: show
+          
+      filter:  
+        display: [ title, author_id, approved, created_at, updated_at] 
+      form:    
+          fields:
+              title:
+                  attributes: 
+                      size: 60
+          display:
+            Summary: [ title, status, alert_on_comment, approved ]
+            Blog:  [ image, summary, blog  ]
+          
+      edit:    ~
+      new:     ~

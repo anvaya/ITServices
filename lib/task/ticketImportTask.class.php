@@ -18,10 +18,10 @@ class ticketImportTask extends sfBaseTask
         $this->briefDescription = "Import Ticket Emails";
         
         $this->addOptions(array(
-          new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', 'frontend'),
+          new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', 'backend'),
           new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'prod'),
           new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'doctrine'),
-          new sfCommandOption('host', null, sfCommandOption::PARAMETER_REQUIRED, 'The host server name', 'ats.anvayatech.com'),
+          new sfCommandOption('host', null, sfCommandOption::PARAMETER_REQUIRED, 'The host server name', 'groworth.in'),
         ));
         
         $this->detailedDescription = <<<EOF
@@ -48,7 +48,7 @@ EOF;
     
     $context->getConfiguration()->loadHelpers(array("Partial"));    
     
-    $mail_config = sfConfig::get('sf_import_ticket');
+    $mail_config = sfConfig::get('app_import_ticket');
        
     $mail_server    = $mail_config['host'];
     $mail_port      = $mail_config['port'];
@@ -76,7 +76,7 @@ EOF;
      */
     function process_mailbox($imap_host, $imap_username, $imap_password, $imap_folder, $imap_port, $tls,$ssl,$fail_email=false)
     {               
-        $settings_table = settingTable::getInstance();     
+        //$settings_table = settingTable::getInstance();     
         /* @var $settings_table settingTable */
         
         $processed = 0;
@@ -138,14 +138,15 @@ EOF;
                              
                              if(!$customer)
                              {
-                                 $to = $settings_table->getSettingValue1(settingTable::TICKET_IMPORT_CUST_NOT_FOUND_EMAIL);
+                                 /*$to = $settings_table->getSettingValue1(settingTable::TICKET_IMPORT_CUST_NOT_FOUND_EMAIL);
                                  $auto_from = sfConfig::get('app_company_auto_email');
                                  
                                  $result = $this->sendCustomerNotFoundError($to, $auto_from, $subject, $from);
                                  if($result)
                                  {
                                      @$imap->mark_read($i);
-                                 }
+                                 }*/
+                                 $this->logSection("warning",  "Customer not found for email address $from");
                                  continue; //Customer not found.
                              }
                              
@@ -234,7 +235,7 @@ EOF;
                              $message = "Hi ".$alert_user->getFirstName().",\n";
                              $message .= "\n Customer has replied to the ticket.";
                              $message .= "\n Please login to reply.";
-                             $message .= "\n\n == ATS Ticket System.";
+                             $message .= "\n\n == Groworth Ticket System.";
                              
                              $result = send_email($alert_user->getFirstName(), $alert_user->getEmailAddress(), $alert_subject, $message);
                              

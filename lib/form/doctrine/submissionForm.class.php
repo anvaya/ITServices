@@ -12,5 +12,7 @@ class submissionForm extends BasesubmissionForm
 {
   public function configure()
   {
+      $this->widgetSchema['status'] = new sfWidgetFormChoice( array("choices" => pan_applicationTable::$STATUS_TYPES ) );
+      $this->validatorSchema['status'] = new sfValidatorChoice( array("choices" => array_keys(pan_applicationTable::$STATUS_TYPES), "required"=>false ) );
   }
 }

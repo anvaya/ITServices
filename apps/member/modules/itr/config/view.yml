@@ -1,0 +1,11 @@
+## YAML Template.
+newSuccess:
+    layout: layout_itr
+    stylesheets: [ itrdemo.css ]
+    javascripts: [ knockout-3.0.0.js, jq-widgets/jqxnumberinput.js, jq-widgets/jqxcalendar.js,  jq-widgets/jqxdatetimeinput.js, jq-widgets/jqxknockout.js ]
+editSuccess:
+    layout: layout_itr
+    stylesheets: [ itrdemo.css ]
+    javascripts: [ knockout-3.0.0.js, jq-widgets/jqxnumberinput.js, jq-widgets/jqxcalendar.js,  jq-widgets/jqxdatetimeinput.js, jq-widgets/jqxknockout.js ]
+submitDoneSuccess:
+    stylesheets: [ itrdemo.css ]

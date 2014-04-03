@@ -13,7 +13,8 @@
 $.widget("ui.selectmenu", {
 	_init: function() {
 		var self = this, o = this.options;
-		
+		this.widgetBaseClass = 'ui-selectmenu';
+                
 		//quick array of button and menu id's
 		var num = Math.round(Math.random() * 1000);
 		this.ids = [this.element.attr('id') + '_' + 'button' + '_' + num, this.element.attr('id') + '_' + 'menu' + '_' + num];

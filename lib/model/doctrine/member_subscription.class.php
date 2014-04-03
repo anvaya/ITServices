@@ -12,5 +12,9 @@
  */
 class member_subscription extends Basemember_subscription
 {
-
+    public function setUp() 
+    {
+        parent::setUp();
+        $this->addListener(new member_subscriptionListener());
+    }
 }

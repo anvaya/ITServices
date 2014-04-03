@@ -1,0 +1,34 @@
+li.sf_admin_action_show a,  li.sf_admin_action_sendreply a
+{
+    background: none !important;
+    background-repeat: no-repeat;        
+}
+
+li.sf_admin_action_show a .ui-icon, li.sf_admin_action_sendreply a .ui-icon
+{
+    display: inline-block;
+    position: relative;
+    margin-top: -20px;    
+}
+
+.sf_admin_list  table
+{
+    border-collapse:separate;
+    border-spacing:5px 5px;
+}
+
+tr.odd td
+{
+    background-color: #FFE7A1;
+}
+
+tr.even td
+{
+  background-color: PaleGoldenrod;  
+}
+
+#sf_admin_container th
+{
+    background-color: tan;
+}
+

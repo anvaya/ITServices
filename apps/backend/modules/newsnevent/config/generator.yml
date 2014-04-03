@@ -1,0 +1,37 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           newsnevent
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          newsnevent
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  
+          event_body:
+              label: Text
+      list:    
+          title: News and Events
+          display: [ title, is_event, event_date ]
+      filter:  
+          display: [ title, is_event, event_date ]              
+      form:    
+          fields:
+              event_body:
+                  attributes:
+                      rows: 20
+                      cols: 80
+          display:
+              Event: [ title, subtitle, event_date, is_event, disabled ]
+              Text: [ event_body ]
+              Picture: [ picture_file ]
+      edit:    
+          title: Edit News / Event
+      new:     
+          title: New News / Event

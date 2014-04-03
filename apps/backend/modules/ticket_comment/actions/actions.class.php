@@ -40,8 +40,14 @@ class ticket_commentActions extends autoTicket_commentActions
   }
   
   public function executeCustomerAlert(sfWebRequest $request)
-  {
-      $this->ticket_comment = $this->getRoute()->getObject();
+  {      
+      $comment_id = $request->getParameter("ticket_comment_id");
+      $this->forward404Unless($comment_id > 0);
+      
+      $this->ticket_comment = ticket_commentTable::getInstance()
+                                ->find($comment_id);
+      
+     // $this->ticket_comment = $this->getRoute()->getObject();
       $this->setLayout('email');
   }
   
@@ -155,26 +161,35 @@ class ticket_commentActions extends autoTicket_commentActions
   {
       try
       {
-          $member  = $ticket_comment->getSupportTicket()->getMember();
+        
+        $member  = $ticket_comment->getSupportTicket()->getMember();
           
         if( strlen($ticket_comment->getSupportTicket()->getSenderEmail()) == 0 )
         {
             $to_email = $ticket_comment->getSupportTicket()->getSenderEmail();
         }
-        elseif($company) 
+        elseif($member) 
         {
-            $customer   = $member->getEmailAddress();
+            //$customer   = $member->getEmailAddress();
             $to_email   = $member->getEmailAddress();
             $to_name    = $member->getFirstName()." ".$member->getLastName();
         }
         else
+        {        
             return false;
+        }
         
         $subject    = "[ticket #". $ticket_comment->getSupportTicket()->getTrackingNo()."]";
         
-        $message = $this->getController()->getPresentationFor("ticket_comment", "customerAlert");
+        $sender_email =  sfConfig::get('app_company_ticket_email');
+        $sender_name  = sfConfig::get('app_company_ticket_sender_name');
         
-        return send_email($to_name, $to_email, $subject, $message);
+        $this->getRequest()->setParameter('ticket_comment_id', $ticket_comment->getId());
+        $message = $this->getController()->getPresentationFor("ticket_comment", "customerAlert");
+                
+        $send_count = send_email($to_name, $to_email, $subject, $message, $sender_name, $sender_email);
+        
+        return $send_count;
         
       }catch(Exception $ex) { return false; }
   }

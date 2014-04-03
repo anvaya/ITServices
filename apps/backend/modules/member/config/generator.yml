@@ -16,14 +16,24 @@ generator:
       fields:  ~
       list:    
         title: Members
-        display: [ member_type, first_name, last_name, email_address, country ]
+        display: [ first_name, last_name, email_address, country, is_active, created_at]
         object_actions:
           _edit: ~
         batch_actions: []
         actions: []
+        sort: [last_name, asc]
       filter:  
-        display: [ member_type_id, first_name, last_name, email_address, country ]
+        display: [ first_name, last_name, email_address, country, is_active ]
       form:    
+        display:
+            Personal: [ first_name, middle_name, last_name, email_address, dob, gender, married, marriage_anniversary  ]
+            Account: [ is_active, password, password_again, subscription , _account ]
+            NR Address: [ nri_address ]
+            India Address: [ in_address ]
+            Contact: [ nri_mobile, nri_landline, nri_office, nri_fax ]
+            India Contact: [ in_landline, in_mobile ]
+            Occupation: [ occupation_type, job_title, industry, other_income_source, passport_no, pan_no ]
+            Family: [ family0, family1, family2, family3, family4 ]
         fields:
           email_address: 
             attributes:

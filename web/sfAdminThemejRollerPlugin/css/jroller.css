@@ -70,7 +70,7 @@ html { overflow: -moz-scrollbars-vertical !important; }
       }
 
       /* table actions */
-      .sf_admin_td_actions { list-style-type: none; white-space: nowrap; }
+      .sf_admin_td_actions { list-style-type: none; white-space: nowrap; margin-bottom: 2px; margin-top: 2px; }
         .sf_admin_td_actions li { display: block; float: left; }
 
 /* pagination */

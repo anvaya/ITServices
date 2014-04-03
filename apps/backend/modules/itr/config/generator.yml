@@ -1,0 +1,46 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           itr_submission
+    theme:                 jroller
+    non_verbose_templates: true
+    with_show:             true
+    singular:              ~
+    plural:                ~
+    route_prefix:          itr_submission
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+    extra:		             [show]
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: IT Returns
+        actions: [ ]
+        batch_actions: [ ]
+        fields:
+          created_at: { label: On Submited }
+        display: [id, created_at, member, product, status_name]
+        object_actions:
+           _show: ~       
+           _asHtml: 
+              label: Download 
+              action: pdf
+           _edit: ~   
+           due_tax: {action: duetax, label: Due Tax }
+      filter:  
+          display: [member_id, product_id, status]                        
+      form:    ~
+      edit:    
+          display: [ notes, status, tax_due, payment_confirmed ]
+      new:     ~
+      show:        
+        title: ITR Submission Details
+        fields:
+          created_at: { label: On Submited }
+        display:
+          Personal Information: [ _personal_information ]
+          House Property Information: [ _properties ]
+          Capital Gains: [ _capital_gains ]
+          Other Income: [ _other_income ]
+          Exemptions: [ _exemptions ]

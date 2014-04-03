@@ -12,5 +12,7 @@
  */
 class type_info extends Basetype_info
 {
-
+    public function __toString() {
+        return $this->getTypeName();
+    }
 }

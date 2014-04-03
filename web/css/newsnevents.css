@@ -1,0 +1,37 @@
+
+
+h2.title
+{
+    font-size: 2.1em;
+    font-weight: normal;
+}
+
+div.picture, div.text
+{
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.event_item
+{
+    position: relative;
+    border: 1px solid #ebebeb;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #FDFDFD;
+    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.entry p
+{
+    color: #3f3f3f;
+    font-size: 15px;
+    font-family: georgia;
+    line-height: 20px;
+}
+
+.ui-widget-content
+{
+    background-image: none;
+}

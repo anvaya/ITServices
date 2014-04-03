@@ -12,5 +12,14 @@
  */
 class product_category extends Baseproduct_category
 {
-
+    public function __toString()
+    {
+        $catname = $this->getTypeName();
+        if($catname)
+        {
+            return $catname;
+        }
+        else
+            return "";
+    }
 }

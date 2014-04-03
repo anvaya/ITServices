@@ -24,4 +24,30 @@ class support_ticket extends Basesupport_ticket
              'foreign' => 'ticket_id'));
         $this->addListener(new support_ticket_listener());
     }
+    
+     public function getReplyReceived(){
+      $id = $this->getId();
+      $query = Doctrine_Query::create()
+          ->from('ticket_comment ')
+          ->where('ticket_id = ?',$id)
+          ->andWhere('is_reply = 1')
+          ->count();
+      if($query > 0)
+        return "Yes";
+      else
+        return "No";
+    }
+    
+    public function getNoOfComment(){
+      $id = $this->getId();
+      $query = Doctrine_Query::create()
+          ->from('ticket_comment ')
+          ->where('ticket_id = ?',$id)
+          ->andWhere('is_reply = 1')
+          ->count();
+      if($query > 0)
+        return $query;
+      else
+        return "";
+    }
 }

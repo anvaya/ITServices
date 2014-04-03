@@ -10,7 +10,11 @@
                             <p>
                                     N-7, Abhinav Shilp Apartments ,<br>
                                     Laxmi Nagar,<br>
-                                    Nagpur 440022<br>	
+                                    Nagpur 440022,<br>	
+                                    Maharashtra, India.
+                            </p>
+                            <p>
+                                Phone: +91 9823048489
                             </p>
                     </div>
                 </td>
@@ -67,4 +71,30 @@
 
     </div>
 </div>
-                
+<script type="text/javascript">
+    var member_checked = false;
+    $('form').submit(function()
+    {
+        if(member_checked)
+        {
+            return true;            
+        }
+        
+        jQuery.ajax(
+                {
+                    url: "<?php echo public_path("/member.php/default/memberId") ?>",
+                    success: function(data, textSuccess) 
+                    {
+                        $('#contactus_member_id').val(data);
+                        member_checked = true;
+                        $('form').submit();
+                    },                                                        
+                    error: function()
+                    {
+                         member_checked = true;
+                         $('form').submit();
+                    }                    
+                });
+                return false;
+    });
+</script>

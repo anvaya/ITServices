@@ -20,6 +20,9 @@ generator:
       edit:    
         title: My Profile
         fields:
+          email_address:
+              attributes:
+                  size: 60
           dob:
             label: Date of Birth
           year_as_nri:
@@ -27,6 +30,7 @@ generator:
             help: Select the year since you became a NRI.
         display: 
           Personal Details: [ first_name, middle_name, last_name, dob, email_address, country, year_as_nri, married, marriage_anniversary ]          
+          Login: [ username, password, password_again ]
           Current Address: [ nri_address ]
           Address In India: [ in_address ]
           Contact Information : [ nri_mobile, nri_landline, nri_office, nri_fax ]

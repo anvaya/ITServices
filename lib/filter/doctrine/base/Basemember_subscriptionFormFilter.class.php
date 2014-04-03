@@ -19,6 +19,7 @@ abstract class Basemember_subscriptionFormFilter extends BaseFormFilterDoctrine
       'start_date'      => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'end_date'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'active'          => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'itr_product_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('product'), 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
@@ -28,6 +29,7 @@ abstract class Basemember_subscriptionFormFilter extends BaseFormFilterDoctrine
       'start_date'      => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'end_date'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
       'active'          => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'itr_product_id'  => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('product'), 'column' => 'id')),
     ));
 
     $this->widgetSchema->setNameFormat('member_subscription_filters[%s]');
@@ -54,6 +56,7 @@ abstract class Basemember_subscriptionFormFilter extends BaseFormFilterDoctrine
       'start_date'      => 'Date',
       'end_date'        => 'Date',
       'active'          => 'Boolean',
+      'itr_product_id'  => 'ForeignKey',
     );
   }
 }

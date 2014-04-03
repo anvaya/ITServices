@@ -6,15 +6,26 @@ default:
     content-type: text/html
 
   metas:
-    #title:        symfony project
+    title:         Member Home - Groworth Real Solutions
     #description:  symfony project
     #keywords:     symfony, project
     #language:     en
-    #robots:       index, follow
+    #robots:       index, follow    
   
-  stylesheets:    [member/main.css, media.css, ui-lightness/jquery-ui-1.10.0.custom.min.css]
+  stylesheets:    
+    - member/main.css
+    - media.css 
+    - ui-lightness/jquery-ui-1.10.0.custom.min.css
+    - /js/jq-widgets/styles/jqx.base.css
 
-  javascripts:    [jquery-1.9.0.min.js, jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js]
+  javascripts:    
+    - jquery-1.9.0.min.js
+    - jquery-ui-1.10.0.custom/js/jquery-ui-1.10.0.custom.min.js
+    - jq-widgets/jqxcore.js
+    - jq-widgets/jqxdata.js
+    - jq-widgets/jqxbuttons.js
+    - jq-widgets/jqxscrollbar.js
+    - jq-widgets/jqxmenu.js
 
   has_layout:     true
   layout:         layout

@@ -23,6 +23,7 @@ test:
     etag:                   false
 
 all:
+  default_timezone: Asia/Calcutta  
   .settings:   
     date_format:  d/M/y
     
@@ -39,15 +40,6 @@ all:
     
     enabled_modules: [default, sfGuardAuth, sfGuardUser, sfGuardGroup, sfGuardPermission]
     
-    import_ticket:
-        host: "just99.justhost.com"
-        port: 993
-        username: "test@anvayatech.com"
-        pwd: "m2253327"
-        ssl: true
-        tls: "notls"
-        folder: "INBOX"
-        fail_email: "contact@anvayatech.com"    
   .actions:
       login_module:    sfGuardAuth
       login_action:    signin

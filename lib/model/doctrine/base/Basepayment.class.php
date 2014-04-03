@@ -22,6 +22,8 @@
  * @property member_subscription $member_subscription
  * @property submission $submission
  * @property member $member
+ * @property Doctrine_Collection $order
+ * @property Doctrine_Collection $itr_submission
  * 
  * @method integer             getId()                  Returns the current record's "id" value
  * @method integer             getMemberId()            Returns the current record's "member_id" value
@@ -40,6 +42,8 @@
  * @method member_subscription getMemberSubscription()  Returns the current record's "member_subscription" value
  * @method submission          getSubmission()          Returns the current record's "submission" value
  * @method member              getMember()              Returns the current record's "member" value
+ * @method Doctrine_Collection getOrder()               Returns the current record's "order" collection
+ * @method Doctrine_Collection getItrSubmission()       Returns the current record's "itr_submission" collection
  * @method payment             setId()                  Sets the current record's "id" value
  * @method payment             setMemberId()            Sets the current record's "member_id" value
  * @method payment             setSubmissionId()        Sets the current record's "submission_id" value
@@ -57,6 +61,8 @@
  * @method payment             setMemberSubscription()  Sets the current record's "member_subscription" value
  * @method payment             setSubmission()          Sets the current record's "submission" value
  * @method payment             setMember()              Sets the current record's "member" value
+ * @method payment             setOrder()               Sets the current record's "order" collection
+ * @method payment             setItrSubmission()       Sets the current record's "itr_submission" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -168,6 +174,14 @@ abstract class Basepayment extends sfDoctrineRecord
              'local' => 'member_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasMany('order', array(
+             'local' => 'id',
+             'foreign' => 'payment_id'));
+
+        $this->hasMany('itr_submission', array(
+             'local' => 'id',
+             'foreign' => 'payment_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable();
         $this->actAs($timestampable0);

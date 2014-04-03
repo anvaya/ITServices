@@ -64,8 +64,23 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
                                 ->fetchOne();
             
             /* @var $subscription member_subscription */
-            $amount = $subscription->getSubscription()->getCurrency()." ".$subscription->getPrice();
+            $amount = $subscription->getPrice();
+            
+            $m_coupon = $subscription->getMemberCoupon();
+            if($m_coupon)
+            {
+                $coupon = $m_coupon->getCoupon();
+                if( ($discount = $coupon->getDiscountRate()) )
+                {
+                    $amount -= $discount;
+                }
+            }
+            
+            $amount = $subscription->getSubscription()->getCurrency()." ".$amount;
+            
             $body = $this->getPartial("email_payment", array("user"=>$user,'amount'=>$amount));
+            
+            file_put_contents(sfConfig::get('sf_log_dir')."/email_payment.html", $body);
             
             $msg = $this->getMailer()->compose();
             $msg->setSubject("Welcome: Please complete your registration");
@@ -103,6 +118,7 @@ class sfGuardRegisterActions extends BasesfGuardRegisterActions
             $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
             $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
             $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");
+            $msg->addTo("nrihelp@groworth.in","Groworth Real Solutions Pvt. Ltd");
             $msg->addCc("mrugendrabhure@gmail.com", "Mrugendra Bhure");
             $msg->setBody($body, 'text/plain', "utf-8");
             $this->getMailer()->sendNextImmediately();

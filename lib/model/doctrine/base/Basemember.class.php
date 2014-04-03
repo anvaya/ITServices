@@ -11,6 +11,11 @@
  * @property Doctrine_Collection $payment
  * @property Doctrine_Collection $support_ticket
  * @property Doctrine_Collection $member_subscription
+ * @property Doctrine_Collection $cart
+ * @property Doctrine_Collection $order
+ * @property Doctrine_Collection $itr_submission
+ * @property Doctrine_Collection $blog_comment
+ * @property Doctrine_Collection $member_coupon
  * 
  * @method member_type         getMemberType()          Returns the current record's "member_type" value
  * @method Doctrine_Collection getContact()             Returns the current record's "contact" collection
@@ -18,12 +23,22 @@
  * @method Doctrine_Collection getPayment()             Returns the current record's "payment" collection
  * @method Doctrine_Collection getSupportTicket()       Returns the current record's "support_ticket" collection
  * @method Doctrine_Collection getMemberSubscription()  Returns the current record's "member_subscription" collection
+ * @method Doctrine_Collection getCart()                Returns the current record's "cart" collection
+ * @method Doctrine_Collection getOrder()               Returns the current record's "order" collection
+ * @method Doctrine_Collection getItrSubmission()       Returns the current record's "itr_submission" collection
+ * @method Doctrine_Collection getBlogComment()         Returns the current record's "blog_comment" collection
+ * @method Doctrine_Collection getMemberCoupon()        Returns the current record's "member_coupon" collection
  * @method member              setMemberType()          Sets the current record's "member_type" value
  * @method member              setContact()             Sets the current record's "contact" collection
  * @method member              setAddress()             Sets the current record's "address" collection
  * @method member              setPayment()             Sets the current record's "payment" collection
  * @method member              setSupportTicket()       Sets the current record's "support_ticket" collection
  * @method member              setMemberSubscription()  Sets the current record's "member_subscription" collection
+ * @method member              setCart()                Sets the current record's "cart" collection
+ * @method member              setOrder()               Sets the current record's "order" collection
+ * @method member              setItrSubmission()       Sets the current record's "itr_submission" collection
+ * @method member              setBlogComment()         Sets the current record's "blog_comment" collection
+ * @method member              setMemberCoupon()        Sets the current record's "member_coupon" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -58,6 +73,26 @@ abstract class Basemember extends sfGuardUser
              'foreign' => 'member_id'));
 
         $this->hasMany('member_subscription', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('cart', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('order', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('itr_submission', array(
+             'local' => 'id',
+             'foreign' => 'member_id'));
+
+        $this->hasMany('blog_comment', array(
+             'local' => 'id',
+             'foreign' => 'author_id'));
+
+        $this->hasMany('member_coupon', array(
              'local' => 'id',
              'foreign' => 'member_id'));
     }

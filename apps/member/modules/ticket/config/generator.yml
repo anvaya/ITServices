@@ -1,0 +1,51 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           support_ticket
+    #theme:                 jroller
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          support_ticket
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        title: My Queries  
+        table_method: getMemberTicketList
+        display: [date_received, ticket_subject, reply_received ]
+        fields:
+          date_received:            
+            label: Date 
+            date_format: dd/MM/y
+          ticket_subject: { label: Subject }
+        object_actions:
+          #edit: ~
+          show: 
+              action: show
+          sendreply:   { label: Send Reply, action: sendReply }
+        batch_actions: []
+        actions:
+          _new: { label: New Query }
+      filter:
+        class: false
+      form:
+        class: member_support_ticketForm
+        display: [ department_id, product_id, ticket_subject, _comment ]
+      edit:    ~
+      new:
+        title: "Ask the Expert: Send New Query"
+        actions:
+          _list: 
+              label: Back
+          _save:    
+            label: Submit Query 
+            params:
+                class: purple_btn
+          
+              

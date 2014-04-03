@@ -7,6 +7,7 @@
  */
 class product_categoryTable extends type_infoTable
 {
+    const CATEGORY_ITR = 4;
     /**
      * Returns an instance of this class.
      *

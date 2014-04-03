@@ -73,12 +73,21 @@
 
 ul.error_list
 {
+  /*  
   margin: 0;
   margin-bottom: 7px;  
   color: #d33;
   border: none;
-  background-color: #0C2447;
-  float: right;
+  background-color: #0C2447;*/
+  margin: 0;
+  margin-bottom: 7px;  
+  font-family:Arial, Helvetica, sans-serif; 
+  font-size:15px;
+  border: 1px solid #D8000C;
+  margin: 1px 0px;  
+  padding: 4px 4px 4px 10px;  
+  background-color: #FFBABA;
+  float: right;  
 }
 
 ul.error_list li
@@ -86,7 +95,9 @@ ul.error_list li
   padding: 4px;
   padding-left: 25px;
   list-style: none;
-  color: #fff;
+  color: #D8000C ;
+  font-size: 15px;
+  /*color: #fff;*/
   background: url(../../images/error.png) no-repeat 4px 6px;
 }
 
@@ -241,6 +252,21 @@ table#subscriptions label
 {
     float: none;
     display: inline-block;
+}
+
+div.error_message
+{
+    font-family:Arial, Helvetica, sans-serif; 
+    font-size:15px;
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background: url(../sfDoctrinePlugin/images/error.png) no-repeat 10px 4px;
+    padding: 4px 4px 4px 30px;
+    color: #D8000C;
+    background-color: #FFBABA;
 }
 
 /* register form::end */

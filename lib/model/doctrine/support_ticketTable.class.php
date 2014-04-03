@@ -32,4 +32,12 @@ class support_ticketTable extends Doctrine_Table
         
         return $query->count();
     }
+    
+    public function getMemberTicketList(Doctrine_Query $q)
+    {
+      $rootAlias = $q->getRootAlias();
+      $q->andWhere('member_id = ?', sfContext::getInstance()->getUser()->getAttribute('user_id',null,'sfGuardSecurityUser'))
+      ->orderBy('id DESC');
+      return $q;
+    }    
 }

@@ -27,8 +27,7 @@ class memberForm extends BasememberForm
 
         $this->validatorSchema['email_address'] = new sfValidatorEmail(array("required" => true));
 
-     $this->useFields( array("first_name", "middle_name", "last_name","email_address", "dob", "country","passport_no", "pan_no", "gender", "married", "marriage_anniversary", "year_as_nri", "occupation_type", "job_title", "industry", "other_income_source","timezone","culture" ));
-
+        //$this->useFields( array("first_name", "middle_name", "last_name","email_address", "dob", "country","passport_no", "pan_no", "gender", "married", "marriage_anniversary", "year_as_nri", "occupation_type", "job_title", "industry", "other_income_source","timezone","culture" ));
 
         //$this->embedForm("nri_address", new addressForm(null, array('address_type'=> addressTable::ADDRESS_TYPE_NRI)));
         $id = $this->getObject()->getId();
@@ -146,9 +145,21 @@ class memberForm extends BasememberForm
             $this->embedForm("family" . $i, new family_contactForm($contact, array("contact_type" => contactTable::CONTACT_TYPE_FAMILY)));
             $this->widgetSchema["family".$i]->setLabel("Member ".($i+1));
         }
-
-
-        $this->useFields(array("first_name", "middle_name", "last_name", "dob", "gender", "year_as_nri", "email_address", "country", "nri_address", "in_address", "nri_mobile", "nri_landline", "nri_office", "nri_fax", "in_landline", "in_mobile", "occupation_type", "job_title", "industry", "other_income_source", "passport_no", "pan_no", "married", "marriage_anniversary", "family0", "family1", "family2", "family3", "family4"));
+        
+        
+        $this->widgetSchema['password'] = new sfWidgetFormInputPassword();        
+        $this->validatorSchema['password']->setOption('required', false);
+        $this->widgetSchema['password_again'] = new sfWidgetFormInputPassword(array('always_render_empty'=>true));
+        $this->validatorSchema['password_again'] = clone $this->validatorSchema['password'];
+        $this->widgetSchema->moveField('password_again', 'after', 'password');
+        $this->mergePostValidator(new sfValidatorSchemaCompare('password', sfValidatorSchemaCompare::EQUAL, 'password_again', array(), array('invalid' => 'The two passwords must be the same.')));
+        
+       
+        $this->widgetSchema['password']->setAttribute('autocomplete','off');
+        $this->widgetSchema['password_again']->setAttribute('autocomplete','off');        
+        
+        
+        $this->useFields(array("first_name", "middle_name", "last_name", "dob", "gender", "year_as_nri", "email_address", "country", "nri_address", "in_address", "nri_mobile", "nri_landline", "nri_office", "nri_fax", "in_landline", "in_mobile", "occupation_type", "job_title", "industry", "other_income_source", "passport_no", "pan_no", "married", "marriage_anniversary", "family0", "family1", "family2", "family3", "family4","password","password_again"));
     }
 
     public function saveEmbeddedForms($con = null, $forms = null) {

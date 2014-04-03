@@ -11,7 +11,7 @@
             <?php endif; ?>
             <p>We're sorry, but something went wrong while processing your payment confirmation!</p>
             <p>Your Payment confirmation not submitted.</p>
-            <p>Please <a href="/contactus.html">contact us</a> in case you have any queries or feedback.</p>
+            <p>Please <a href="<?php url_for("default/contact") ?>">contact us</a> in case you have any queries or feedback.</p>
           </div>
         </div>
       </div>

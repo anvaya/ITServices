@@ -16,7 +16,7 @@
                 <div id="page_header">
                     <div id="logo">
                         <a href="#">
-                            <?php echo image_tag("logo.png", array("alt"=>"BestBuddies","border"=>0) ); ?>                            
+                            <?php echo image_tag("logo.png", array("alt"=>"","border"=>0) ); ?>                            
                         </a>
                     </div>
                     <div id="page_header_right">
