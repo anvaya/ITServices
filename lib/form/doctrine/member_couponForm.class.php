@@ -12,5 +12,6 @@ class member_couponForm extends Basemember_couponForm
 {
   public function configure()
   {
+    unset($this['updated_at'],$this['created_at']);
   }
 }
