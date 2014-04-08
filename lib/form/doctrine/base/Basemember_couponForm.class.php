@@ -36,6 +36,10 @@ abstract class Basemember_couponForm extends BaseFormDoctrine
       'updated_at'  => new sfValidatorDateTime(),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'member_coupon', 'column' => array('coupon_code')))
+    );
+
     $this->widgetSchema->setNameFormat('member_coupon[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

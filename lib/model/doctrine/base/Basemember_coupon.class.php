@@ -67,6 +67,7 @@ abstract class Basemember_coupon extends sfDoctrineRecord
              'type' => 'string',
              'size' => 40,
              'notnull' => true,
+             'unique' => true,
              'length' => 40,
              ));
         $this->hasColumn('approved', 'boolean', null, array(

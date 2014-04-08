@@ -109,4 +109,15 @@ class member extends Basemember
         
         return $title.$this->getFirstName();
     }
+    
+    public function getCurrentActiveSubscription()
+    {
+        $subscription = member_subscriptionTable::getInstance() 
+                            ->createQuery('ms')
+                            ->addWhere('member_id = ?', $this->getId())
+                            ->addWhere('active = 1')                            
+                            ->orderBy('ms.start_date desc')
+                            ->fetchOne();
+        return $subscription;
+    }
 }
