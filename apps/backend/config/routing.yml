@@ -1,3 +1,12 @@
+member_coupon:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                member_coupon
+    module:               member_coupon
+    prefix_path:          /member_coupon
+    column:               id
+    with_wildcard_routes: true
+
 member_autocomplete:
   url: /member/search
   param: { module: member, action: ajaxAutoComplete } 
