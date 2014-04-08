@@ -7,10 +7,10 @@ member_type:
   columns:
     id: { type: integer, size: 2, unsigned: true, primary: true, notnull: true, autoincrement: true }
     type_name: { type: varchar(45), unique: true, notnull: true }
-    description: { type: varchar(255), notnull: false } 
+    description: { type: varchar(255), notnull: false }
 
-site_page:  
-  actAs: 
+site_page:
+  actAs:
     Sluggable:
       fields: [title]
       unique: true
@@ -27,7 +27,8 @@ site_page:
     members_only: { type: boolean, notnull: false  }
     admin_only: { type: boolean, notnull: false }
   relations:
-    ParentPage: { class: site_page, local: parent_page_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }  
+    ParentPage: { class: site_page, local: parent_page_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
+  
 #application:
 #  actAs: {Timestampable: ~}
 #  columns:
@@ -35,26 +36,26 @@ site_page:
 #    member_type_id: { type: integer, size: 2, unsigned: true, notnull: false }
 #    status:         { type: integer, size: 1, notnull: false }
 #    title:          { type: varchar(6), notnull: false }
-#    first_name:     { type: varchar(20), notnull: false }    
-#    last_name:      { type: varchar(20), notnull: false }    
+#    first_name:     { type: varchar(20), notnull: false }
+#    last_name:      { type: varchar(20), notnull: false }
 #    email_address:  { type: varchar(80), notnull: false }
 #    submission_id:  { type: integer, size: 8, notnull: false }
 #  relations:
 #    member_type: { local: member_type_id, onDelete: SET NULL, onUpdate: CASCADE }
-    
+
 member:
  inheritance:
     type: column_aggregation
-    extends: sfGuardUser     
+    extends: sfGuardUser
     keyField: is_member
     keyValue: 1
  columns:
    is_member:      { type: integer, size: 1, notnull: false }
    member_type_id: { type: integer, size: 2, unsigned: true, notnull: false }
-   country:        { type: varchar(6), notnull: false } 
+   country:        { type: varchar(6), notnull: false }
    #application_id: { type: integer, size: 4, notnull: false, unsigned: true  }
    timezone:       { type: varchar(255), notnull: false }
-   culture:        { type: varchar(255), notnull: false }   
+   culture:        { type: varchar(255), notnull: false } 
    middle_name:    { type: varchar(40), notnull: false }
    dob:            { type: date, notnull: false }
    passport_no:    { type: varchar(30), notnull: false }
@@ -67,7 +68,6 @@ member:
    gender: { type: enum, values: ["M","F"], notnull: false }
    marriage_anniversary: { type: date, notnull: false }
    year_as_nri: { type: integer, size: 2, notnull: false }
-   
  relations:
    member_type:    { local: member_type_id, onDelete: SET NULL, onUpdate: CASCADE }
    #application:    { local: application_id, onDelete: SET NULL, onUpdate: CASCADE }
@@ -75,43 +75,43 @@ member:
 contact:
   columns:
     id:   { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }
-    contact_type: { type: integer, size: 2, notnull: true }    
-    member_id: { type: integer, notnull: false }    
+    contact_type: { type: integer, size: 2, notnull: true }
+    member_id: { type: integer, notnull: false }
     country: { type: varchar, size: 20, notnull: false }
     isd_code: { type: varchar, size: 10, notnull: false }
-    std_code: { type: varchar, size: 10, notnull: false }    
-    contact_text: { type: varchar, size: 150, notnull: false }    
+    std_code: { type: varchar, size: 10, notnull: false }
+    contact_text: { type: varchar, size: 150, notnull: false }
   relations:
     member: { local: member_id, onDelete: CASCADE }
-    
+
 family_contact:
   inheritance:
     type: column_aggregation
-    extends: contact     
+    extends: contact
     keyField: contact_type
     keyValue: 6
   columns:
     first_name: { type: varchar, size: 255, notnull: false }
     last_name:  { type: varchar, size: 255, notnull: false }
     dob:        { type: date, notnull: false }
-    relation:   { type: integer, size: 2, notnull: false }     
-    
+    relation:   { type: integer, size: 2, notnull: false }
+
 address:
   columns:
     id:   { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }
     address_type: { type: integer, size: 2, notnull: true }
-    member_id: { type: integer, notnull: false }    
+    member_id: { type: integer, notnull: false }
     flat_no:  { type: varchar, size: 255, notnull: false}
     premises: { type: varchar, size: 255, notnull: false }
     street:  { type: varchar, size: 255, notnull: false }
-    area: { type: varchar, size: 255, notnull: false } 
+    area: { type: varchar, size: 255, notnull: false }
     city: { type: varchar, size: 255, notnull: false }
     state: { type: varchar, size: 20, notnull: false }
     country: { type: varchar, size: 20, notnull: false  }
     pin: { type: varchar, size: 20, notnull: false }
   relations:
     member: { local: member_id, onDelete: CASCADE }
-    
+
 
 submission_form:
   columns:
@@ -123,22 +123,22 @@ submission_form:
     send_reminder: { type: boolean, notnull: false }
     form_description: { type: varchar(500), notnull: false }
     template_name: { type: varchar(40), notnull: false }
-    
+
 question:
   columns:
-    id:            { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }    
-    answer_type:   { type: integer, size: 1, unsigned: true, notnull: true }    
+    id:            { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }
+    answer_type:   { type: integer, size: 1, unsigned: true, notnull: true }
     question_text: { type: varchar(400), notnull: true  }
-    help_message:  { type: varchar(400), notnull: false }    
-    parent_question_id: { type: integer, size: 4, unsigned: true, notnull: false }    
-    disabled:      { type: boolean, notnull: true, default: 0 }            
+    help_message:  { type: varchar(400), notnull: false }
+    parent_question_id: { type: integer, size: 4, unsigned: true, notnull: false }
+    disabled:      { type: boolean, notnull: true, default: 0 }      
   relations:
     ParentQuestion: { class: question, local: parent_question_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
 
 form_question:
   inheritance:
     type: concrete
-    extends: question    
+    extends: question
   columns:
     form_id: { type: integer, size: 4, unsigned: true, notnull: false }
     mandatory: { type: boolean, notnull: true, default: 0 }
@@ -150,7 +150,7 @@ form_question:
     date_max_year: { type: integer, size: 4, notnull: false }
     error_msg: { type: varchar(255), notnull: false }
   relations:
-    submission_form: { local: form_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }              
+    submission_form: { local: form_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }        
 formquestion_option:
   columns:
     id:  { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }
@@ -160,8 +160,8 @@ formquestion_option:
     pre_selected: { type: boolean, notnull: true, default: 0 }
     display_order: { type: integer, size: 1, notnull: true, default: 0 }
   relations:
-    form_question: { local: question_id, onDelete: CASCADE, onUpdate: CASCADE }    
-    
+    form_question: { local: question_id, onDelete: CASCADE, onUpdate: CASCADE }
+
 submission_form:
   columns:
     id:            { type: integer, size: 4, unsigned: true, primary: true, notnull: true, autoincrement: true }
@@ -172,7 +172,7 @@ submission_form:
     send_reminder: { type: boolean, notnull: false }
     form_description: { type: varchar(500), notnull: false }
     template_name: { type: varchar(40), notnull: false }
-    
+
 submission:
   actAs: {Timestampable: ~}
   columns:
@@ -185,13 +185,13 @@ submission:
   relations:
     sfGuardUser: { local: user_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
     submission_form:  { local: form_id, onDelete: SET NULL, onUpdate: CASCADE }
-    
+
 submission_data:
   columns:
     id:  { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
     submission_id: { type: integer, size: 8, unsigned: true, notnull: true }
     question_id: { type: integer, size: 4, unsigned: true, notnull: false }
-    answser_text: { type: varchar(2000), notnull: false }    
+    answser_text: { type: varchar(2000), notnull: false }
     selected_options: { type: varchar(2000), notnull: false }
     answer_files: { type: varchar(2000), notnull: false }
   relations:
@@ -211,13 +211,13 @@ submission_inner:
     submission: { local: submission_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
     sfGuardUser: { local: user_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
     submission_form:  { local: form_id, onDelete: SET NULL, onUpdate: CASCADE }
-    
+
 submission_inner_data:
   columns:
     id:  { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
     submission_inner_id: { type: integer, size: 8, unsigned: true, notnull: true }
     question_id: { type: integer, size: 4, unsigned: true, notnull: false }
-    answser_text: { type: varchar(2000), notnull: false }    
+    answser_text: { type: varchar(2000), notnull: false }
     selected_options: { type: varchar(2000), notnull: false }
     answer_files: { type: varchar(2000), notnull: false }
   relations:
@@ -226,14 +226,14 @@ submission_inner_data:
 
     #http://halestock.wordpress.com/2010/02/03/symfony-implementing-a-nested-set-part-one/
     #http://www.symfony-project.org/plugins/sfDoctrineNestedSetPlugin/1_0_0
-    
+
 pan_application:
  inheritance:
     type: column_aggregation
     extends: submission
     keyField: form_id
     keyValue: 1
-    
+
 payment:
   actAs: {Timestampable: ~}
   columns:
@@ -243,20 +243,20 @@ payment:
     subscription_id: { type: integer, size: 5, unsigned: true, notnull: false  }
     payment_type: { type: integer, size: 1, unsigned: true, notnull: false }
     payment_date: { type: date }
-    bank_name: { type: varchar(50), notnull: false } 
-    branch: { type: varchar(50), notnull: false } 
-    payment_ref_no: { type: varchar(50), notnull: false } 
-    transaction_id: { type: varchar(50), notnull: false } 
-    amount: { type: decimal, notnull: false } 
-    routed_through: { type: varchar(50), notnull: false } 
+    bank_name: { type: varchar(50), notnull: false }
+    branch: { type: varchar(50), notnull: false }
+    payment_ref_no: { type: varchar(50), notnull: false }
+    transaction_id: { type: varchar(50), notnull: false }
+    amount: { type: decimal, notnull: false }
+    routed_through: { type: varchar(50), notnull: false }
     status: { type: integer, size: 1, unsigned: true, notnull: false }
     ip_address: { type: integer, notnull: false }
   relations:
-    member_subscription: { local: subscription_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }  
+    member_subscription: { local: subscription_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
     submission: { local: submission_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
-    member: { local: member_id, onDelete: CASCADE }       
-    
-support_ticket:  
+    member: { local: member_id, onDelete: CASCADE } 
+
+support_ticket:
   columns:
     id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }
     tracking_no: { type: varchar(30), notnull: false, unique: true }
@@ -284,17 +284,17 @@ ticket_comment:
   actAs: { Timestampable: ~ }
   columns:
     id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }
-    ticket_id: { type: integer, size: 5, notnull: true, unsigned: true }    
+    ticket_id: { type: integer, size: 5, notnull: true, unsigned: true }
     is_reply: { type: boolean, notnull: false }
     public_message: { type: text, size: 5000, notnull: false }
     private_message: { type: text, size: 5000, notnull: false }
     sent_to_customer: { type: boolean, notnull: false }
-    replied_by: { type: integer, notnull: false } 
+    replied_by: { type: integer, notnull: false }
     alert_sent: { type: boolean, notnull: false }
   relations:
     support_ticket: { local: ticket_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
-    sfGuardUser: { local: replied_by, foreign: id, onDelete: SET NULL, onUpdate: CASCADE } 
-    
+    sfGuardUser: { local: replied_by, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
+
 ticket_file:
   options:
     symfony:
@@ -306,8 +306,8 @@ ticket_file:
     file_name:  { type: varchar(255), notnull: false }
     original_name: { type: varchar(255), notnull: false }
   relations:
-    ticket_comment: { local: comment_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }    
-    
+    ticket_comment: { local: comment_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
+
 setting:
   columns:
     id: { type: integer, size: 2, notnull: true, unsigned: true, primary: true, autoincrement: true }
@@ -315,15 +315,15 @@ setting:
     description: { type: varchar(255), notnull: false }
     value1: { type: varchar(255), notnull: false }
     value2: { type: varchar(255), notnull: false }
-    value3: { type: varchar(255), notnull: false }    
-    
+    value3: { type: varchar(255), notnull: false }
+
 type_info:
     columns:
       id: { type: integer, size: 2, notnull: true, unsigned: true, primary: true, autoincrement: true }
       type_id: { type: integer, size: 2, notnull: true }
       type_name: { type: string, size: 100, notnull: true }
       disabled: { type: boolean, notnull: false }
-        
+  
 product_category:
     inheritance:
         type: column_aggregation
@@ -336,21 +336,21 @@ department:
         type: column_aggregation
         extends: type_info
         keyField: type_id
-        keyValue: 2    
+        keyValue: 2
 
 billing_unit:
     inheritance:
         type: column_aggregation
         extends: type_info
         keyField: type_id
-        keyValue: 3        
+        keyValue: 3  
 
 exemption_category:
     inheritance:
         type: column_aggregation
         extends: type_info
         keyField: type_id
-        keyValue: 4           
+        keyValue: 4     
 
 product:
     columns:
@@ -362,18 +362,18 @@ product:
         expiry_date: { type: date, notnull: false }
         expired: { type: boolean, notnull: false }
         billing_unit_id: { type: integer, unsigned: true, size: 2, notnull: true}
-        form_id: { type: integer, size: 4, unsigned: true }        
+        form_id: { type: integer, size: 4, unsigned: true }  
         price: { type: decimal, size: 18, scale: 2, notnull: false }
-        template: { type: string, size: 60, notnull: false }                
+        template: { type: string, size: 60, notnull: false }          
         fy: { type: integer, size: 2, notnull: false }
-    relations:    
+    relations:
         billing_unit_id: { local: billing_unit, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
         product_category: { local: category_id, onDelete: SET NULL, onUpdate: CASCADE }
         submission_form:  { local: form_id, onDelete: SET NULL, onUpdate: CASCADE }
-        
+  
 subscription:
     columns:
-        id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }        
+        id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }  
         code: { type: string, size: 20, notnull: true, unique: true }
         name: { type: string, size: 200, notnull: false }
         start_date: { type: date, notnull: false }
@@ -382,24 +382,24 @@ subscription:
         price: { type: decimal, size: 18, scale: 2, notnull: false }
         disabled: { type: boolean, notnull: false }
         template: { type: string, size: 60, notnull: false }
-    
+
 subscription_product:
     columns:
        id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }
-       subscription_id: { type: integer, size: 5, notnull: true, unsigned: true}        
-       product_id: { type: integer, size: 5, notnull: true, unsigned: true}        
+       subscription_id: { type: integer, size: 5, notnull: true, unsigned: true}
+       product_id: { type: integer, size: 5, notnull: true, unsigned: true}
        units: { type: integer, size: 4, notnull: false }
     relations:
-       subscription: { local: subscription_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE } 
+       subscription: { local: subscription_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
        product: { local: product_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
-       
+
 member_subscription:
     actAs:
-        Timestampable: ~    
+        Timestampable: ~
     columns:
       id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }
       member_id: { type: integer, notnull: true }
-      subscription_id: { type: integer, size: 5, notnull: true, unsigned: true  }      
+      subscription_id: { type: integer, size: 5, notnull: true, unsigned: true  }
       price: { type: decimal, size: 18, scale: 2 }
       start_date: { type: date, notnull: false }
       end_date: { type: date, notnull: false }
@@ -411,11 +411,11 @@ member_subscription:
        subscription: { local: subscription_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
        product: { local: itr_product_id, onDelete: SET NULL, onUpdate: CASCADE  }
        member_coupon: { local: member_coupon_id, onDelete: SET NULL }
-       
+
 product_usage:
     actAs:
         Timestampable: ~
-    columns:       
+    columns:
         id: { type: integer, size: 5, notnull: true, unsigned: true, primary: true, autoincrement: true }
         member_subscription_id: { type: integer, size: 5, notnull: true, unsigned: true}
         product_id: { type: integer, size: 5, notnull: false, unsigned: true}
@@ -426,13 +426,13 @@ product_usage:
     relations:
         member_subscription: { local: member_subscription_id, foreign: id, onDelete: CASCADE, onUpdate: CASCADE }
         product: { local: product_id, onDelete: SET NULL, onUpdate: CASCADE  }
-        
+
 cart:
     actAs:
         Timestampable: ~
     columns:
         id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-        member_id: { type: integer, notnull: false }    
+        member_id: { type: integer, notnull: false }
         status: { type: integer, size: 2, notnull: false }
         ip_address: { type: integer, notnull: false }
     relations:
@@ -441,7 +441,7 @@ cart:
 cart_items:
     columns:
         id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-        cart_id: { type: integer, notnull: false }    
+        cart_id: { type: integer, notnull: false }
         product_id: { type: integer, size: 5, notnull: false, unsigned: true}
         quantity: { type: integer, size: 2, notnull: false }
         price: { type: decimal, scale: 2 }
@@ -478,16 +478,16 @@ order_item:
         price: { type: decimal, scale: 2 }
     relations:
         order: { local: order_id, onDelete: CASCADE  }
-        product: { local: product_id, onDelete: CASCADE  }        
-        
+        product: { local: product_id, onDelete: CASCADE  }
+
 itr_submission:
-    actAs: { Timestampable: ~ }    
+    actAs: { Timestampable: ~ }
     columns:
       id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
       member_id: { type: integer, notnull: false }
       product_id: { type: integer, size: 5, unsigned: true, notnull: false }
       status: { type: integer, size: 1, notnull: false }
-      
+
       first_name: { type: string, size: 40, notnull: false }
       middle_name: { type: string, size: 40, notnull: false }
       last_name: { type: string, size: 40, notnull: false }
@@ -501,33 +501,33 @@ itr_submission:
       flat_no:  { type: string, size: 255, notnull: false}
       premises: { type: string, size: 255, notnull: false }
       street:  { type: string, size: 255, notnull: false }
-      area: { type: string, size: 255, notnull: false } 
+      area: { type: string, size: 255, notnull: false }
       city: { type: string, size: 255, notnull: false }
       state: { type: string, size: 20, notnull: false }
       country: { type: string, size: 20, notnull: false  }
       pin: { type: string, size: 20, notnull: false }
-      
+
       bank_ac_no: { type: string, size: 20, notnull: false }
       ac_type: { type: integer, size: 1, notnull: false }
       ifsc_code: { type: string, size: 20, notnull: false }
       micr_code: { type: string, size: 20, notnull: false }
-      notes: { type: string, size: 500, notnull: false }   
-      
-      tax_due:           { type: decimal, notnull: false } 
+      notes: { type: string, size: 500, notnull: false }
+
+      tax_due:           { type: decimal, notnull: false }
       due_date:          { type: date, notnull: false    }
       payment_confirmed: { type: boolean, notnull: true, default: 0 }
       payment_id:        { type: integer, size: 5, unsigned: true, notnull: false }
       ack_file:          { type: string, size: 100, notnull: false }
-      
+
     relations:
-      member: { local: member_id, onDelete: SET NULL } 
+      member: { local: member_id, onDelete: SET NULL }
       product: { local: product_id, onDelete: SET NULL }
-      payment: { local: payment_id, onDelete: SET NULL }      
-      
+      payment: { local: payment_id, onDelete: SET NULL }
+
 itr_property:
     columns:
       id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-      submission_id: {type: integer, unsigned: true, notnull: false }      
+      submission_id: {type: integer, unsigned: true, notnull: false }
       address: { type: string, size: 500, notnull: false }
       locality: { type: string, size: 150, notnull: false }
       city: { type: string, size: 70, notnull: false }
@@ -547,16 +547,16 @@ itr_property:
       loan_repaid: { type: decimal, size: 19, scale: 2, notnull: false }
       interest_paid: { type: decimal, size: 19, scale: 2, notnull: false }
       loan_oustanding: { type: decimal, size: 19, scale: 2, notnull: false }
-      prev_year_receipt: { type: string, size: 600 }      
-      rent_rcvd: { type: decimal, size: 19, scale: 2, notnull: false }    
+      prev_year_receipt: { type: string, size: 600 }
+      rent_rcvd: { type: decimal, size: 19, scale: 2, notnull: false }
       rent_details: { type: string, size: 600, notnull: false }
     relations:
         itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }
-       
+
 itr_securities:
     columns:
        id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-       submission_id: {type: integer, unsigned: true, notnull: false } 
+       submission_id: {type: integer, unsigned: true, notnull: false }
        category_id: { type: integer, size: 1, notnull: false }
        details: { type: string, size: 100, notnull: false }
        purchase_info: { type: string, size: 600, notnull: false }
@@ -570,36 +570,36 @@ itr_securities:
        addon_expenses: { type: string, size: 600, notnull: false }
     relations:
         itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }
-       
+
 itr_other_income:
     columns:
        id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-       submission_id: {type: integer, unsigned: true, notnull: false } 
+       submission_id: {type: integer, unsigned: true, notnull: false }
        category_id: { type: integer, size: 1, notnull: false }
        details: { type: string, size: 300, notnull: false }
        date_rcvd: { type: date, notnull: false }
        amount: { type: decimal, size: 19, scale: 2, notnull: false }
     relations:
         itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }
-       
+
 itr_exemption:
     columns:
        id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-       submission_id: {type: integer, unsigned: true, notnull: false } 
-       category_id: { type: integer, size: 2, unsigned: true  }       
+       submission_id: {type: integer, unsigned: true, notnull: false }
+       category_id: { type: integer, size: 2, unsigned: true  }
        amount: { type: decimal, size: 19, scale: 2, notnull: false }
     relations:
        itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }
-       exemption_category: { local: category_id, onDelete: SET NULL } 
+       exemption_category: { local: category_id, onDelete: SET NULL }
 
 itr_file:
     columns:
        id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
-       submission_id: {type: integer, unsigned: true, notnull: false } 
-       category_id: { type: integer, size: 2, unsigned: true  }       
+       submission_id: {type: integer, unsigned: true, notnull: false }
+       category_id: { type: integer, size: 2, unsigned: true  }
        filename: { type: string, size: 255, notnull: false }
     relations:
-       itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }       
+       itr_submission: { local: submission_id, onDelete: CASCADE, onUpdate: CASCADE }
 
 newsnevent:
     columns:
@@ -610,11 +610,11 @@ newsnevent:
        title: { type: string, size: 255, notnull: false }
        subtitle: { type: string, size: 255, notnull: false }
        event_body: { type: string, size: 1000, notnull: false }
-       disabled: { type: boolean, notnull: false }      
+       disabled: { type: boolean, notnull: false }
 
-faq:   
-  actAs: 
-    Sluggable: 
+faq:
+  actAs:
+    Sluggable:
       fields: [question]
   columns:
     question: { type: varchar(250), notnull: true }
@@ -622,16 +622,16 @@ faq:
     ordering: { type: integer(2), notnull: false }
     active:  { type: boolean, notnull: false, default: true }
 
-tag: 
+tag:
   options:
       symfony:
           filter: false
   columns:
     id:  { type: integer, size: 4, unsigned: true, notnull: true, primary: true, autoincrement: true }
-    tag: { type: string(255) }       
-    
+    tag: { type: string(255) }
+
 blog:
-  actAs: 
+  actAs:
     Timestampable: ~
     Sluggable:
       fields: [title]
@@ -642,13 +642,13 @@ blog:
     author_id: { type: integer, notnull: false }
     summary: { type: text, notnull: false }
     blog: { type: text, notnull: false }
-    image: { type: varchar(255), notnull: false }        
+    image: { type: varchar(255), notnull: false }
     status: { type: integer, size: 1, notnull: true, default: 0 }
     alert_on_comment: { type: boolean, notnull: true, default: 0 }
     approved: { type: boolean, notnull: false  }
   relations:
-    sf_guard_user:   { local: author_id, onDelete: SET NULL }    
-    
+    sf_guard_user:   { local: author_id, onDelete: SET NULL }
+
 blog_tag:
   options:
       symfony:
@@ -665,8 +665,8 @@ blog_comment:
   options:
       symfony:
           filter: false
-  actAs: 
-    Timestampable: ~    
+  actAs:
+    Timestampable: ~
   columns:
    id:  { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
    blog_id: { type: integer, size: 8, unsigned: true, notnull: true }
@@ -677,25 +677,25 @@ blog_comment:
    is_read: { type: boolean, notnull: true }
   relations:
     blog: { local: blog_id, onDelete: CASCADE }
-    member: { local: author_id, onDelete: CASCADE }      
-    
+    member: { local: author_id, onDelete: CASCADE }
+
 coupon:
   columns:
    id:             { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
-   title:          { type: string, size: 255, notnull: true, unique: true } 
+   title:          { type: string, size: 255, notnull: true, unique: true }
    coupon_type:    { type: integer, size: 2, notnull: false }
    discount_type:  { type: integer, size: 1, notnull: true }
    discount_rate:  { type: decimal, scale: 2, notnull: false }
    limit_per_member:  { type: integer, unsigned: true, notnull: false }
-   quantity:       { type: integer, unsigned: true, notnull: false }   
+   quantity:       { type: integer, unsigned: true, notnull: false }
    active:         { type: boolean, notnull: true }
-   
+
 member_coupon:
-  actAs: 
-    Timestampable: ~    
+  actAs:
+    Timestampable: ~
   columns:
    id:             { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
-   coupon_id:      { type: integer, size: 8, unsigned: true, notnull: false }  
+   coupon_id:      { type: integer, size: 8, unsigned: true, notnull: false }
    member_id:      { type: integer, notnull: false }
    coupon_code:    { type: string, size: 40, notnull: true }
    approved:       { type: boolean, notnull: false }
@@ -703,3 +703,12 @@ member_coupon:
   relations:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
+   
+email_directory:
+  actAs:
+    Timestampable: ~
+  columns:
+   id:             { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
+   directory_key: { type: string, size: 255, notnull: true, unique: true }
+   title: { type: string, size: 255, notnull: false }
+   send_to: { type: string, size: 4000, notnull: false }
