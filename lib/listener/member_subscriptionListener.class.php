@@ -55,6 +55,16 @@ class member_subscriptionListener extends Doctrine_Record_Listener
                 $coupon->save();               
            }
         }
+        else if($record->getMemberCouponId () && $record->getActive())
+        {
+            //Mark the coupon as used.
+            $member_coupon = $record->getMemberCoupon();
+            if($member_coupon)
+            {
+                $member_coupon->setUsed(true);
+                $member_coupon->save();
+            }
+        }
     }
     
 }

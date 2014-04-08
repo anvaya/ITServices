@@ -42,6 +42,7 @@
         $other_services = productTable::getInstance()
                         ->createQuery('p')                        
                         ->addWhere('p.price > 0')
+                        ->addWhere('p.expired is null or p.expired = 0')
                         ->orderBy('p.name')
                         ->execute();
      }

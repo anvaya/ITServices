@@ -37,6 +37,7 @@ class defaultActions extends sfActions
       $this->itr_products = productTable::getInstance()
                         ->createQuery('p')
                         ->addWhere('p.category_id = ?', product_categoryTable::CATEGORY_ITR)
+                        ->addWhere('p.expired is null or p.expired = 0')
                         ->fetchArray();                        
   }
   

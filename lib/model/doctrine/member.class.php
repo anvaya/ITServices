@@ -34,6 +34,7 @@ class member extends Basemember
                             ->innerJoin('p.subscription_product sp')
                             ->innerJoin('sp.subscription s')
                             ->addWhere('p.category_id <> ?', product_categoryTable::CATEGORY_ITR)
+                            ->addWhere('p.expired is null or p.expired = 0')
                             ->addWhere('s.id = ?', $subscription->getSubscriptionId())
                             ->orderBy('p.name');
             

@@ -50,7 +50,7 @@
         <li>
             <div class="product_box ui-corner-all">
                 <h3><?php echo $product->getName() ?></h3>
-                <p style="font-weight: bold">AED <?php echo $product->getPrice();?></p>
+                <p style="font-weight: bold">USD <?php echo $product->getPrice();?></p>
                 <a class="green-btn" href="<?php echo url_for('@cart_add?id='.$product->getId()) ?>" class="green-btn">Buy Now</a>
             </div>
         </li>

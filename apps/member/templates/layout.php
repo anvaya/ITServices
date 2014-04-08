@@ -42,57 +42,7 @@
         </div>        
         
         <footer id="page_footer">            
-            <div class="bg_gray">
-                 <div class="wrapper1">
-                         <div class="row-fluid" style="min-height: 180px">
-                                 <div class="span3">
-                                         <h5>Our Services</h5>
-                                         <ul class="unstyled">
-                                                 <li><a href="<?php echo public_path("services.html");?>">Tax Management</a></li>
-                                                 <li><a href="<?php echo public_path("services.html#rbi");?>">Online Helpline for NRI’s</a></li>
-                                                 <li><a href="<?php echo public_path("services.html#rbi");?>">Conversion from NRO a/c to NRE a/c</a></li>														
-                                                 <li><a href="<?php echo public_path("services.html#rbi");?>">Certifications / Attestations</a></li>
-                                         </ul>
-                                 </div>
-
-                                 <div class="span3">
-                                         <h5>Why Groworth</h5>
-                                         <ul class="unstyled">
-                                                 <li><a href="<?php echo public_path("aboutus.html");?>">Advantages</a></li>
-                                                 <li><a href="<?php echo public_path("contactus.html");?>">How you can join</a></li>
-                                                 <!-- <li><a href="#">Blog</a></li> -->
-                                         </ul>
-                                 </div>
-
-                                 <div class="span3">
-                                         <h5>The Company</h5>
-                                         <ul class="unstyled">
-                                                 <li><a href="<?php echo public_path("aboutus.html");?>">About Us</a></li>
-                                                 <li><a href="<?php echo public_path("contactus.html");?>">Contact us</a></li>
-                                                 <li style="display: none"><a href="#">Privacy policy</a></li>
-                                                 <li style="display: none"><a href="#">Terms &amp; conditions</a></li>
-                                         </ul>
-                                 </div>
-
-                                 <div class="span3" style="display: none">
-                                         <h5>Quick Links</h5>
-                                         <ul class="unstyled">
-                                                 <li><a href="#"></a></li>
-                                                 <li><a href="#"></a></li>
-                                                 <li><a href="#"></a></li>
-                                                 <li><a href="#"></a></li>
-                                                 <li><a href="#"></a></li>
-                                         </ul>
-                                 </div>									
-
-
-                         </div>
-                         <?php if($sf_user->isAuthenticated()):?>
-                            <p>Your previous Successful login at <?php echo format_date($sf_user->getAttribute('prev_login') ,"dd/MM/yyyy hh:mm a"); ?>
-                         <?php endif;?>       
-                         <p style="margin-top: 20px">Copyright &copy; <?php echo date('y');?> Groworth Real Solutions Pvt. Ltd.</p>
-                 </div>
-             </div>	    
+            <?php include("_footer.php")    ;?>
         </footer>
         <script type="text/javascript">
             $(document).ready(function () {

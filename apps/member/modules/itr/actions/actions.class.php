@@ -122,6 +122,34 @@ class itrActions extends sfActions
             $itr->setPhoneNo($phone->getIsdCode()." ".$phone->getContactText());
         }
 
+        //Find old information
+        $old_itr = itr_submissionTable::getInstance()
+                    ->createQuery('is')
+                    ->addWhere('is.member_id = ?', $member_id)
+                    ->orderBy('is.id desc')
+                    ->fetchOne();
+        
+        if($old_itr)
+        {
+            /* @var $old_itr itr_submission */
+            $itr->setPanNo($old_itr->getPanNo());
+            $itr->setFathersName($old_itr->getFathersName());
+            $itr->setMothersName($old_itr->getMothersName());
+            $itr->setBankAcNo($old_itr->getBankAcNo());
+            $itr->setAcType($old_itr->getAcType());
+            $itr->setIfscCode($old_itr->getIfscCode());
+            $itr->setMicrCode($old_itr->getMicrCode());
+            
+            $old_properties = $old_itr->getItrProperty();
+            foreach($old_properties as $pr)
+            {
+                /* @var $pr itr_property */
+                $property = clone $pr;
+                $property->setItrSubmission($itr);
+                $itr->getItrProperty()->add($property);                
+            }
+        }
+        
         $itr->setProduct($product);
         $this->form = new itr_submissionForm($itr);
     }

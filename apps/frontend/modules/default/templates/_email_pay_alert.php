@@ -29,7 +29,7 @@
 				<tr><th align="left">Payment Ref. No. :</th><td><?php echo $payment->getPaymentRefNo(); ?></td></tr>
 				<tr><th align="left">Transaction_id :</th><td><?php echo $payment->getTransactionId(); ?></td></tr>
 				<tr><th align="left">Payment Date :</th><td><?php echo $payment->getPaymentDate(); ?></td></tr>				
-                                <tr><th align="left">Amount</th><td>AED <?php echo $payment->getAmount(); ?></td></tr>
+                                <tr><th align="left">Amount</th><td>USD <?php echo $payment->getAmount(); ?></td></tr>
 			</table>
 		</div>		
 		<hr />				

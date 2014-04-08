@@ -13,7 +13,8 @@ class productActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
     $query = Doctrine_Core::getTable('product')
-      ->createQuery('a');
+      ->createQuery('a')
+      ->addWhere('a.expired is null or a.expired = 0');
       //->execute();
     //sfConfig::get('app_max_per_page')
     $this->products = new sfDoctrinePager('product', 1);

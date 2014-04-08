@@ -81,6 +81,7 @@ EOF;
         $message = str_ireplace("{member_name}", $member_name, $template);
         $subject = "Income Tax Return Reminder";
         $this->logSection('info', 'Sending to '.$row['email_address']);
+        
         $sent = send_email($member_name, $row['email_address'] , $subject, $message);
         
         if($sent)
