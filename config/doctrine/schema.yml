@@ -703,7 +703,7 @@ member_coupon:
   relations:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
-   
+
 email_directory:
   actAs:
     Timestampable: ~
@@ -712,3 +712,4 @@ email_directory:
    directory_key: { type: string, size: 255, notnull: true, unique: true }
    title: { type: string, size: 255, notnull: false }
    send_to: { type: string, size: 4000, notnull: false }
+
