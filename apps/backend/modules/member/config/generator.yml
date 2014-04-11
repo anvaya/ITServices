@@ -20,7 +20,8 @@ generator:
         object_actions:
           _edit: ~
         batch_actions: []
-        actions: []
+        actions:
+          exportPdf: { label: Export As Pdf, action: exportPdf }          
         sort: [created_at, desc]
       filter:  
         display: [ first_name, last_name, email_address, country, is_active ]

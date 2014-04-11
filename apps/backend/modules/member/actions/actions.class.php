@@ -224,6 +224,74 @@ class memberActions extends autoMemberActions
         }       
 		return 0;
   }
-  
+
+  public function executeExportPdf(sfWebRequest $request)
+  {
+
+      //$members = Doctrine::getTable('member')->findAll();
+      $query = $this->buildQuery();
+      $members  = $query->execute();
+
+      $html_body = $this->getPartial("asHtml" , array("members" => $members));
+
+      $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+
+      // set document information
+      $pdf->SetCreator(PDF_CREATOR);
+      $pdf->SetAuthor('Groworth.in');
+      //$pdf->SetTitle('TCPDF Example 006');
+      $pdf->SetSubject('Groworth Member');
+      //$pdf->SetKeywords('TCPDF, PDF, example, test, guide');
+
+      // set default header data
+      //$pdf->SetHeaderData(PDF_HEADER_LOGO, PDF_HEADER_LOGO_WIDTH, PDF_HEADER_TITLE.' 006', PDF_HEADER_STRING);
+      //$pdf->setHeaderData($ln, $lw, $ht, $hs);
+      // set header and footer fonts
+      //$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
+      //$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+
+      // set default monospaced font
+      $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
+
+      //set margins
+
+      $pdf->SetMargins(8, 0, 4);
+      $pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+      $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+
+      //set auto page breaks
+      $pdf->SetAutoPageBreak(TRUE, 2);
+
+      //set image scale factor
+      $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+      //set some language-dependent strings
+      //$pdf->setLanguageArray($l);
+
+      $pdf->setPrintHeader(false);
+      $pdf->setPrintFooter(false);
+
+      // ---------------------------------------------------------        
+      // set font
+
+      $pdf->SetFont('helvetica', '', 10);
+      // add a page
+      $pdf->AddPage();        
+
+      $pdf->writeHTML($html_body, false, false, true, false, '');
+
+      $path = "Memberlist.pdf";
+      $response = $this->getResponse();
+      $response->setContentType('application/pdf');
+      $response->setHttpHeader('Content-Disposition', 'attachment; filename="' . $path . '"');
+      $this->setLayout(false);
+
+      /* @var $itr_submission itr_submission */
+      
+      $pwd = "member";
+      $pdf->SetProtection(array('print', 'copy'), $pwd, null, 0, null);
+      $pdf->Output($path, 'D');
+      //$pdf->Output($path);
+  }
   
 }
