@@ -2,6 +2,7 @@
 
 require_once dirname(__FILE__).'/../lib/memberGeneratorConfiguration.class.php';
 require_once dirname(__FILE__).'/../lib/memberGeneratorHelper.class.php';
+require_once sfConfig::get('sf_lib_dir').'/vendor/tcpdf/tcpdf.php';
 
 /**
  * member actions.
