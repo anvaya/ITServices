@@ -18,6 +18,7 @@ generator:
         display: [id, directory_key, title, send_to_list]
       filter:
         display: [directory_key, title, created_at, updated_at]
-      form:    ~
+      form:
+        display: [id, directory_key, title, email_subject, is_html, email_templates, email_templates_plain, send_to_list ]
       edit:    ~
       new:     ~

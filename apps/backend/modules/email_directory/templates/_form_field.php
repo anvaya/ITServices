@@ -1,3 +1,4 @@
+<?php $sf_response->addJavascript('tinymce/tiny_mce.js'); ?>
 <?php if ($field->isPartial()): ?>
   <?php include_partial('email_directory/'.$name, array('form' => $form, 'attributes' => $attributes instanceof sfOutputEscaper ? $attributes->getRawValue() : $attributes)) ?>
 <?php elseif ($field->isComponent()): ?>
