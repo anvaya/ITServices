@@ -12,5 +12,15 @@
  */
 class email_directory extends Baseemail_directory
 {
-
+  public function getSendToList() {
+    $return = "";
+    $send_to = unserialize($this->getSendTo());
+    foreach($send_to as $k => $v)
+    {
+      //$return = $v['name']."". $v['email'];
+      if(trim($v['name']) != "" || trim($v['email']) != "")
+        $return .= sprintf("Name: %s, Email: %s \n", $v['name'], $v['email']);
+    }
+    return $return;
+  }
 }

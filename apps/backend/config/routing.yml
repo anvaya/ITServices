@@ -1,3 +1,12 @@
+email_directory:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                email_directory
+    module:               email_directory
+    prefix_path:          /email_directory
+    column:               id
+    with_wildcard_routes: true
+
 member_coupon:
   class: sfDoctrineRouteCollection
   options:

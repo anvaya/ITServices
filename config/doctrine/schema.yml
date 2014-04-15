@@ -708,7 +708,7 @@ member_coupon:
   relations:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
-   
+
 email_directory:
   actAs:
     Timestampable: ~
