@@ -12,10 +12,10 @@ class email_directoryForm extends Baseemail_directoryForm
 {
   public function configure()
   {
-    $this->widgetSchema['email_templates'] = new sfWidgetFormTextareaTinyMCE();
-    $this->widgetSchema['email_templates_plain'] = new sfWidgetFormTextarea();
-    $this->setDefault('email_templates_plain',$this->getObject()->getEmailTemplates());
-    $this->validatorSchema['email_templates_plain'] = new sfValidatorPass();
+    $this->widgetSchema['email_template'] = new sfWidgetFormTextareaTinyMCE();
+    $this->widgetSchema['email_template_plain'] = new sfWidgetFormTextarea();
+    $this->setDefault('email_template_plain',$this->getObject()->getEmailTemplate());
+    $this->validatorSchema['email_template_plain'] = new sfValidatorPass();
     
     $subForm = new sfForm();
     $arr_send_to = unserialize($this->getObject()->getSendTo());
@@ -36,15 +36,15 @@ class email_directoryForm extends Baseemail_directoryForm
   public function bind(array $taintedValues = null, array $taintedFiles= null)
   {
     // set column value from custom field value
-    $email_templates_plain = trim($taintedValues["email_templates_plain"]);
-    $email_templates = trim($taintedValues ["email_templates"]);
+    $email_template_plain = trim($taintedValues["email_template_plain"]);
+    $email_template = trim($taintedValues ["email_template"]);
     if(isset($taintedValues["is_html"]))
     {
-       $this->getObject()->setEmailTemplates($email_templates);
-       $taintedValues ["email_templates"] = $email_templates;
+       $this->getObject()->setEmailTemplate($email_template);
+       $taintedValues ["email_template"] = $email_template;
     }else{
-       $this->getObject()->setEmailTemplates($email_templates_plain);
-       $taintedValues ["email_templates"] = $email_templates_plain;
+       $this->getObject()->setEmailTemplate($email_template_plain);
+       $taintedValues ["email_template"] = $email_template_plain;
     }
     parent::bind($taintedValues, $taintedFiles);
 

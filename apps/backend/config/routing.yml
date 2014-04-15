@@ -4,7 +4,7 @@ email_directory:
     model:                email_directory
     module:               email_directory
     prefix_path:          /email_directory
-    column:               id
+    column:               directory_key
     with_wildcard_routes: true
 
 member_coupon:
