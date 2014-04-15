@@ -17,6 +17,7 @@ class cartActions extends sfActions
     $cart = Doctrine_Core::getTable('cart')->findOneByMemberId($member_id);
     if($cart)
     {
+        $this->shoppingCart = $cart;
         $this->carts = Doctrine_Core::getTable('cart_items')
           ->createQuery('a')
           ->where('a.cart_id = ?',  $cart->getId())
@@ -25,6 +26,57 @@ class cartActions extends sfActions
         $this->getUser()->setFlash('notice', 'Cart is empty.');
   }
 
+  public function executeApplyCoupon(sfWebRequest $request)
+  {
+      $this->forward404Unless($request->getParameter('code'));
+      $code = $request->getParameter('code');
+      
+      $coupon =  member_couponTable::getInstance()
+              ->createQuery('mc')
+              ->addWhere('mc.coupon_code = ?', $code)
+              ->addWhere('mc.used is null or mc.used = 0')
+              ->fetchOne();
+      
+      $member_id = $this->getUser()->getGuardUser()->getId();
+      $cart = Doctrine_Core::getTable('cart')->findOneByMemberId($member_id);
+      $invalid = true;
+              
+      if($cart && $coupon)
+      {          
+          if( ($product_id = $coupon->getProductId()) )
+          {
+             $product_cnt = Doctrine_Core::getTable('cart_items')
+                                ->createQuery('a')                                
+                                ->addWhere('a.cart_id = ?',  $cart->getId())
+                                ->addWhere('a.product_id = ?', $product_id)
+                                ->count();
+             
+             if($product_cnt > 0)
+             {
+                 $invalid = false;
+             }             
+          }
+          else
+          {
+            $invalid = false;
+          }
+      }
+      
+      if($invalid)
+      {
+         $this->getUser()->setFlash('notice','Invalid Coupon.'); 
+      }
+      else
+      {
+        $cart->setMemberCouponId($coupon->getId());    
+        $cart->save();
+      }
+      
+      $this->redirect("@cart_index");
+  }
+  
+  
+  
   public function executeClear(sfWebRequest $request)
   {
       $member_id = $this->getUser()->getGuardUser()->getId();
@@ -51,8 +103,8 @@ class cartActions extends sfActions
           $order->setOrderNo(date('YmdHis'));
           $order->setOrderDate(date('Y-m-d H:i:s'));
           
-          $order->setGrossAmount();
-          $order->setNetAmount();
+                    
+          $amount = 0;
           
           foreach($cart->getCartItems() as $cart_item) /* @var $cart_item cart_items */
           {
@@ -63,7 +115,21 @@ class cartActions extends sfActions
               $order_item->setPrice($cart_item->getPrice());              
               
               $order->getOrderItem()->add($order_item);
+              
+              $amount += $cart_item->getPrice();
           }
+          
+          $order->setGrossAmount($amount);
+          
+          if ( ($coupon = $cart->getMemberCoupon()) )
+          {   
+              $disc_amount = $coupon->getCoupon()->getDiscountRate();
+              $order->setDiscountVoucherNo($coupon->getCouponCode());
+              $order->setDiscountAmount($disc_amount);              
+              $amount -= $disc_amount;
+          }                   
+          
+          $order->setNetAmount($amount);
           
           $order->save();
           
@@ -73,6 +139,7 @@ class cartActions extends sfActions
               ->addWhere('member_id = ?', $member_id)
               ->execute();
           
+          $this->sendOrderPayEmail($order);
           $this->redirect("cart/orderPlaced?id=".$order->getId());
       }
       
@@ -201,6 +268,41 @@ class cartActions extends sfActions
     $this->redirect('cart/index');
   }
 
+  private function sendOrderPayEmail(order $order)
+  {
+      try
+      {
+          $user = memberTable::getInstance()->find($this->getUser()->getGuardUser()->getId());
+          $body = $this->getPartial("email_payment", array("user"=>$user,"order"=>$order));
+
+          //file_put_contents(sfConfig::get('sf_log_dir')."/email_payment.html", $body);
+
+          $msg = $this->getMailer()->compose();
+          $msg->setSubject("Order #".$order->getOrderNo()." Please complete your payment.");
+          $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+          $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+          $msg->addTo($user->getEmailAddress() , $user->getFirstName()." ".$user->getLastName() );            
+          $msg->setBody($body, 'text/html', "utf-8");
+          $this->getMailer()->sendNextImmediately();
+          $this->getMailer()->send($msg);
+
+          $msg = $this->getMailer()->compose();
+          $msg->setSubject("Order #".$order->getOrderNo()." Please complete your payment.");
+          $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+          $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+          $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");            
+          $msg->addTo("mrugendrabhure@gmail.com","Mrugendra Bhure");            
+          $msg->setBody($body, 'text/html', "utf-8");
+          $this->getMailer()->sendNextImmediately();
+          $this->getMailer()->send($msg);
+          
+          return true;
+      }catch(Exception $ex)
+      {
+          return false;
+      }
+  }
+  
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));

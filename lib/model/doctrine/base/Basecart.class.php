@@ -7,23 +7,29 @@
  * 
  * @property integer $id
  * @property integer $member_id
+ * @property integer $member_coupon_id
  * @property integer $status
  * @property integer $ip_address
  * @property member $member
+ * @property member_coupon $member_coupon
  * @property Doctrine_Collection $cart_items
  * 
- * @method integer             getId()         Returns the current record's "id" value
- * @method integer             getMemberId()   Returns the current record's "member_id" value
- * @method integer             getStatus()     Returns the current record's "status" value
- * @method integer             getIpAddress()  Returns the current record's "ip_address" value
- * @method member              getMember()     Returns the current record's "member" value
- * @method Doctrine_Collection getCartItems()  Returns the current record's "cart_items" collection
- * @method cart                setId()         Sets the current record's "id" value
- * @method cart                setMemberId()   Sets the current record's "member_id" value
- * @method cart                setStatus()     Sets the current record's "status" value
- * @method cart                setIpAddress()  Sets the current record's "ip_address" value
- * @method cart                setMember()     Sets the current record's "member" value
- * @method cart                setCartItems()  Sets the current record's "cart_items" collection
+ * @method integer             getId()               Returns the current record's "id" value
+ * @method integer             getMemberId()         Returns the current record's "member_id" value
+ * @method integer             getMemberCouponId()   Returns the current record's "member_coupon_id" value
+ * @method integer             getStatus()           Returns the current record's "status" value
+ * @method integer             getIpAddress()        Returns the current record's "ip_address" value
+ * @method member              getMember()           Returns the current record's "member" value
+ * @method member_coupon       getMemberCoupon()     Returns the current record's "member_coupon" value
+ * @method Doctrine_Collection getCartItems()        Returns the current record's "cart_items" collection
+ * @method cart                setId()               Sets the current record's "id" value
+ * @method cart                setMemberId()         Sets the current record's "member_id" value
+ * @method cart                setMemberCouponId()   Sets the current record's "member_coupon_id" value
+ * @method cart                setStatus()           Sets the current record's "status" value
+ * @method cart                setIpAddress()        Sets the current record's "ip_address" value
+ * @method cart                setMember()           Sets the current record's "member" value
+ * @method cart                setMemberCoupon()     Sets the current record's "member_coupon" value
+ * @method cart                setCartItems()        Sets the current record's "cart_items" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -45,6 +51,11 @@ abstract class Basecart extends sfDoctrineRecord
              'type' => 'integer',
              'notnull' => false,
              ));
+        $this->hasColumn('member_coupon_id', 'integer', null, array(
+             'type' => 'integer',
+             'unsigned' => true,
+             'notnull' => false,
+             ));
         $this->hasColumn('status', 'integer', 2, array(
              'type' => 'integer',
              'size' => 2,
@@ -64,6 +75,11 @@ abstract class Basecart extends sfDoctrineRecord
              'local' => 'member_id',
              'foreign' => 'id',
              'onDelete' => 'CASCADE'));
+
+        $this->hasOne('member_coupon', array(
+             'local' => 'member_coupon_id',
+             'foreign' => 'id',
+             'onDelete' => 'SET NULL'));
 
         $this->hasMany('cart_items', array(
              'local' => 'id',

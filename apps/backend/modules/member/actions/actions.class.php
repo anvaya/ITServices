@@ -46,6 +46,13 @@ class memberActions extends autoMemberActions
                         ->addWhere('ms.member_id = ?', $member->getId())              
                         ->orderBy('ms.id desc')
                         ->fetchOne();
+      
+      $old_subscriptions = member_subscriptionTable::getInstance()
+                            ->createQuery('ms')
+                            ->addWhere('ms.member_id = ?', $member->getId())
+                            ->addWhere('ms.id <> ?', $subscription->getId())
+                            ->count();
+      
       $result = 0;
       
       if($subscription)
@@ -62,15 +69,35 @@ class memberActions extends autoMemberActions
           $subscription->setActive(1);
           $subscription->save();
           
-          $this->getUser()->setFlash('notice','The account has been activated');
-          $email_body = $this->getPartial("email_activation", array("user"=>$member, "subscription"=>$subscription));
+          if($old_subscriptions > 0)
+          {
+              member_subscriptionTable::getInstance()
+                        ->createQuery()
+                        ->update()
+                        ->set('active',0)
+                        ->addWhere('member_id = ?', $member->getId())
+                        ->addWhere('id <> ?', $subscription->getId())
+                        ->execute();
+              
+              $notice     = "The subscription has been renewed.";
+              $email_body = $this->getPartial("email_renewal", array("user"=>$member, "subscription"=>$subscription));
+              $subject    = "Your Groworth.in subscription has been renewed";
+          }
+          else
+          {
+              $notice = 'The account has been activated';            
+              $email_body = $this->getPartial("email_activation", array("user"=>$member, "subscription"=>$subscription));
+              $subject    = "You Groworth.in account is now active";
+          }
+          
+          $this->getUser()->setFlash('notice',$notice);
           
           try
           {
             $mailer =  $this->getMailer();
             
             $msg = $mailer->compose();
-            $msg->setSubject("You Groworth.in account is now active");
+            $msg->setSubject($subject);
             $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
             $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
             $msg->addTo($member->getEmailAddress() , $member->getFirstName() );            
@@ -79,7 +106,7 @@ class memberActions extends autoMemberActions
             $mailer->send($msg);
               
             $msg = $mailer->compose();
-            $msg->setSubject("You Groworth.in account is now active");
+            $msg->setSubject($subject);
             $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
             $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
             $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
@@ -88,42 +115,95 @@ class memberActions extends autoMemberActions
             $mailer->sendNextImmediately();
             $mailer->send($msg);
             
-            $coupon = member_couponTable::getInstance()
-                        ->createQuery('mc')
-                        ->innerJoin('mc.coupon c')
-                        ->addWhere('mc.member_id = ?', $member->getId())
-                        ->addWhere('mc.used is null or mc.used = 0')                        
-                        ->addWhere('c.coupon_type = ?', couponTable::COUPON_TYPE_SPOUCE_DISCOUNT )
-                        ->orderBy('mc.id desc')
-                        ->fetchOne();
-            
-            if($coupon)
-            {                
-                /* @var $coupon member_coupon */
+            if($old_subscriptions == 0)
+            {
+                $coupon = member_couponTable::getInstance()
+                            ->createQuery('mc')
+                            ->innerJoin('mc.coupon c')
+                            ->addWhere('mc.member_id = ?', $member->getId())
+                            ->addWhere('mc.used is null or mc.used = 0')                        
+                            ->addWhere('c.coupon_type = ?', couponTable::COUPON_TYPE_SPOUCE_DISCOUNT )
+                            ->orderBy('mc.id desc')
+                            ->fetchOne();
+
+                if($coupon)
+                {                
+                    /* @var $coupon member_coupon */
+
+                    $coupon_code = $coupon->getCouponCode();
+                    $valid_till  = format_date($subscription->getSubscription()->getEndDate(),"dd/MM/y");
+                    $email_body = $this->getPartial("email_coupon", array("user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
+                    $spouce = $member->getGender()=="M"?"wife":"husband";
+
+                    $msg = $mailer->compose();
+                    $msg->setSubject("Important news for your ".$spouce);
+                    $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+                    $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+                    $msg->addTo($member->getEmailAddress() , $member->getFirstName() );
+                    $msg->setBody($email_body, 'text/html', "utf-8");
+                    $mailer->sendNextImmediately();
+                    $mailer ->send($msg);
+
+                    $msg = $mailer->compose();
+                    $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+                    $msg->setSubject("Important news for your ".$spouce);
+                    $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
+                    $msg->addCc("mrugendrabhure@gmail.com","Mrugendra Bhure" );
+                    $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+                    $msg->setBody($email_body, 'text/html', "utf-8");
+                    $mailer->sendNextImmediately();
+                    $mailer ->send($msg);
+                }
                 
-                $coupon_code = $coupon->getCouponCode();
-                $valid_till  = format_date($subscription->getSubscription()->getEndDate(),"dd/MM/y");
-                $email_body = $this->getPartial("email_coupon", array("user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
-                $spouce = $member->getGender()=="M"?"wife":"husband";
+                $coupon = false;
+                $coupon = member_couponTable::getInstance()
+                            ->createQuery('mc')
+                            ->innerJoin('mc.coupon c')
+                            ->addWhere('mc.member_id = ?', $member->getId())
+                            ->addWhere('mc.used is null or mc.used = 0')                        
+                            ->addWhere('c.coupon_type = ?', couponTable::COUPON_TYPE_BACK_YEAR_ITR )
+                            ->orderBy('mc.id desc')
+                            ->fetchOne();
+
+                if($coupon)
+                {              
+                    $current_product = productTable::getInstance()->find($subscription->getItrProductId());
+                    $coupon_product = productTable::getInstance()->find($coupon->getProductId());
+                    
+                    /* @var $coupon_product product */
+                    if($coupon_product->getExpired())
+                    {
                         
-                $msg = $mailer->compose();
-                $msg->setSubject("Important news for your ".$spouce);
-                $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
-                $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
-                $msg->addTo($member->getEmailAddress() , $member->getFirstName() );
-                $msg->setBody($email_body, 'text/html', "utf-8");
-                $mailer->sendNextImmediately();
-                $mailer ->send($msg);
+                    }
+                    else
+                    {
+                        /* @var $coupon member_coupon */
+                        $coupon_code = $coupon->getCouponCode();
+                        $valid_till  = format_date($subscription->getSubscription()->getEndDate(),"dd/MM/y");
+                        $email_body = $this->getPartial("email_coupon_backyear", array("current_fy"=>$current_product->getFy()."-".($current_product->getFy()+1), "prev_fy"=>$coupon_product->getFy()."-".($coupon_product->getFy()+1), "user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
+                        
+                        $msg = $mailer->compose();
+                        $msg->setSubject("Important News for You");
+                        $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+                        $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+                        $msg->addTo($member->getEmailAddress() , $member->getFirstName() );
+                        $msg->setBody($email_body, 'text/html', "utf-8");
+                        $mailer->sendNextImmediately();
+                        $mailer ->send($msg);
+
+                        $msg = $mailer->compose();
+                        $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
+                        $msg->setSubject("Important news for you");
+                        $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
+                        $msg->addCc("mrugendrabhure@gmail.com","Mrugendra Bhure" );
+                        $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
+                        $msg->setBody($email_body, 'text/html', "utf-8");
+                        $mailer->sendNextImmediately();
+                        $mailer ->send($msg);
+                    }
+                }
                 
-                $msg = $mailer->compose();
-                $msg->addFrom("nriservices@groworth.in","Groworth Real Solutions Pvt. Ltd");
-                $msg->setSubject("Important news for your ".$spouce);
-                $msg->addTo("sandeep.groworth@gmail.com","Sandeep Ghadge");    
-                $msg->addCc("mrugendrabhure@gmail.com","Mrugendra Bhure" );
-                $msg->addReplyTo("nrihelp@groworth.in", "Groworth Real Solutions Pvt. Ltd");
-                $msg->setBody($email_body, 'text/html', "utf-8");
-                $mailer->sendNextImmediately();
-                $mailer ->send($msg);
+                
             }
           }catch (Exception $ex) 
           {

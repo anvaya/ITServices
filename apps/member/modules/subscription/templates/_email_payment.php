@@ -3,36 +3,45 @@
 	.email_body td,  .email_body th { text-align: left; padding-left: 4px; }
         .email_body th { font-weight: bold; }
 	.green_btn  {  background-color: green; padding: 4px; font-weight: bold; color: white; text-decoration: none; border: 1px solid #eee; } 
+        p { margin-top: 5px; }
 </style>
 <table border="0" class="email_body">
 
 <tr>
 	<td>
-		 <?php echo image_tag("logo3.jpg",array("absolute"=>true,"alt"=>"Groworth Real Solutions Pvt. Ltd."));?>	
+                <?php echo image_tag("logo3.jpg",array("absolute"=>true,"alt"=>"Groworth Real Solutions Pvt. Ltd."));?>		
 	</td>		
 </tr>
 <tr>
 	<td>
 		<br />
 		<p>
-			Hello Admin,
+                    Dear <?php /* @var $user member */ echo $user->getQualifiedName();?>,
 		</p>
 
-                <p>A member has just confirmed <?php if($payment->getSubmissionId()):?> membership <?php else:?> renewal <?php endif;?>  payment.</p>
+		<p>Thank you for requesting a renewal of your subscription. </p>
 
-		<p>Transaction details below: </p>
+                                
+		<p>Please complete the bank transfer of your subscription payment as per the details below: </p>
 		<hr />
 		<div class="payment_info">
-			<table><?php /* @var $payment payment */?>
-				<tr><th align="left">Bank name:</th><td><?php echo $payment->getBankName(); ?></td></tr>
-                                <tr><th align="left">Branch:</th><td><?php echo $payment->getBranch(); ?></td></tr>
-				<tr><th align="left">Payment Ref. No. :</th><td><?php echo $payment->getPaymentRefNo(); ?></td></tr>
-				<tr><th align="left">Transaction_id :</th><td><?php echo $payment->getTransactionId(); ?></td></tr>
-				<tr><th align="left">Payment Date :</th><td><?php echo $payment->getPaymentDate(); ?></td></tr>				
-                                <tr><th align="left">Amount</th><td>USD <?php echo $payment->getAmount(); ?></td></tr>
+			<table>
+				<tr><th align="left">Bank name and Branch:</th><td>AXIS Bank, Madhav Nagar, Nagpur</td></tr>
+				<tr><th align="left">Account Name:</th><td>GROWORTH REAL SOLUTIONS PRIVATE LIMITED</td></tr>
+				<tr><th align="left">Account No:</th><td>913020050376549</td></tr>
+				<tr><th align="left">IFSC Code for NEFT / RTGS</th><td>UTIB0000639</td></tr>
+				<tr><th align="left">Swift Code</th><td>AXISINBB048</td></tr>
+				<tr><th align="left">Amount</th><td><?php echo $amount ?></td></tr>
 			</table>
 		</div>		
-		<hr />				
+		<hr />
+		<p><b>After you have made the payment:</b></p>
+                <p>&nbsp;</p>
+                <p>Please click <a href="<?php echo public_path("index.php/default/confirmPay?sid=".$subscription->getId(), true);?>">here</a> to notify us of your payment for quick processing.</p>
+		<p>&nbsp;</p>
+		<p>Please <a href="<?php echo public_path("index.php/default/contact", true) ?>">Contact Us</a> in case you have any queries.</p>
+		
+		<br />
 		<br />
 		Sincerely,<br />
 		Groworth Real Solutions Pvt. Ltd.
@@ -40,7 +49,7 @@
 </tr>
 <tr>
     <td>
-        <p>
+         <p>
         <br />
         <small>
             DISCLAIMER:<br />

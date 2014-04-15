@@ -78,11 +78,12 @@ class orderActions extends autoOrderActions
             ->addWhere('oi.order_id = ?', $order->getId())
             ->fetchArray();
           
-         $amount =0;
-         foreach($products as $pr)
+         $amount = $order->getNetAmount();
+         
+         /*foreach($products as $pr)
          {
              $amount += $pr['price'];
-         }
+         }*/
          
          $member = $order->getMember();// $this->getUser()->getGuardUser();
          $email_body =  $this->getPartial("email_order_complete_customer", array("user"=>$member,"order"=>$order,"products"=>$products,"amount"=>$amount));

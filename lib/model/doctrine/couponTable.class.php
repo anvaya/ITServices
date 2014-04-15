@@ -8,7 +8,7 @@
 class couponTable extends Doctrine_Table
 {
     const COUPON_TYPE_SPOUCE_DISCOUNT = 1;
-    
+    const COUPON_TYPE_BACK_YEAR_ITR   = 2;
     /**
      * Returns an instance of this class.
      *

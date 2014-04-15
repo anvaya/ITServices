@@ -27,7 +27,7 @@ generator:
       form:    
         display:
             Personal: [ first_name, middle_name, last_name, email_address, dob, gender, married, marriage_anniversary  ]
-            Account: [ is_active, password, password_again, subscription , _account ]
+            Account: [ is_active, password, password_again,  _account ]
             NR Address: [ nri_address ]
             India Address: [ in_address ]
             Contact: [ nri_mobile, nri_landline, nri_office, nri_fax ]

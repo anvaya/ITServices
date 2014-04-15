@@ -111,23 +111,35 @@ class defaultActions extends sfActions
   
   public function executeConfirmPay(sfWebRequest $request)
   {      
-    $this->forward404Unless($request->hasParameter("mid"));
-    $user_id = $request->getParameter("mid");
-    $submission = submissionTable::getInstance()
-                    ->findOneByUserIdAndFormId($user_id, 2, null);
+    $this->forward404Unless($request->hasParameter("mid") ||  $request->hasParameter("sid"));
     
-    /* @var $submission submission */
-    if($submission->getPayment()->count()>0)
+    if($request->hasParameter('mid'))
     {
-        $this->forward404();
+        $user_id = $request->getParameter("mid");
+        $submission = submissionTable::getInstance()
+                        ->findOneByUserIdAndFormId($user_id, 2, null);
+
+        /* @var $submission submission */
+        if($submission->getPayment()->count()>0)
+        {
+            $this->forward404();
+        }
+
+        $subscription = member_subscriptionTable::getInstance()
+                                    ->createQuery('ms')
+                                    ->addWhere('ms.member_id = ?', $user_id)
+                                    ->orderBy('ms.id desc')
+                                    ->fetchOne();
+    }
+    else 
+    {        
+        $sid          = $request->getParameter('sid');        
+        $subscription = member_subscriptionTable::getInstance()
+                            ->find($sid);       
+        /* @var $subscription member_subscription */ 
+        $user_id      = $subscription->getMemberId();
     }
     
-    $subscription = member_subscriptionTable::getInstance()
-                                ->createQuery('ms')
-                                ->addWhere('ms.member_id = ?', $user_id)
-                                ->orderBy('ms.id desc')
-                                ->fetchOne();
-            
     /* @var $subscription member_subscription */
     if($subscription)
     {
@@ -142,8 +154,16 @@ class defaultActions extends sfActions
     
     $payment = new payment();
     $payment->setMemberId($user_id);
-    $payment->setSubmission($submission);
-    $this->form = new paymentForm($payment, array("submission_id"=>$submission->getId(), "subscription_id"=>$subscription_id, "ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>$amount ) );      
+    
+    if($submission)
+    {
+        $payment->setSubmission($submission);
+        $this->form = new paymentForm($payment, array("submission_id"=>$submission->getId(), "subscription_id"=>$subscription_id, "ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>$amount ) );      
+    }
+    else 
+    {
+        $this->form = new paymentForm($payment, array("submission_id"=>null, "subscription_id"=>$subscription_id, "ip_address"=>  ip2long($request->getRemoteAddress()), "member_id"=>$user_id,"amount"=>$amount ) );      
+    }
   }
   
   public function executeConfirmPayUpdate(sfWebRequest $request)

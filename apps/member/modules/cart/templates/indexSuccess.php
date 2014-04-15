@@ -1,4 +1,4 @@
-<?php use_stylesheet('member/ticket.css'); ?>
+<?php use_helper('JavascriptBase'); use_stylesheet('member/ticket.css'); ?>
 <div id="sf_admin_container">
   <div class="fg-toolbar ui-widget-header ui-corner-all">
       <div class="ui-dialog-title" style="padding: 3px 5px 5px 3px">
@@ -38,13 +38,30 @@
             <tr class="sf_admin_row odd">
               <td><?php echo $cart->getProduct() ?></td>
               <td style="text-align: center;"><?php echo $cart->getQuantity() ?></td>
-              <td style="text-align: right;"><?php echo $cart->getPrice() ?></td>
+              <td style="text-align: right;">US $<?php echo $cart->getPrice() ?></td>
             </tr>
             <?php $price += $cart->getPrice(); ?>
             <?php endforeach; ?>
+            
+            <?php if( ($coupon = $shoppingCart->getMemberCoupon()) && $coupon->getId() > 0 ): /*  @var $member_coupon member_coupon */ ?>
+                <tr class="sf_admin_row odd">
+                  <th style="text-align: right;" colspan="2">Special Coupon <?php  echo $coupon->getCouponCode(); ?></th>                  
+                  <td style="text-align: right;">- US $<?php echo $coupon->getCoupon()->getDiscountRate(); ?></td>
+                </tr>
+                <?php $price -= $coupon->getCoupon()->getDiscountRate();?>
+            <?php else:?>
+                <tr class="sf_admin_row odd">
+                    <td colspan="3" style="text-align: right">
+                        Have a special coupon ? Enter the code here.
+                        &nbsp;<input type="text" size="12" maxlength="10" id="cart_coupon_code" />
+                        &nbsp;<?php echo link_to_function("Apply", "apply_coupon();", array("class"=>"green-btn") );?>
+                    </td>    
+                </tr>
+            <?php endif;?>
+            
             <tr>
                 <th style="text-align: left;" colspan="2">Total Amount</th>
-                <th style="text-align: right;"><?php echo $price; ?></th>
+                <th style="text-align: right;">US $<?php echo $price; ?></th>
             </tr>
           </tbody>
         </table>
@@ -62,3 +79,12 @@
       </div>
   </div>
 </div>
+<script type="text/javascript">
+    function apply_coupon()
+    {
+        var code = $('#cart_coupon_code').val();
+        var url  = "<?php echo url_for("@cart_apply_coupon?code=-1") ?>";
+        url = url.replace("-1", code);
+        location.href = url;
+    }
+</script>

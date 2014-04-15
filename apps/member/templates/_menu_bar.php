@@ -16,11 +16,18 @@
         $my_services = productTable::getInstance()
                         ->createQuery('p')
                         ->innerJoin('p.subscription_product sp')                        
-                        ->addWhere('p.category_id <> ?', product_categoryTable::CATEGORY_ITR )
-                        ->addWhere('sp.subscription_id = ?', $subscription->getSubscriptionId())
-                        ->orderBy('p.name')
+                        ->innerJoin('sp.subscription s')
+                        ->innerJoin('s.member_subscription ms')
+                        ->addWhere('ms.member_id = ?', $member->getId())
+                        ->addWhere('ms.active = 1')
+                        //->addWhere('p.category_id <> ?', product_categoryTable::CATEGORY_ITR )
+                        ->addWhere('p.expired is null or p.expired = 0')
+                        ->addWhere('p.price > 0')
+                        //->addWhere('sp.subscription_id = ?', $subscription->getSubscriptionId())
+                        ->orderBy('p.name')                        
                         ->execute();        
 
+        
         /* @var $subscription member_subscription */
         $itr_product = false;
         if($subscription->getItrProductId())
@@ -35,16 +42,24 @@
                                 ->innerJoin('p.order_item sp')                        
                                 ->innerJoin('sp.order oo')                        
                                 ->addWhere('oo.member_id = ?', $member->getId() )
+                                ->addWhere('p.expired is null or p.expired = 0')
                                 ->addWhere('oo.status = ?', orderTable::ORDER_STATUS_PAID)
                                 ->orderBy('p.name')
                                 ->execute();
         
-        $other_services = productTable::getInstance()
+        $other_services_query = productTable::getInstance()
                         ->createQuery('p')                        
                         ->addWhere('p.price > 0')
                         ->addWhere('p.expired is null or p.expired = 0')
-                        ->orderBy('p.name')
-                        ->execute();
+                        ->orderBy('p.name');
+        
+        if($itr_product)
+        {
+            $other_services_query->addWhere('p.category_id <> ? OR p.fy < ?', array(product_categoryTable::CATEGORY_ITR, $itr_product->getFy()) );
+        }
+        
+        $other_services = $other_services_query
+                            ->execute();
      }
      else
      {

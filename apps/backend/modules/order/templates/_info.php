@@ -6,7 +6,8 @@
     $display_data = array(
         "Order No"=>$order->getOrderNo(),
         "Date"=>format_date($order->getOrderDate(),"dd/M/y"),
-        "Member"=>$member->getLastName()." ".$member->getFirstName(),               
+        "Member"=>$member->getLastName()." ".$member->getFirstName(),              
+        "Net Amount"=>$order->getNetAmount()
     );
 ?>
 <?php foreach($display_data as $key=>$data):?>

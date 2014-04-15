@@ -19,6 +19,7 @@ class member_subscriptionListener extends Doctrine_Record_Listener
             $itr_product = subscription_productTable::getInstance()
                             ->createQuery('sp')
                             ->innerJoin('sp.product p')
+                            ->addWhere('sp.subscription_id = ?', $subscription)
                             ->addWhere('p.category_id = ?', productTable::CATEGORY_IT_RETURNS)
                             ->fetchOne();
 
@@ -65,6 +66,42 @@ class member_subscriptionListener extends Doctrine_Record_Listener
                 $member_coupon->save();
             }
         }
+        
+        //Find Back year coupon
+        $productTable = productTable::getInstance();
+        $itr_product = $productTable->find($record->getItrProductId()); 
+        /* @var $itr_product product */
+        $back_product = $productTable->findOneByFyAndCategoryId($itr_product->getFy()-1, product_categoryTable::CATEGORY_ITR);
+        /* @var $back_product product */
+        if($back_product)
+        {
+            $member_products = $record->getMember()->getProductList(product_categoryTable::CATEGORY_ITR);
+            if(!isset($member_products[$back_product->getId()]))
+            {
+                //Already issued ?
+                $issued = member_couponTable::getInstance()
+                            ->createQuery('ms')                            
+                            ->innerJoin('ms.coupon s')
+                            ->addWhere('ms.member_id = ?', $record->getMemberId())                            
+                            ->addWhere('s.coupon_type = ?', couponTable::COUPON_TYPE_BACK_YEAR_ITR )
+                            ->addWhere('ms.product_id = ?', $back_product->getId())
+                            ->count();
+                
+                if($issued == 0) //Issue one if not issued.
+                {
+                    $base_coupon = couponTable::getInstance()
+                                    ->findOneByCouponType(couponTable::COUPON_TYPE_BACK_YEAR_ITR);
+                    
+                    $coupon = new member_coupon();
+                    $coupon->setMemberId($record->getMemberId());
+                    $coupon->setCouponId($base_coupon->getId());
+                    $coupon->setCouponCode(member_couponTable::generateNewCode());
+                    $coupon->setProductId($back_product->getId());
+                    $coupon->save();               
+                }                
+            }
+        }
+        
     }
     
 }
