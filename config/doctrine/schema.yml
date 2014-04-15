@@ -433,10 +433,12 @@ cart:
     columns:
         id: { type: integer, unsigned: true, primary: true, notnull: true, autoincrement: true }
         member_id: { type: integer, notnull: false }
+        member_coupon_id: { type: integer, unsigned: true, notnull: false }
         status: { type: integer, size: 2, notnull: false }
         ip_address: { type: integer, notnull: false }
     relations:
         member: { local: member_id, onDelete: CASCADE }
+        member_coupon: { local: member_coupon_id, onDelete: SET NULL }
 
 cart_items:
     columns:
@@ -460,7 +462,7 @@ order:
         status: { type: integer, size: 2, notnull: false }
         gross_amount: { type: decimal, scale: 2 }
         discount_amount: { type: decimal, scale: 2 }
-        discount_voucher_no: { type: varchar(30), notnull: false, unique: true }
+        discount_voucher_no: { type: varchar(40), notnull: false, unique: true }
         discount_percentage: { type: integer, size: 2, notnull: false }
         tax_amount: { type: decimal, scale: 2 }
         net_amount: { type: decimal, scale: 2 }
@@ -468,6 +470,8 @@ order:
     relations:
         member: { local: member_id, onDelete: CASCADE }
         payment: { local: payment_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
+        member_coupon: { local: discount_voucher_no, foreign: coupon_code, onDelete: SET NULL }
+        
 
 order_item:
     columns:
@@ -697,9 +701,10 @@ member_coupon:
    id:             { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
    coupon_id:      { type: integer, size: 8, unsigned: true, notnull: false }
    member_id:      { type: integer, notnull: false }
-   coupon_code:    { type: string, size: 40, notnull: true }
+   coupon_code:    { type: string, size: 40, notnull: true, unique: true }
    approved:       { type: boolean, notnull: false }
    used:           { type: boolean, notnull: false }
+   product_id:     { type: integer, unsigned: true, notnull: false }
   relations:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
@@ -712,3 +717,4 @@ email_directory:
    directory_key: { type: string, size: 255, notnull: true, unique: true }
    title: { type: string, size: 255, notnull: false }
    send_to: { type: string, size: 4000, notnull: false }
+
