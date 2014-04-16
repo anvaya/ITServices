@@ -30,7 +30,7 @@ generator:
       list:    
         title: Support Tickets        
         display: [ tracking_no, member, date_received, status_name, AssignedToUser ]
-        sort: [status, asc]
+        sort: [date_received, desc]
       filter:  
         display: [ tracking_no, member_id, date_received, status, assigned_to ]
       form:    
