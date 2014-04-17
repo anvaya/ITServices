@@ -712,9 +712,11 @@ member_coupon:
 email_directory:
   actAs:
     Timestampable: ~
-  columns:
-   id:             { type: integer, size: 8, unsigned: true, notnull: true, primary: true, autoincrement: true }
-   directory_key: { type: string, size: 255, notnull: true, unique: true }
+  columns:   
+   directory_key: { type: string, size: 255, notnull: true, primary: true }
    title: { type: string, size: 255, notnull: false }
    send_to: { type: string, size: 4000, notnull: false }
-
+   email_subject: { type: string, size: 100, notnull: false } 
+   email_template: { type: text, notnull: false }
+   is_html: { type: boolean, notnull: false }
+   
