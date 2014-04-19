@@ -16,13 +16,18 @@ generator:
       fields:  ~
       list:    
           title: Blogs
-          display: [ title, sfGuardUser, alert_on_comment, _approved, created_at, updated_at ]
+          display: [ title, _author, alert_on_comment, _approved, created_at, updated_at ]
           object_actions:
-           _delete: ~
-           show: 
-            label:  Show
-            action: show
-          
+            _delete: ~
+            show: 
+              label:  Show
+              action: show
+            send_as_newsletter: 
+              label:  Send As Newsletter
+              action: sendAsNewsletter
+              params:
+                onclick: "sendAsNewsletter(this.href); return false;"
+                #popup: 'width=500 height=400 scrollbars=0'
       filter:  
         display: [ title, author_id, approved, created_at, updated_at] 
       form:    
