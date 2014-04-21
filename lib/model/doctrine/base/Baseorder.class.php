@@ -19,6 +19,7 @@
  * @property integer $payment_id
  * @property member $member
  * @property payment $payment
+ * @property member_coupon $member_coupon
  * @property Doctrine_Collection $order_item
  * 
  * @method integer             getId()                  Returns the current record's "id" value
@@ -35,6 +36,7 @@
  * @method integer             getPaymentId()           Returns the current record's "payment_id" value
  * @method member              getMember()              Returns the current record's "member" value
  * @method payment             getPayment()             Returns the current record's "payment" value
+ * @method member_coupon       getMemberCoupon()        Returns the current record's "member_coupon" value
  * @method Doctrine_Collection getOrderItem()           Returns the current record's "order_item" collection
  * @method order               setId()                  Sets the current record's "id" value
  * @method order               setMemberId()            Sets the current record's "member_id" value
@@ -50,6 +52,7 @@
  * @method order               setPaymentId()           Sets the current record's "payment_id" value
  * @method order               setMember()              Sets the current record's "member" value
  * @method order               setPayment()             Sets the current record's "payment" value
+ * @method order               setMemberCoupon()        Sets the current record's "member_coupon" value
  * @method order               setOrderItem()           Sets the current record's "order_item" collection
  * 
  * @package    BestBuddies
@@ -96,11 +99,11 @@ abstract class Baseorder extends sfDoctrineRecord
              'type' => 'decimal',
              'scale' => 2,
              ));
-        $this->hasColumn('discount_voucher_no', 'varchar', 30, array(
+        $this->hasColumn('discount_voucher_no', 'varchar', 40, array(
              'type' => 'varchar',
              'notnull' => false,
              'unique' => true,
-             'length' => 30,
+             'length' => 40,
              ));
         $this->hasColumn('discount_percentage', 'integer', 2, array(
              'type' => 'integer',
@@ -135,6 +138,11 @@ abstract class Baseorder extends sfDoctrineRecord
              'foreign' => 'id',
              'onDelete' => 'SET NULL',
              'onUpdate' => 'CASCADE'));
+
+        $this->hasOne('member_coupon', array(
+             'local' => 'discount_voucher_no',
+             'foreign' => 'coupon_code',
+             'onDelete' => 'SET NULL'));
 
         $this->hasMany('order_item', array(
              'local' => 'id',

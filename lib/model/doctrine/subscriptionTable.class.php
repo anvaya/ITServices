@@ -28,4 +28,16 @@ class subscriptionTable extends Doctrine_Table
               ->orderBy('ss.price asc')
               ->execute();
     }
+    
+    /**
+     * 
+     * @return subscription
+     */
+    public function getCurrentSubscription()
+    {
+        return $this->createQuery('ss')
+              ->addWhere('ss.disabled is NULL or ss.disabled = 0')
+              ->orderBy('ss.id desc')
+              ->fetchOne();              
+    }
 }

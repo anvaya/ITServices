@@ -12,5 +12,15 @@
  */
 class subscription extends Basesubscription
 {
-
+    public function getITRProductId()
+    {
+        $itr_product = productTable::getInstance()
+                    ->createQuery('p')
+                    ->innerJoin('p.subscription_product sp')
+                    ->addWhere('sp.subscription_id= ?', $this->getId())
+                    ->addWhere('p.category_id = ?', product_categoryTable::CATEGORY_ITR )
+                    ->fetchOne();
+                
+        return $itr_product->getId();
+    }
 }

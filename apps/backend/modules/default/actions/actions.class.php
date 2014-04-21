@@ -19,9 +19,7 @@ class defaultActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    #$this->forward('question', 'index');
-      $data = file_get_contents(sfConfig::get('sf_log_dir')."/reminder.html");
-      send_email("John", "mrugendra999@yahoo.com", "Income Tax Return Submission Reminder", $data);      
+    #$this->forward('question', 'index');      
   }
   
   public function executeTicketImport(sfWebRequest $request)
@@ -30,4 +28,18 @@ class defaultActions extends sfActions
       $task = new ticketImportTask( $this->getContext()->getEventDispatcher(), new sfFormatter() ); //sfMyVerySpecialTask($this->dispatcher, new sfFormatter());
       $task->run();
   }
+  
+  public function executeTest(sfWebRequest $request)
+  {
+        try
+        {
+            chdir(sfConfig::get('sf_root_dir')); 
+            $task = new noSubmissionAlertsTask($this->dispatcher, new sfFormatter());
+            $task->run(array(), array());
+        }catch(Exception $ex)
+        {
+            echo $ex->getMessage();
+        }
+        return sfView::NONE;    
+ }
 }

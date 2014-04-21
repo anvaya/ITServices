@@ -176,6 +176,18 @@
     
     <div class='dashboard_center' class="ui-corner-all">
         
+        <?php if($current_subscription):?>
+        <div id="">
+            <div class="info_block">
+                <h3>Looking for Income Tax Return <?php echo $current_subscription->getName() ?> ?</h3>
+                <p>Renew your subscription now.</p>
+                <p align="center">
+                    <?php echo link_to("Renew Now", "subscription/renew", array("class"=>"green-btn"));?>
+                </p>
+            </div>
+        </div>
+        <?php endif;?>
+        
         <div id='services_income_tax' >
             <div class='info_block'>
                 <h3>Income Tax Returns Service</h3>

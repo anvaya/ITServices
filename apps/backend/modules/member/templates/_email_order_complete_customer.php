@@ -28,7 +28,7 @@
                         <table>
                             <tr><th align="left">No:</th><td><?php echo $order_no ?></td></tr>
                             <tr><th align="left">Date:</th><td><?php echo date("d/M/Y"); ?></td></tr>
-                            <tr><th align="left">Amount:</th><td>AED <?php echo $amount; ?></td></tr>
+                            <tr><th align="left">Amount:</th><td><?php echo $amount; ?></td></tr>
 			</table>
                     </table>
 		</div>	

@@ -18,9 +18,10 @@ abstract class Basemember_couponForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'coupon_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('coupon'), 'add_empty' => true)),
       'member_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => true)),
-      'coupon_code' => new sfWidgetFormInputText(),
+      'coupon_code' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('order'), 'add_empty' => false)),
       'approved'    => new sfWidgetFormInputCheckbox(),
       'used'        => new sfWidgetFormInputCheckbox(),
+      'product_id'  => new sfWidgetFormInputText(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -29,12 +30,17 @@ abstract class Basemember_couponForm extends BaseFormDoctrine
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'coupon_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('coupon'), 'required' => false)),
       'member_id'   => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'required' => false)),
-      'coupon_code' => new sfValidatorString(array('max_length' => 40)),
+      'coupon_code' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('order'))),
       'approved'    => new sfValidatorBoolean(array('required' => false)),
       'used'        => new sfValidatorBoolean(array('required' => false)),
+      'product_id'  => new sfValidatorInteger(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(),
       'updated_at'  => new sfValidatorDateTime(),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'member_coupon', 'column' => array('coupon_code')))
+    );
 
     $this->widgetSchema->setNameFormat('member_coupon[%s]');
 

@@ -47,9 +47,8 @@
     <?php endforeach;?>   
     
     <?php $fieldset = "Subscription";?>        
-    <?php 
-            $subscriptions = subscriptionTable::getInstance()
-                                ->getActiveSubscriptions();
+    <?php             
+            $subscriptions = array(subscriptionTable::getInstance()->getCurrentSubscription());  //subscriptionTable::getInstance()->getActiveSubscriptions();
     ?>        
             <fieldset  id="sf_fieldset_<?php echo preg_replace('/[^a-z0-9_]/', '_', strtolower($fieldset)) ?>" style="display: none;">
           <h2><?php echo $fieldset ?></h2>
@@ -57,42 +56,9 @@
           
         <div class="sf_admin_row">
            <?php echo $form['subscription']->renderError(); ?>
-           <div>             
-             <div class="content" >
-                 <table id="subscriptions" cellspacing="0">
-                     <thead>
-                         <tr>
-                             <th align="left">Title</th>
-                             <th>Features</th>
-                             <th>Price</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <?php foreach($subscriptions as $index=>$subscription): /* @var $subscription subscription */?>
-                         <tr>
-                             <td>
-                                 <input type="radio" <?php if($index==0):?>checked<?php endif;?>  name="sf_guard_user[subscription][subscription_id]" id="user_subscription_subscription_id_<?php echo $subscription->getId() ?>" value="<?php echo $subscription->getId() ?>" />
-                                 <label for="user_subscription_subscription_id_<?php echo $subscription->getId() ?>"><?php echo $subscription->getName();?></label>
-                             </td>
-                             <td>
-                                 <ul class="product_list">
-                                    <?php 
-                                          $products = $subscription->getSubscriptionProduct();
-                                          foreach($products as $product): /* @var $product product*/
-                                    ?>
-                                     <li>
-                                         <?php echo $product->getProduct()->getName();?>
-                                     </li>
-                                     <?php endforeach;?>                                     
-                                 </ul>
-                             </td>
-                             <td><?php echo $subscription->getCurrency()." ".$subscription->getPrice(); ?></td>
-                         </tr>
-                         <?php endforeach;?>
-                     </tbody>                         
-                 </table>
-             </div>
-           </div>
+           <?php foreach($subscriptions as $index=>$subscription): /* @var $subscription subscription */?>                         
+                <input type="hidden" id="user_subscription_subscription_id_<?php echo $subscription->getId() ?>" value="<?php echo $subscription->getId() ?>" name="sf_guard_user[subscription][subscription_id]" />
+           <?php endforeach;?>        
        </div>
         
     </fieldset>               

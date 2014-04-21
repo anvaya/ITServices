@@ -15,9 +15,10 @@ abstract class Basemember_couponFormFilter extends BaseFormFilterDoctrine
     $this->setWidgets(array(
       'coupon_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('coupon'), 'add_empty' => true)),
       'member_id'   => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => true)),
-      'coupon_code' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'coupon_code' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('order'), 'add_empty' => true)),
       'approved'    => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'used'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'product_id'  => new sfWidgetFormFilterInput(),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
@@ -25,9 +26,10 @@ abstract class Basemember_couponFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'coupon_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('coupon'), 'column' => 'id')),
       'member_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('member'), 'column' => 'id')),
-      'coupon_code' => new sfValidatorPass(array('required' => false)),
+      'coupon_code' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('order'), 'column' => 'id')),
       'approved'    => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'used'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'product_id'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 00:00:00')), 'to_date' => new sfValidatorDateTime(array('required' => false, 'datetime_output' => 'Y-m-d 23:59:59')))),
     ));
@@ -52,9 +54,10 @@ abstract class Basemember_couponFormFilter extends BaseFormFilterDoctrine
       'id'          => 'Number',
       'coupon_id'   => 'ForeignKey',
       'member_id'   => 'ForeignKey',
-      'coupon_code' => 'Text',
+      'coupon_code' => 'ForeignKey',
       'approved'    => 'Boolean',
       'used'        => 'Boolean',
+      'product_id'  => 'Number',
       'created_at'  => 'Date',
       'updated_at'  => 'Date',
     );

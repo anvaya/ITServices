@@ -339,7 +339,7 @@
     <div id='page_navigation'>
         <button id="cmdPrev" class="green-btn" onclick="changePage(-1); return false;" data-bind = "visible: currentPage() > 0 && currentPage() <= 6">Previous</button>
 	<button id="cmdNext" class="purple-btn" onclick="changePage(1); return false;" data-bind = "visible: currentPage() < 6">Next</button>
-	<input type="submit" class="purple-btn" id="cmdSave" onclick="return confirm('Sending this information to our processing desk, are you sure?');" data-bind = "visible: currentPage() == 6" value="Submit Information" />
+	<input type="submit" class="purple-btn" id="cmdSave" onclick="if($('#chk_agree_terms:checked').length == 0) { alert('Please click \'I agree with terms and conditions.\''); return false; }; return confirm('Sending this information to our processing desk, are you sure?');" data-bind = "visible: currentPage() == 6" value="Submit Information" />
         
         <input type="submit" name="SaveAsDraft" onclick="$('#save_as_draft').dialog('open'); return false;" title="Want to complete your submission later ? Click this button, we will save everything you entered to finish up later." style="margin-left: 20px;" class="silver-btn" id="cmdSaveDraft" data-bind = "visible: currentPage() > 1" value="Save & Resume Later" /></input>    
     </div>

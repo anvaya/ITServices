@@ -28,7 +28,7 @@
                         <table>
                             <tr><th align="left">Order No:</th><td><?php echo $order->getOrderNo() ?></td></tr>
                             <tr><th align="left">Date:</th><td><?php echo format_date($order->getOrderDate(),"dd/M/y"); ?></td></tr>
-                            <tr><th align="left">Amount:</th><td>AED <?php echo $amount; ?></td></tr>
+                            <tr><th align="left">Amount:</th><td>USD <?php echo $amount; ?></td></tr>
 			</table>
                     </table>
 		</div>	

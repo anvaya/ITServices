@@ -5,8 +5,11 @@
                         ->orderBy('type_name')
                         ->execute();
         
+        $member = memberTable::getInstance()    
+                    ->find($sf_user->getGuardUser()->getId());
         
-        
+        /* @var $member member */
+        $member_products = $member->getProductList();
 ?>
 <h1>Available Services</h1><br />
 <style type="text/css">
@@ -40,16 +43,17 @@
 </style>
 <div id="product_list">
     <?php foreach($categories as $category): /* @var $category product_category */ ?>
-        <?php $products = $category->getProduct();?>
+        <?php $products = $category->getProduct();?>        
         <div class="category_head ui-widget ui-corner-all">
             <h3 class="ui-widget-header ui-corner-all">&nbsp;<?php echo $category->getTypeName(); ?></h3>
             <ul>
                 <?php foreach($products as $product): /* @var $product product */?>
-                <?php if(!($product->getPrice()>0)) continue;?>
+                <?php if(isset($member_products[$product->getId()]) || $product->getExpired() || !($product->getPrice()>0)) continue;?>
+                
                 <li>
                     <div class="product_box ui-corner-all">
                         <h3><?php echo $product->getName() ?></h3>
-                        <p style="font-weight: bold">AED <?php echo $product->getPrice();?></p>
+                        <p style="font-weight: bold">USD <?php echo $product->getPrice();?></p>
                         <a class="green-btn" href="<?php echo url_for('@cart_add?id='.$product->getId()) ?>" class="green-btn">Buy Now</a>
                     </div>
                 </li>

@@ -31,4 +31,7 @@
     <ol>
         <li>You have provided all details in the exemptions section.</li>               
     </ol>    
+    <br />
+    <br />
+    <input type="checkbox" id="chk_agree_terms">&nbsp;<label for="chk_agree_terms">I agree with <a href="#">Terms &amp; Conditions.</a></label>
 </div>

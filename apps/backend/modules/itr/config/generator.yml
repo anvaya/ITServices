@@ -14,20 +14,21 @@ generator:
     config:
       actions: ~
       fields:  ~
-      list:
+      list:        
         title: IT Returns
         actions: [ ]
         batch_actions: [ ]
         fields:
-          created_at: { label: On Submited }
+          created_at: { label: Date Submited }
         display: [id, created_at, member, product, status_name]
+        sort: [created_at, desc]
         object_actions:
            _show: ~       
            _asHtml: 
               label: Download 
               action: pdf
            _edit: ~   
-           due_tax: {action: duetax, label: Due Tax }
+           #due_tax: {action: duetax, label: Due Tax }
       filter:  
           display: [member_id, product_id, status]                        
       form:    ~

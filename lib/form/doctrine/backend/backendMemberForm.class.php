@@ -154,14 +154,14 @@ class backendMemberForm  extends sfGuardUserAdminForm
       
         $this->useFields(array("first_name", "middle_name", "last_name", "dob", "gender", "year_as_nri", "email_address", "country", "nri_address", "in_address", "nri_mobile", "nri_landline", "nri_office", "nri_fax", "in_landline", "in_mobile", "occupation_type", "job_title", "industry", "other_income_source", "passport_no", "pan_no", "married", "marriage_anniversary", "family0", "family1", "family2", "family3", "family4","is_active","password","password_again" ));
         
-        $subscription = member_subscriptionTable::getInstance()
+        /*$subscription = member_subscriptionTable::getInstance()
                         ->createQuery('ms')
                         ->addWhere('ms.member_id = ?', $this->getObject()->getId())
                         ->orderBy('ms.id desc')
                         ->fetchOne();
       
         $this->embedForm("subscription", new backend_memberSubscriptionForm($subscription));
-        
+        */
     }
 
     public function saveEmbeddedForms($con = null, $forms = null) {

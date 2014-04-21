@@ -28,4 +28,10 @@ class order extends Baseorder
             return "Pending";
         }
     }
+    
+    public function setUp() 
+    {
+        parent::setUp();
+        $this->addListener(new orderListener());
+    }
 }

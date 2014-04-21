@@ -12,5 +12,8 @@
  */
 class coupon extends Basecoupon
 {
-
+    public function __toString() 
+    {
+        return $this->getTitle();
+    }
 }

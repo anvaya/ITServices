@@ -24,19 +24,23 @@ class defaultActions extends sfActions
       /* @var $member member */      
       $this->member = $member;
       
-      $subscription = member_subscriptionTable::getInstance() 
-                            ->createQuery('ms')
-                            ->addWhere('member_id = ?', $member_id)
-                            ->addWhere('active = 1')
-                            ->orderBy('id desc')
-                            ->fetchOne();          
+      $subscription = $member->getCurrentActiveSubscription();     
           
+      $current_subscription = subscriptionTable::getInstance()   
+                                ->createQuery('st')
+                                ->addWhere('st.id > ?', $subscription->getSubscription()->getId())
+                                ->orderBy('st.id desc')
+                                ->fetchOne();
+      
+      $this->current_subscription = $current_subscription;
+      
       /* @var $subscription member_subscription */
       $this->show_itr_selection =  (!$subscription->getItrProductId());
       
       $this->itr_products = productTable::getInstance()
                         ->createQuery('p')
                         ->addWhere('p.category_id = ?', product_categoryTable::CATEGORY_ITR)
+                        ->addWhere('p.expired is null or p.expired = 0')
                         ->fetchArray();                        
   }
   

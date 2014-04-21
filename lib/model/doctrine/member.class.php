@@ -29,14 +29,28 @@ class member extends Basemember
         if($subscription)
         {            
             $product_query = productTable::getInstance()
+                        ->createQuery('p')
+                        ->select('p.id, p.name')
+                        ->innerJoin('p.subscription_product sp')                        
+                        ->innerJoin('sp.subscription s')
+                        ->innerJoin('s.member_subscription ms')
+                        ->addWhere('ms.member_id = ?', $this->getId())
+                        ->addWhere('ms.active = 1')                        
+                        ->addWhere('p.expired is null or p.expired = 0')
+                        //->addWhere('p.price > 0')                        
+                        ->orderBy('p.name');
+                          
+            /*
+            $product_query = productTable::getInstance()
                             ->createQuery('p')
                             ->select('p.id, p.name')
                             ->innerJoin('p.subscription_product sp')
                             ->innerJoin('sp.subscription s')
                             ->addWhere('p.category_id <> ?', product_categoryTable::CATEGORY_ITR)
+                            ->addWhere('p.expired is null or p.expired = 0')
                             ->addWhere('s.id = ?', $subscription->getSubscriptionId())
                             ->orderBy('p.name');
-            
+            */
             if($category_id)
             {
                 $product_query->addWhere('p.category_id = ?', $category_id);
@@ -57,7 +71,8 @@ class member extends Basemember
                                 ->createQuery('p')
                                 ->select('p.id, p.name')
                                 ->innerJoin('p.order_item sp')                        
-                                ->innerJoin('sp.order oo')                        
+                                ->innerJoin('sp.order oo')             
+                                ->addWhere('p.expired is null or p.expired = 0')
                                 ->addWhere('oo.member_id = ?', $this->getId() )
                                 ->addWhere('oo.status = ?', orderTable::ORDER_STATUS_PAID)
                                 ->orderBy('p.name');
@@ -107,5 +122,20 @@ class member extends Basemember
         }
         
         return $title.$this->getFirstName();
+    }
+    
+    /**
+     * 
+     * @return member_subscription
+     */
+    public function getCurrentActiveSubscription()
+    {
+        $subscription = member_subscriptionTable::getInstance() 
+                            ->createQuery('ms')
+                            ->addWhere('member_id = ?', $this->getId())
+                            ->addWhere('active = 1')                            
+                            ->orderBy('ms.start_date desc')
+                            ->fetchOne();
+        return $subscription;
     }
 }

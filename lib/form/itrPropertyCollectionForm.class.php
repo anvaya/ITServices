@@ -21,7 +21,7 @@ class itrPropertyCollectionForm extends sfForm
         $details=array();
         
         /* @var $master itr_submission */
-        if($master->getId()>0)
+        //if($master->getId()>0)
         {
             $details = $master->getItrProperty();
         }        

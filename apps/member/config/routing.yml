@@ -6,6 +6,10 @@ cart_add:
   url:   /cart/add/:id
   param: { module: cart, action: add }
   
+cart_apply_coupon:
+  url:   /cart/applyCoupon/:code
+  param: { module: cart, action: applyCoupon }  
+  
 product_show:
   url:   /product/show/:id
   param: { module: product, action: show }

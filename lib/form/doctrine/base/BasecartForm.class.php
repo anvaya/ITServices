@@ -15,21 +15,23 @@ abstract class BasecartForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'member_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => true)),
-      'status'     => new sfWidgetFormInputText(),
-      'ip_address' => new sfWidgetFormInputText(),
-      'created_at' => new sfWidgetFormDateTime(),
-      'updated_at' => new sfWidgetFormDateTime(),
+      'id'               => new sfWidgetFormInputHidden(),
+      'member_id'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'add_empty' => true)),
+      'member_coupon_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('member_coupon'), 'add_empty' => true)),
+      'status'           => new sfWidgetFormInputText(),
+      'ip_address'       => new sfWidgetFormInputText(),
+      'created_at'       => new sfWidgetFormDateTime(),
+      'updated_at'       => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'member_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'required' => false)),
-      'status'     => new sfValidatorInteger(array('required' => false)),
-      'ip_address' => new sfValidatorInteger(array('required' => false)),
-      'created_at' => new sfValidatorDateTime(),
-      'updated_at' => new sfValidatorDateTime(),
+      'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'member_id'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member'), 'required' => false)),
+      'member_coupon_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('member_coupon'), 'required' => false)),
+      'status'           => new sfValidatorInteger(array('required' => false)),
+      'ip_address'       => new sfValidatorInteger(array('required' => false)),
+      'created_at'       => new sfValidatorDateTime(),
+      'updated_at'       => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('cart[%s]');
