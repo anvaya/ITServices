@@ -471,6 +471,7 @@ order:
         member: { local: member_id, onDelete: CASCADE }
         payment: { local: payment_id, foreign: id, onDelete: SET NULL, onUpdate: CASCADE }
         member_coupon: { local: discount_voucher_no, foreign: coupon_code, onDelete: SET NULL }
+        
 
 order_item:
     columns:
