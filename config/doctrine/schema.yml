@@ -704,7 +704,7 @@ member_coupon:
    coupon_code:    { type: string, size: 40, notnull: true, unique: true }
    approved:       { type: boolean, notnull: false }
    used:           { type: boolean, notnull: false }
-   product_id:     { type: integer, unsigned: true, notnull: false }
+   product_id:     { type: integer, unsigned: true, notnull: false }   
   relations:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
@@ -724,11 +724,10 @@ member_relation:
 email_directory:
   actAs:
     Timestampable: ~
-  columns:   
-   directory_key: { type: string, size: 255, notnull: true, primary: true }
+  columns:
+   directory_key: { type: string, size: 255, notnull: true, unique: true, primary: true }
    title: { type: string, size: 255, notnull: false }
    send_to: { type: string, size: 4000, notnull: false }
-   email_subject: { type: string, size: 100, notnull: false } 
-   email_template: { type: text, notnull: false }
+   email_subject: { type: string, size: 255, notnull: false }
+   email_template:  { type: string, size: 4000, notnull: false }
    is_html: { type: boolean, notnull: false }
-   
