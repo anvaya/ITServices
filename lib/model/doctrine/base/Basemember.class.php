@@ -16,6 +16,7 @@
  * @property Doctrine_Collection $itr_submission
  * @property Doctrine_Collection $blog_comment
  * @property Doctrine_Collection $member_coupon
+ * @property Doctrine_Collection $member_relation
  * 
  * @method member_type         getMemberType()          Returns the current record's "member_type" value
  * @method Doctrine_Collection getContact()             Returns the current record's "contact" collection
@@ -28,6 +29,7 @@
  * @method Doctrine_Collection getItrSubmission()       Returns the current record's "itr_submission" collection
  * @method Doctrine_Collection getBlogComment()         Returns the current record's "blog_comment" collection
  * @method Doctrine_Collection getMemberCoupon()        Returns the current record's "member_coupon" collection
+ * @method Doctrine_Collection getMemberRelation()      Returns the current record's "member_relation" collection
  * @method member              setMemberType()          Sets the current record's "member_type" value
  * @method member              setContact()             Sets the current record's "contact" collection
  * @method member              setAddress()             Sets the current record's "address" collection
@@ -39,6 +41,7 @@
  * @method member              setItrSubmission()       Sets the current record's "itr_submission" collection
  * @method member              setBlogComment()         Sets the current record's "blog_comment" collection
  * @method member              setMemberCoupon()        Sets the current record's "member_coupon" collection
+ * @method member              setMemberRelation()      Sets the current record's "member_relation" collection
  * 
  * @package    BestBuddies
  * @subpackage model
@@ -95,5 +98,9 @@ abstract class Basemember extends sfGuardUser
         $this->hasMany('member_coupon', array(
              'local' => 'id',
              'foreign' => 'member_id'));
+
+        $this->hasMany('member_relation', array(
+             'local' => 'id',
+             'foreign' => 'member1'));
     }
 }

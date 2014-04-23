@@ -33,7 +33,7 @@ class subscriptionActions extends sfActions
       /* @var $member member */
       $subscription = $member->getCurrentActiveSubscription();
       
-      if( ($old_coupon = $subscription->getMemberCoupon()) )
+      /*if( ($old_coupon = $subscription->getMemberCoupon()) )
       {
           //Spouce discount applies.
           $this->discount_amount = $old_coupon->getCoupon()->getDiscountRate();
@@ -41,7 +41,9 @@ class subscriptionActions extends sfActions
       else
       {
           $this->discount_amount = 0;
-      }
+      }*/
+      
+      $this->discount_amount = 0;
       
       /* @var $subscription member_subscription */
       $current_subscription = subscriptionTable::getInstance()->getCurrentSubscription();
@@ -52,6 +54,33 @@ class subscriptionActions extends sfActions
       }
       
       $this->currentSubscription = $current_subscription;      
+  }
+  
+  public function executeCheckCoupon(sfWebRequest $request)
+  {
+      $amount = 0;
+      $cc = $request->getParameter('cc');
+      
+      if($cc)
+      {
+          $member_coupon = member_couponTable::getInstance()
+                            ->createQuery('mc')
+                            ->innerJoin('mc.coupon c')
+                            ->addWhere('mc.coupon_code = ?', $cc)
+                            ->addWhere('c.coupon_type = ?', couponTable::COUPON_TYPE_SPOUCE_DISCOUNT)
+                            ->addWhere('mc.member_id <> ?', $this->getUser()->getGuardUser()->getId())
+                            ->addWhere('mc.used is null or mc.used = 0')
+                            ->fetchOne();    
+          
+          /* @var $member_coupon member_coupon */
+          if($member_coupon)
+          {              
+            $amount = $member_coupon->getCoupon()->getDiscountRate();
+          }
+      }
+      
+      $this->renderText(json_encode(array("amount"=>$amount)));
+      return sfView::NONE;
   }
   
   public function executeRenewConfirm(sfWebRequest $request)
@@ -96,17 +125,28 @@ class subscriptionActions extends sfActions
       $ms->setStartDate(date('Y-m-d'));
       $ms->setPrice($current_subscription->getPrice());
       
-      //Check if the member used a last used a coupon
-      if( ($old_coupon = $subscription->getMemberCoupon()) )
-      {
-          //Spouce discount applies.
-          $new_coupon = new member_coupon();
-          $new_coupon->setMemberId($old_coupon->getMemberId());
-          $new_coupon->setCouponCode( member_couponTable::generateNewCode() );
-          $new_coupon->setCouponId($old_coupon->getCouponId());
-          $new_coupon->save();
-          $ms->setMemberCouponId($new_coupon->getId());
-      }
+      if($request->hasParameter('cc') && ($cc = $request->getParameter('cc')) )
+      {          
+          $member_coupon = member_couponTable::getInstance()
+                            ->createQuery('mc')
+                            ->innerJoin('mc.coupon c')
+                            ->addWhere('mc.coupon_code = ?', $cc)
+                            ->addWhere('c.coupon_type = ?', couponTable::COUPON_TYPE_SPOUCE_DISCOUNT)
+                            ->addWhere('mc.member_id <> ?', $this->getUser()->getGuardUser()->getId())
+                            ->addWhere('mc.used is null or mc.used = 0')
+                            ->fetchOne();                            
+          
+          /* @var $member_coupon member_coupon */
+          if($member_coupon)
+          {
+              $ms->setMemberCouponId($member_coupon->getId());
+          }
+          else
+          {
+              $this->getUser()->setFlash('error','Your renewal could not be ordered. Invalid Coupon Code', 'admin_module');
+              $this->redirect('subscription/renew');
+          }
+      }      
       
       $ms->save();
       

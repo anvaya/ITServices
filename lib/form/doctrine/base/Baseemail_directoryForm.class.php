@@ -19,7 +19,7 @@ abstract class Baseemail_directoryForm extends BaseFormDoctrine
       'title'          => new sfWidgetFormInputText(),
       'send_to'        => new sfWidgetFormTextarea(),
       'email_subject'  => new sfWidgetFormInputText(),
-      'email_template' => new sfWidgetFormTextarea(),
+      'email_template' => new sfWidgetFormInputText(),
       'is_html'        => new sfWidgetFormInputCheckbox(),
       'created_at'     => new sfWidgetFormDateTime(),
       'updated_at'     => new sfWidgetFormDateTime(),
@@ -29,16 +29,12 @@ abstract class Baseemail_directoryForm extends BaseFormDoctrine
       'directory_key'  => new sfValidatorChoice(array('choices' => array($this->getObject()->get('directory_key')), 'empty_value' => $this->getObject()->get('directory_key'), 'required' => false)),
       'title'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'send_to'        => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
-      'email_subject'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'email_template' => new sfValidatorString(array('max_length' => 4000, 'required' => false)),
+      'email_subject'  => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'email_template' => new sfValidatorPass(array('required' => false)),
       'is_html'        => new sfValidatorBoolean(array('required' => false)),
       'created_at'     => new sfValidatorDateTime(),
       'updated_at'     => new sfValidatorDateTime(),
     ));
-
-    $this->validatorSchema->setPostValidator(
-      new sfValidatorDoctrineUnique(array('model' => 'email_directory', 'column' => array('directory_key')))
-    );
 
     $this->widgetSchema->setNameFormat('email_directory[%s]');
 

@@ -39,7 +39,7 @@ class memberActions extends autoMemberActions
   public function executeActivate(sfWebRequest $request)
   {
       $member = $this->getRoute()->getObject();
-      
+      /* @var $member member */
       $sid = $request->getParameter('sid', false);
       
       $subscription = member_subscriptionTable::getInstance() 
@@ -116,7 +116,7 @@ class memberActions extends autoMemberActions
             $mailer->sendNextImmediately();
             $mailer->send($msg);
             
-            if($old_subscriptions == 0)
+            
             {
                 $coupon = member_couponTable::getInstance()
                             ->createQuery('mc')
@@ -133,7 +133,17 @@ class memberActions extends autoMemberActions
 
                     $coupon_code = $coupon->getCouponCode();
                     $valid_till  = format_date($subscription->getSubscription()->getEndDate(),"dd/MM/y");
-                    $email_body = $this->getPartial("email_coupon", array("user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
+                    
+                    //If spouce registered, offer this as a renewal coupon.
+                    if($member->isSpouceRegistered())                    
+                    {
+                        $email_body = $this->getPartial("email_coupon_renewal", array("user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
+                    }
+                    else
+                    {
+                        $email_body = $this->getPartial("email_coupon", array("user"=>$member, "subscription"=>$subscription,"valid_till"=>$valid_till, "coupon_code"=>$coupon_code));
+                    }
+                    
                     $spouce = $member->getGender()=="M"?"wife":"husband";
 
                     $msg = $mailer->compose();

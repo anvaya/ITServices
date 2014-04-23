@@ -709,6 +709,18 @@ member_coupon:
    member:         { local: member_id, onDelete: SET NULL }
    coupon:         { local: coupon_id, onDelete: CASCADE }
 
+member_relation:
+  options:
+      symfony:
+        filter: false
+  columns:
+      member1:  { type: integer, primary: true, notnull: true  }
+      member2:  { type: integer, primary: true, notnull: true  }
+      relation: { type: enum, values: ["P","SP","GP","SB"] }
+  relations:
+      member: { local: member1, onDelete: CASCADE }
+      relatedMember: { class: member, local: member2, onDelete: CASCADE }
+    
 email_directory:
   actAs:
     Timestampable: ~

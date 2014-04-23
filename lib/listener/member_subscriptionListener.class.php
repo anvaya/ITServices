@@ -54,7 +54,7 @@ class member_subscriptionListener extends Doctrine_Record_Listener
                 $coupon->setCouponId(1);
                 $coupon->setCouponCode(member_couponTable::generateNewCode());
                 $coupon->save();               
-           }
+           }           
         }
         else if($record->getMemberCouponId () && $record->getActive())
         {
@@ -64,6 +64,19 @@ class member_subscriptionListener extends Doctrine_Record_Listener
             {
                 $member_coupon->setUsed(true);
                 $member_coupon->save();
+                
+                if($member_coupon->getCoupon()->getCouponType()==couponTable::COUPON_TYPE_SPOUCE_DISCOUNT)
+                {
+                    $member1 = $member_coupon->getMember();
+                    if(!member_relationTable::areRelated($member1->getId(), $record->getMemberId() ))
+                    {
+                        $relation = new member_relation();
+                        $relation->setMember1($member1->getId());
+                        $relation->setMember2($record->getMemberId());
+                        $relation->setRelation(member_relationTable::RELATION_TYPE_SPOUCE);
+                        $relation->save();
+                    }
+                }                
             }
         }
         

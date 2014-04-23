@@ -138,4 +138,18 @@ class member extends Basemember
                             ->fetchOne();
         return $subscription;
     }
+    
+    /**
+     * Returns whether the member has spouce registered.
+     * @return boolean
+     */
+    public function isSpouceRegistered()
+    {
+        return (member_relationTable::getInstance()
+                ->createQuery('mr')
+                ->addWhere('mr.member1 = ? or mr.member2 = ?', array($this->getId(),$this->getId()) )                
+                ->addWhere('mr.relation = ?', member_relationTable::RELATION_TYPE_SPOUCE )
+                ->count() > 0);
+    }
+    
 }
