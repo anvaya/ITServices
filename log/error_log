@@ -1,8 +1,0 @@
-[29-Nov-2013 03:12:00 America/Denver] PHP Fatal error:  Uncaught exception 'InvalidArgumentException' with message 'Unable to load "I18nHelper.php" helper in: SF_ROOT_DIR/apps/member/lib/helper, SF_ROOT_DIR/lib/helper, SF_ROOT_DIR/plugins/sfAdminThemejRollerPlugin/lib/helper, SF_SYMFONY_LIB_DIR/helper.' in /home3/anvayat1/lib/symfony/1411/lib/config/sfApplicationConfiguration.class.php:663
-Stack trace:
-#0 /home3/anvayat1/public_html/temppublish/groworthnri/apps/member/config/memberConfiguration.class.php(7): sfApplicationConfiguration->loadHelpers(Array)
-#1 /home3/anvayat1/lib/symfony/1411/lib/config/sfApplicationConfiguration.class.php(49): memberConfiguration->configure()
-#2 /home3/anvayat1/lib/symfony/1411/lib/config/sfProjectConfiguration.class.php(614): sfApplicationConfiguration->__construct('prod', false, '/home3/anvayat1...', NULL)
-#3 /home3/anvayat1/public_html/temppublish/groworthnri/web/member.php(6): sfProjectConfiguration::getApplicationConfiguration('member', 'prod', false)
-#4 {main}
-  thrown in /home3/anvayat1/lib/symfony/1411/lib/config/sfApplicationConfiguration.class.php on line 663
